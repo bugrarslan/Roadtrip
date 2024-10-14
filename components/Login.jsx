@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
     height: hp(100),
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    padding: 25,
+    padding: hp(3),
   },
   button: {
     backgroundColor: Colors.PRIMARY,
     padding: 15,
     borderRadius: 30,
-    marginTop: "20%",
+    marginTop: hp(3),
   },
 });
