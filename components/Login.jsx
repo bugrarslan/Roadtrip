@@ -1,10 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { hp, wp } from "@/helpers/common";
-import { Colors } from "@/constants/Colors";
+import {theme} from "@/constants/theme";
+
+import { useRouter } from "expo-router";
 
 const Login = () => {
+  const router = useRouter();
+
   return (
     <View>
       <Image
@@ -36,7 +40,7 @@ const Login = () => {
             fontFamily: "outfit",
             textAlign: "center",
             fontSize: 17,
-            color: Colors.GRAY,
+            color: theme.colors.GRAY,
             marginTop: 20,
           }}
         >
@@ -44,18 +48,18 @@ const Login = () => {
           planları parmaklarının ucunda. Yapay zeka destekli içgörülerle daha
           akıllı seyahat et.
         </Text>
-        <View style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => router.push("auth/signIn")}>
           <Text
             style={{
-              color: Colors.WHITE,
+              color: theme.colors.WHITE,
               textAlign: "center",
               fontFamily: "outfit",
               fontSize: 17,
             }}
           >
-            Google ile giriş yapın
+            Hadi Başlayalım!
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
     height: hp(64),
   },
   container: {
-    backgroundColor: Colors.WHITE,
+    backgroundColor: theme.colors.WHITE,
     marginTop: -20,
     height: hp(100),
     borderTopLeftRadius: 30,
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     padding: hp(3),
   },
   button: {
-    backgroundColor: Colors.PRIMARY,
+    backgroundColor: theme.colors.PRIMARY,
     padding: 15,
     borderRadius: 30,
     marginTop: hp(3),

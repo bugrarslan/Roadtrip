@@ -22,3 +22,4 @@ expo-env.d.ts
 # my custom rules
 /android
 /ios
+/constants/index.js
