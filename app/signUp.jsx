@@ -71,7 +71,7 @@ const Page = () => {
     console.log("error", error);
 
     if (error) {
-      Alert.alert("Kayıt Ol", error.message);
+      Alert.alert("Kayıt Ol", "Bir hata oluştu, lütfen tekrar deneyin.");
     }
   };
 
@@ -93,7 +93,7 @@ const Page = () => {
         <View style={styles.form}>
           <Input
             icon={<Icon name="user" size={26} strokeWidth={1.6} />}
-            placeholder="Ad - soyad girin"
+            placeholder="Kullanıcı adınızı girin"
             onChangeText={(value) => (nameRef.current = value)}
           />
           <Input

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { hp, wp } from "@/helpers/common";
 import ScreenWrapper from "../components/ScreenWrapper";
@@ -9,10 +9,13 @@ import { theme } from "../constants/theme";
 import Input from "../components/Input";
 import Icon from "../assets/icons";
 import Button from "../components/Button";
+import { supabase } from "../lib/supabase";
 
 const Page = () => {
   const navigaiton = useNavigation();
   const router = useRouter();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
 
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +25,30 @@ const Page = () => {
     });
   }, []);
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+
+    if (!emailRef.current || !passwordRef.current) {
+      return Alert.alert("Giriş Yap", "Lütfen tüm boşlukları doldurun!");
+    }
+
+    let email = emailRef.current.trim();
+    let password = passwordRef.current.trim();
+
+    setLoading(true);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: emailRef.current,
+      password: passwordRef.current,
+    });
+
+    setLoading(false);
+
+    console.log("error", error);
+    
+    if (error) {
+      Alert.alert("Giriş Yap", error.message);
+    }
+  };
 
   return (
     <ScreenWrapper backgroundColor="white">
@@ -44,13 +70,13 @@ const Page = () => {
             icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
             placeholder="Email adresinizi girin"
             keyboardType="email-address"
-            // onChangeText={(value) => (emailRef.current = value)}
+            onChangeText={(value) => (emailRef.current = value)}
           />
           <Input
             icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
             placeholder="Parolanızı girin"
             secureTextEntry
-            // onChangeText={(value) => (passwordRef.current = value)}
+            onChangeText={(value) => (passwordRef.current = value)}
           />
           <Text style={styles.forgotPassword}>parolamı unuttum?</Text>
 

@@ -37,7 +37,7 @@ const Page = () => {
 
           <View style={styles.bottomTextContainer}>
             <Text style={styles.loginText}>Zaten bir hesabın var mı?</Text>
-            <Pressable onPress={() => router.push('erdem')}>
+            <Pressable onPress={() => router.push('/signIn')}>
               <Text
                 style={[
                   styles.loginText,
