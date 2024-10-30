@@ -26,7 +26,6 @@ const Page = () => {
   }, []);
 
   const onSubmit = async () => {
-
     if (!emailRef.current || !passwordRef.current) {
       return Alert.alert("Giriş Yap", "Lütfen tüm boşlukları doldurun!");
     }
@@ -43,8 +42,10 @@ const Page = () => {
 
     setLoading(false);
 
-    console.log("error", error);
-    
+    if (error) {
+      console.log("error", error);
+    }
+
     if (error) {
       Alert.alert("Giriş Yap", error.message);
     }
@@ -70,6 +71,7 @@ const Page = () => {
             icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
             placeholder="Email adresinizi girin"
             keyboardType="email-address"
+            autoCapitalize="none"
             onChangeText={(value) => (emailRef.current = value)}
           />
           <Input

@@ -94,12 +94,14 @@ const Page = () => {
           <Input
             icon={<Icon name="user" size={26} strokeWidth={1.6} />}
             placeholder="Kullanıcı adınızı girin"
+            autoCapitalize="none"
             onChangeText={(value) => (nameRef.current = value)}
           />
           <Input
             icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
             placeholder="Email adresinizi girin"
             keyboardType="email-address"
+            autoCapitalize="none"
             onChangeText={(value) => (emailRef.current = value)}
           />
           <Input
