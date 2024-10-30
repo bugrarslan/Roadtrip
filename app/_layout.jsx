@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
 import { getUserData } from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
+import 'react-native-get-random-values';
 
 SplashScreen.preventAutoHideAsync();
 

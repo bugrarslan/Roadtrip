@@ -27,9 +27,12 @@ const Page = () => {
     >
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <CloseButton router={router} />
+        <View style={styles.header}>
+          <Text style={styles.title}>Hangi Günler Gitmek istersin?</Text>
+          <CloseButton router={router} />
+        </View>
         <View>
-          <Button title="budget" onPress={onSubmit} />
+          
         </View>
       </View>
     </View>
@@ -44,5 +47,17 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.WHITE,
     paddingHorizontal: wp(5),
     gap: 10,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: wp(5),
+    fontFamily: "outfit-bold",
+    textAlign: "center",
+    flex: 1,
   },
 });

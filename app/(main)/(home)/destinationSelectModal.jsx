@@ -8,6 +8,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { mapsPlacesApiKey } from "../../../constants/index";
+
 
 const Page = () => {
   const router = useRouter();
@@ -21,15 +24,29 @@ const Page = () => {
   return (
     <View
       style={[
-        ios ? {paddingTop: wp(5)} :{ paddingTop },
-        { backgroundColor: theme.colors.WHITE, flex: 1 },
+        ios ? { paddingTop: wp(5) } : { paddingTop },
+        {  flex: 1 },
       ]}
     >
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <CloseButton router={router} />
-        <View>
-          <Button title="companion" onPress={onSubmit} />
+        <View style={styles.header}>
+          <Text style={styles.title}>Nereye Gitmek istersin?</Text>
+          <CloseButton router={router} />
+        </View>
+
+        <View style={{flex: 1}}>
+          {/* <GooglePlacesAutocomplete
+            placeholder="Search"
+            onPress={(data, details = null) => {
+              // 'details' is provided when fetchDetails = true
+              console.log(data, details);
+            }}
+            query={{
+              key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
+              language: "tr",
+            }}
+          /> */}
         </View>
       </View>
     </View>
@@ -41,8 +58,19 @@ export default Page;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.WHITE,
     paddingHorizontal: wp(5),
     gap: 10,
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: wp(5),
+    fontFamily: "outfit-bold",
+    textAlign: "center",
+    flex: 1,
   },
 });

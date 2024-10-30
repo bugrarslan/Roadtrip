@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(4),
   },
   title: {
-    fontSize: 35,
+    fontSize: wp(7),
     fontFamily: "outfit-bold",
   },
 });
