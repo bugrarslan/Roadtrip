@@ -27,10 +27,12 @@ const Page = () => {
     >
       <View style={styles.container}>
         <StatusBar style="auto" />
+        {/* header */}
         <View style={styles.header}>
           <Text style={styles.title}>Kiminle Gitmek istersin?</Text>
           <CloseButton router={router} />
         </View>
+        {/* content */}
         <View>
           
         </View>

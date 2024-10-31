@@ -7,9 +7,11 @@ import { wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../../../components/BackButton";
+import { useTrip } from "../../../contexts/TripContext";
 
 const Page = () => {
   const router = useRouter();
+  const {tripData, setTripData} = useTrip();
 
   const onSubmitDestination = () => {
     router.push("destinationSelectModal");

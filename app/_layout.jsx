@@ -16,15 +16,6 @@ const _layout = () => {
     "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
   });
 
-  // useFonts({
-  //   outfit: require("../assets/fonts/Outfit-Regular.ttf"),
-  //   "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
-  //   "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
-  //   jetbrains: require("../assets/fonts/JetBrainsMono-Regular.ttf"),
-  //   "jetbrains-bold": require("../assets/fonts/JetBrainsMono-Bold.ttf"),
-  //   "jetbrains-medium": require("../assets/fonts/JetBrainsMono-Medium.ttf"),
-  // });
-
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
