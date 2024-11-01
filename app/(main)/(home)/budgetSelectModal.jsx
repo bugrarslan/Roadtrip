@@ -5,9 +5,10 @@ import { useRouter } from "expo-router";
 import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { wp } from "../../../helpers/common";
+import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
+import TripButton from "../../../components/TripButton";
 
 const Page = () => {
   const router = useRouter();
@@ -15,24 +16,28 @@ const Page = () => {
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
 
-  const onSubmit = () => {
-    router.replace("/tripScreen");
+  const onSubmit = (text) => {
+    console.log(text);
   };
   return (
     <View
       style={[
-        ios ? {paddingTop: wp(5)} :{ paddingTop },
+        ios ? { paddingTop: wp(5) } : { paddingTop },
         { backgroundColor: theme.colors.WHITE, flex: 1 },
       ]}
     >
       <View style={styles.container}>
         <StatusBar style="auto" />
+        {/* header */}
         <View style={styles.header}>
           <Text style={styles.title}>Bütçen Ne kadar?</Text>
           <CloseButton router={router} />
         </View>
-        <View>
-          
+        {/* content */}
+        <View style={styles.content}>
+          <TripButton onPress={onSubmit} text={"Ucuz"} />
+          <TripButton onPress={onSubmit} text={"Ortalama"} />
+          <TripButton onPress={onSubmit} text={"Lüks"} />
         </View>
       </View>
     </View>
@@ -59,5 +64,10 @@ const styles = StyleSheet.create({
     fontFamily: "outfit-bold",
     textAlign: "center",
     flex: 1,
+  },
+  content: {
+    flex: 1,
+    alignItems: "center",
+    gap: 10,
   },
 });

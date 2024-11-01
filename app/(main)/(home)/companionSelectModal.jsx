@@ -5,9 +5,10 @@ import { useRouter } from "expo-router";
 import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { wp } from "../../../helpers/common";
+import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
+import TripButton from "../../../components/TripButton";
 
 const Page = () => {
   const router = useRouter();
@@ -15,13 +16,14 @@ const Page = () => {
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
 
-  const onSubmit = () => {
-    router.push("dateSelectModal");
+  const onSubmit = (text) => {
+    console.log(text);
   };
+
   return (
     <View
       style={[
-        ios ? {paddingTop: wp(5)} :{ paddingTop },
+        ios ? { paddingTop: wp(5) } : { paddingTop },
         { backgroundColor: theme.colors.WHITE, flex: 1 },
       ]}
     >
@@ -33,8 +35,11 @@ const Page = () => {
           <CloseButton router={router} />
         </View>
         {/* content */}
-        <View>
-          
+        <View style={styles.content}>
+          <TripButton onPress={onSubmit} text={"Sadece Ben"} />
+          <TripButton onPress={onSubmit} text={"Çift Olarak"} />
+          <TripButton onPress={onSubmit} text={"Ailecek"} />
+          <TripButton onPress={onSubmit} text={"Arkadaşlarla"} />
         </View>
       </View>
     </View>
@@ -61,5 +66,10 @@ const styles = StyleSheet.create({
     fontFamily: "outfit-bold",
     textAlign: "center",
     flex: 1,
+  },
+  content: {
+    flex: 1,
+    alignItems: "center",
+    gap: 10,
   },
 });

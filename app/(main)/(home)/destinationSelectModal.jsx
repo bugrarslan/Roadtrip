@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { wp } from "../../../helpers/common";
+import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -65,10 +65,11 @@ const Page = () => {
               },
               textInput: {
                 fontFamily: "outfit",
-                fontSize: wp(4),
-                color: theme.colors.BLACK,
+                fontSize: hp(2.5),
+                color: 'black',
                 borderRadius: theme.radius.xl,
                 backgroundColor: theme.colors.WHITE,
+                height: hp(8),
               },
             }}
           />
