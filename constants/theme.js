@@ -10,6 +10,7 @@ export const theme = {
     WHITE: "#fff",
     PRIMARY: "#000",
     GRAY: "#7d7d7d",
+    GRAY_LIGHT: "#f4f4f4",
 
     text: "#494949",
     textLight: "#7c7c7c",

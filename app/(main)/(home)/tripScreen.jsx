@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { useRouter } from "expo-router";
 import Button from "../../../components/Button";
@@ -25,6 +25,10 @@ const Page = () => {
   const onSubmitBudget = () => {
     router.push("budgetSelectModal");
   };
+
+  useEffect(() => {
+    console.log(tripData);
+  }, [tripData]);
   return (
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
       <StatusBar style="dark" />

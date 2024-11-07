@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Platform } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Platform, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
 import BackButton from "../../../components/BackButton";
 import { useRouter } from "expo-router";
 import CloseButton from "../../../components/CloseButton";
@@ -9,16 +9,23 @@ import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
 import TripButton from "../../../components/TripButton";
+import { SelectBudgetList } from "../../../constants/tripOptions";
+import { useTrip } from "../../../contexts/TripContext";
 
 const Page = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
+  const { tripData, setTripData } = useTrip();
 
-  const onSubmit = (text) => {
-    console.log(text);
-  };
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    setTripData({...tripData, budget: selected?.people});
+    console.log(tripData);
+  }, [selected]);
+
   return (
     <View
       style={[
@@ -35,9 +42,18 @@ const Page = () => {
         </View>
         {/* content */}
         <View style={styles.content}>
-          <TripButton onPress={onSubmit} text={"Ucuz"} />
-          <TripButton onPress={onSubmit} text={"Ortalama"} />
-          <TripButton onPress={onSubmit} text={"Lüks"} />
+        <FlatList
+            style={{ width: "100%" }}
+            contentContainerStyle={{ gap: 10 }}
+            data={SelectBudgetList}
+            renderItem={({ item, index }) => (
+              <TripButton
+                option={item}
+                setSelected={setSelected}
+                selected={selected}
+              />
+            )}
+          />
         </View>
       </View>
     </View>
@@ -67,7 +83,5 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    alignItems: "center",
-    gap: 10,
   },
 });

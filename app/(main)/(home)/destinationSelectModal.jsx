@@ -42,6 +42,7 @@ const Page = () => {
             onFail={(error) => console.error(error)}
             onPress={(data, details = null) => {
               setTripData({
+                ...tripData,
                 locationInfo: {
                   name: data.description,
                   coordinates: details?.geometry?.location,
@@ -49,7 +50,7 @@ const Page = () => {
                   url: details?.url,
                 },
               });
-              router.back()
+              router.back();
             }}
             query={{
               key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
@@ -66,7 +67,7 @@ const Page = () => {
               textInput: {
                 fontFamily: "outfit",
                 fontSize: hp(2.5),
-                color: 'black',
+                color: "black",
                 borderRadius: theme.radius.xl,
                 backgroundColor: theme.colors.WHITE,
                 height: hp(8),
