@@ -22,8 +22,7 @@ const Page = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setTripData({...tripData, travellerCount: selected?.people});
-    console.log(tripData);
+    setTripData({...tripData, traveller: selected});
   }, [selected]);
 
   return (

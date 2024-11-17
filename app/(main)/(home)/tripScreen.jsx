@@ -11,7 +11,7 @@ import { useTrip } from "../../../contexts/TripContext";
 
 const Page = () => {
   const router = useRouter();
-  const {tripData, setTripData} = useTrip();
+  const { tripData, setTripData } = useTrip();
 
   const onSubmitDestination = () => {
     router.push("destinationSelectModal");
@@ -28,7 +28,8 @@ const Page = () => {
 
   useEffect(() => {
     console.log(tripData);
-  }, [tripData]);
+  }, []);
+
   return (
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
       <StatusBar style="dark" />
