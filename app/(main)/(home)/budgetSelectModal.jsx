@@ -22,8 +22,11 @@ const Page = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setTripData({...tripData, budget: selected?.people});
-    console.log(tripData);
+    setSelected(tripData.budget);
+  }, [])
+
+  useEffect(() => {
+    selected && setTripData({ ...tripData, budget: selected });
   }, [selected]);
 
   return (
@@ -42,7 +45,7 @@ const Page = () => {
         </View>
         {/* content */}
         <View style={styles.content}>
-        <FlatList
+          <FlatList
             style={{ width: "100%" }}
             contentContainerStyle={{ gap: 10 }}
             data={SelectBudgetList}

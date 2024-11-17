@@ -22,7 +22,11 @@ const Page = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setTripData({...tripData, traveller: selected});
+    setSelected(tripData.companion);
+  }, [])
+
+  useEffect(() => {
+    setTripData({...tripData, companion: selected});
   }, [selected]);
 
   return (
