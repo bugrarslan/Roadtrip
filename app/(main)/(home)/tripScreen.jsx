@@ -8,6 +8,7 @@ import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../../../components/BackButton";
 import { useTrip } from "../../../contexts/TripContext";
+import TripPreviewButton from "../../../components/TripPreviewButton";
 
 const Page = () => {
   const router = useRouter();
@@ -38,10 +39,15 @@ const Page = () => {
           <BackButton router={router} />
           <Text style={styles.title}>Seyahatini oluşturalım</Text>
         </View>
-        <Button title="Destination" onPress={onSubmitDestination} />
+        <TripPreviewButton title={"Nereye?"} content={tripData?.locationInfo?.name} onPress={onSubmitDestination}/>
+        <TripPreviewButton title={"Kiminle?"} content={tripData?.companion?.title} onPress={onSubmitCompanion}/>
+        <TripPreviewButton title={"Hangi Günler?"} content={tripData?.totalNoOfDays} onPress={onSubmitDate}/>
+        <TripPreviewButton title={"Bütçe?"} content={tripData?.budget?.title} onPress={onSubmitBudget}/>
+        
+        {/* <Button title="Destination" onPress={onSubmitDestination} />
         <Button title="Companion" onPress={onSubmitCompanion} />
         <Button title="Date" onPress={onSubmitDate} />
-        <Button title="Budget" onPress={onSubmitBudget} />
+        <Button title="Budget" onPress={onSubmitBudget} /> */}
       </View>
     </ScreenWrapper>
   );

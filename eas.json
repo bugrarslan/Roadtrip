@@ -14,5 +14,8 @@
   },
   "submit": {
     "production": {}
+  },
+  "expo": {
+    "newArchEnabled": true
   }
 }
