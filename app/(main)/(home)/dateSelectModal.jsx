@@ -44,6 +44,7 @@ const Page = () => {
       endDate: endDate,
       totalNoOfDays: totalNoOfDays,
     })
+    router.back();
   };
 
   return (
@@ -90,7 +91,7 @@ const Page = () => {
             selectMonthTitle="Ayı Seçin, "
             selectYearTitle="Yılı Seçin"
           />
-          <Button title="ok" onPress={onDateSelectionApply} />
+          <Button title="Tamam" onPress={onDateSelectionApply} />
         </View>
       </View>
     </View>
@@ -118,5 +119,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flex: 1,
   },
-  content: { flex: 1, marginTop: hp(2) },
+  content: { flex: 1, marginTop: hp(2) , gap: hp(2) },
 });

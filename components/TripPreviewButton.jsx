@@ -4,18 +4,20 @@ import { hp, wp } from "../helpers/common";
 import { theme } from "../constants/theme";
 import Icon from "../assets/icons";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { Ionicons } from "@expo/vector-icons";
 
-const TripPreviewButton = ({ title, content, onPress }) => {
+const TripPreviewButton = ({ title, content, onPress, icon }) => {
   return (
     <Pressable
       style={[styles.container, { borderWidth: 2 }]}
       onPress={() => onPress(onPress)}
     >
+      <Ionicons name={icon} size={24} color={theme.colors.dark} />
       <View style={{ gap: 10, backgroundColor: theme.colors.GRAY_LIGHT }}>
         <Text style={styles.title}>{title}</Text>
         {content && (<Text style={styles.text}>{content && content}</Text>)}
       </View>
-      <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.colors.dark} />
+      <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.colors.PRIMARY} />
     </Pressable>
   );
 };

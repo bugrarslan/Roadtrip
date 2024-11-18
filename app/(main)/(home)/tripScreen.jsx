@@ -3,12 +3,13 @@ import React, { useEffect } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { useRouter } from "expo-router";
 import Button from "../../../components/Button";
-import { wp } from "../../../helpers/common";
+import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../../../components/BackButton";
 import { useTrip } from "../../../contexts/TripContext";
 import TripPreviewButton from "../../../components/TripPreviewButton";
+import moment from "moment";
 
 const Page = () => {
   const router = useRouter();
@@ -39,15 +40,40 @@ const Page = () => {
           <BackButton router={router} />
           <Text style={styles.title}>Seyahatini oluşturalım</Text>
         </View>
-        <TripPreviewButton title={"Nereye?"} content={tripData?.locationInfo?.name} onPress={onSubmitDestination}/>
-        <TripPreviewButton title={"Kiminle?"} content={tripData?.companion?.title} onPress={onSubmitCompanion}/>
-        <TripPreviewButton title={"Hangi Günler?"} content={tripData?.totalNoOfDays} onPress={onSubmitDate}/>
-        <TripPreviewButton title={"Bütçe?"} content={tripData?.budget?.title} onPress={onSubmitBudget}/>
-        
-        {/* <Button title="Destination" onPress={onSubmitDestination} />
-        <Button title="Companion" onPress={onSubmitCompanion} />
-        <Button title="Date" onPress={onSubmitDate} />
-        <Button title="Budget" onPress={onSubmitBudget} /> */}
+        <View style={styles.content}>
+          <TripPreviewButton
+            title={"Nereye?"}
+            content={tripData?.locationInfo?.name}
+            onPress={onSubmitDestination}
+            icon={"location-sharp"}
+          />
+          <TripPreviewButton
+            title={"Kiminle?"}
+            content={tripData?.companion?.title}
+            onPress={onSubmitCompanion}
+            icon={"people-sharp"}
+          />
+          <TripPreviewButton
+            title={"Hangi Günler?"}
+            content={
+              moment(tripData?.startDate).format("DD MMM") +
+              " - " +
+              moment(tripData?.endDate).format("DD MMM") +
+              " (" +
+              tripData?.totalNoOfDays +
+              " gün)"
+            }
+            onPress={onSubmitDate}
+            icon={"calendar-sharp"}
+          />
+          <TripPreviewButton
+            title={"Bütçe?"}
+            content={tripData?.budget?.title}
+            onPress={onSubmitBudget}
+            icon={"cash-sharp"}
+          />
+          <Button title="Oluştur!" onPress={() => console.log("submit")} />
+        </View>
       </View>
     </ScreenWrapper>
   );
@@ -59,7 +85,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.WHITE,
     paddingHorizontal: wp(5),
-    gap: 10,
   },
   header: {
     flexDirection: "row",
@@ -73,4 +98,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flex: 1,
   },
+  content: { flex: 1, marginTop: hp(2) , gap: hp(2) },
 });
