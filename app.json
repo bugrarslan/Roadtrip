@@ -1,27 +1,21 @@
 {
   "expo": {
-    "name": "Roadtrip",
-    "slug": "Roadtrip",
+    "name": "RoadTrip",
+    "slug": "RoadTrip",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/roadtrip.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/roadtrip-splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#74C8B0"
-    },
+    "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.bugrarslan.Roadtrip"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/roadtrip.png",
-        "backgroundColor": "#74C8B0"
-      },
-      "package": "com.bugrarslan.Roadtrip"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
     "web": {
       "bundler": "metro",
@@ -39,18 +33,19 @@
             "assets/fonts/Outfit-Regular.ttf"
           ]
         }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/roadtrip.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "f2b7414e-0dbe-4e34-827b-333a783887d8"
-      }
     }
   }
 }

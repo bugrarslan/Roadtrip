@@ -12,7 +12,7 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { mapsPlacesApiKey } from "../../../constants/index";
 import { useTrip } from "../../../contexts/TripContext";
 
-const Page = () => {
+const destinationSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
@@ -36,7 +36,7 @@ const Page = () => {
 
         {/* content */}
         <View style={{ flex: 1, backgroundColor: theme.colors.WHITE }}>
-          <GooglePlacesAutocomplete
+          {/* <GooglePlacesAutocomplete
             placeholder="Ara"
             fetchDetails={true}
             onFail={(error) => console.error(error)}
@@ -73,14 +73,14 @@ const Page = () => {
                 height: hp(8),
               },
             }}
-          />
+          /> */}
         </View>
       </View>
     </View>
   );
 };
 
-export default Page;
+export default destinationSelectModal;
 
 const styles = StyleSheet.create({
   container: {

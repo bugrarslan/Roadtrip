@@ -9,12 +9,12 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
 import { useRouter } from "expo-router";
 
-const Page = () => {
+const index = () => {
   const router = useRouter();
   const [userTrips, setUserTrips] = useState([]);
 
   const newTripClicked = () => {
-    router.push("tripScreen");
+    router.push("createTrip");
   };
 
   return (
@@ -38,7 +38,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default index;
 
 const styles = StyleSheet.create({
   container: {

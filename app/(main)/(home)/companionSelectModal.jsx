@@ -12,7 +12,7 @@ import TripButton from "../../../components/TripButton";
 import { SelectTravellerList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
 
-const Page = () => {
+const companionSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
@@ -63,7 +63,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default companionSelectModal;
 
 const styles = StyleSheet.create({
   container: {

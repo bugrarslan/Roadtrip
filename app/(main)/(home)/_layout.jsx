@@ -8,7 +8,8 @@ const _layout = () => {
     <TripProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="tripScreen" options={{ headerShown: false }} />
+        <Stack.Screen name="createTrip" options={{ headerShown: false }} />
+        <Stack.Screen name="loading" options={{ headerShown: false }} />
         <Stack.Screen
           name="destinationSelectModal"
           options={{ headerShown: false, presentation: "modal" }}

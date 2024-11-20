@@ -11,7 +11,7 @@ import Icon from "../assets/icons";
 import Button from "../components/Button";
 import { supabase } from "../lib/supabase";
 
-const Page = () => {
+const signIn = () => {
   const navigaiton = useNavigation();
   const router = useRouter();
   const emailRef = useRef("");
@@ -110,7 +110,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default signIn;
 
 const styles = StyleSheet.create({
   container: {

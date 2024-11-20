@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "expo-router";
 import Loading from "../components/Loading";
 
-const Page = () => {
+const index = () => {
   const router = useRouter();
 
   return (
@@ -13,7 +13,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default index;
 
 const styles = StyleSheet.create({
   container: {

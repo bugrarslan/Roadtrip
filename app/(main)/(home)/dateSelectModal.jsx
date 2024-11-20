@@ -12,7 +12,7 @@ import moment from "moment";
 import Button from "../../../components/Button";
 import { useTrip } from "../../../contexts/TripContext";
 
-const Page = () => {
+const dateSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
@@ -98,7 +98,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default dateSelectModal;
 
 const styles = StyleSheet.create({
   container: {

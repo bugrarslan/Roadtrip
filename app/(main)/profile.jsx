@@ -6,7 +6,7 @@ import { supabase } from "../../lib/supabase";
 import { StatusBar } from "expo-status-bar";
 import { wp } from "../../helpers/common";
 
-const Page = () => {
+const profile = () => {
   return (
     <ScreenWrapper backgroundColor={"white"}>
       <View style={styles.container}>
@@ -17,7 +17,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default profile;
 
 const styles = StyleSheet.create({
   container: {

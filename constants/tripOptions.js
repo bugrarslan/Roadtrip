@@ -32,20 +32,20 @@ export const SelectTravellerList = [
 export const SelectBudgetList = [
     {
         id: 1,
-        title: "Cheap",
-        description: "stay conscious of costs",
+        title: "Ucuz",
+        // description: "stay conscious of costs",
         icon: "💵",
     },
     {
         id: 2,
-        title: "Moderate",
-        description: "Keep cost on the average side",
+        title: "Ortalama",
+        // description: "Keep cost on the average side",
         icon: "💰",
     },
     {
         id: 3,
-        title: "Luxury",
-        description: "Dont worry about the cost",
+        title: "Lüks",
+        // description: "Dont worry about the cost",
         icon: "💸",
     },
 ]

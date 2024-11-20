@@ -6,6 +6,7 @@ import { useRouter } from "expo-router";
 import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 import ScreenWrapper from "../components/ScreenWrapper";
+import LottieView from "lottie-react-native";
 
 const Page = () => {
   const router = useRouter();
@@ -14,17 +15,27 @@ const Page = () => {
     <ScreenWrapper backgroundColor="white">
       <StatusBar style="dark" />
       <View style={styles.container}>
-        <Image
+        <LottieView
+          source={require("../assets/animations/welcome.json")}
+          style={{
+            width: wp(100),
+            aspectRatio: 1,
+            padding: wp(4)
+          }}
+          autoPlay
+          loop
+        />
+        {/* <Image
           source={require("../assets/images/welcome1.png")}
           style={styles.welcomeImage}
           resizeMode="cover"
-        />
+        /> */}
         <View style={{ gap: 20 }}>
           <Text style={styles.title}>RoadTrip</Text>
           <Text style={styles.punchline}>
-          Bir sonraki maceranı zahmetsizce keşfet. Kişiselleştirilmiş seyahat
-          planları parmaklarının ucunda. Yapay zeka destekli içgörülerle daha
-          akıllı seyahat et.
+            Bir sonraki maceranı zahmetsizce keşfet. Kişiselleştirilmiş seyahat
+            planları parmaklarının ucunda. Yapay zekâ destekli içgörülerle daha
+            akıllı seyahat et.
           </Text>
         </View>
 
@@ -37,7 +48,7 @@ const Page = () => {
 
           <View style={styles.bottomTextContainer}>
             <Text style={styles.loginText}>Zaten bir hesabın var mı?</Text>
-            <Pressable onPress={() => router.push('/signIn')}>
+            <Pressable onPress={() => router.push("/signIn")}>
               <Text
                 style={[
                   styles.loginText,

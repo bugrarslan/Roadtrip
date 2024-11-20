@@ -12,7 +12,7 @@ import TripButton from "../../../components/TripButton";
 import { SelectBudgetList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
 
-const Page = () => {
+const budgetSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
@@ -63,7 +63,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default budgetSelectModal;
 
 const styles = StyleSheet.create({
   container: {
