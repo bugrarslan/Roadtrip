@@ -1,28 +1,28 @@
 export const SelectTravellerList = [
     {
         id: 1,
-        title: "Sadece Ben",
+        title: "Just Me",
         description: "keşif için yalnız seyahat edenler",
         icon: "🛩️",
         people: "1 person",
     },
     {
         id: 2,
-        title: "Çift",
+        title: "A Couple",
         description: "iki yolcu bir arada",
         icon: "🥂",
         people: "2 people",
     },
     {
         id: 3,
-        title: "Aile",
+        title: "Family",
         description: "Ailecek eğlenceli bir yolculuk",
         icon: "🏠",
         people: "3 - 5 people",
     },
     {
         id: 4,
-        title: "Arkadaşlar",
+        title: "Friends",
         description: "Arkadaşlarla birlikte eğlenceli bir yolculuk",
         icon: "⛵",
         people: "5 - 10 people",
@@ -32,19 +32,19 @@ export const SelectTravellerList = [
 export const SelectBudgetList = [
     {
         id: 1,
-        title: "Ucuz",
+        title: "Cheap",
         // description: "stay conscious of costs",
         icon: "💵",
     },
     {
         id: 2,
-        title: "Ortalama",
+        title: "Moderate",
         // description: "Keep cost on the average side",
         icon: "💰",
     },
     {
         id: 3,
-        title: "Lüks",
+        title: "Luxury",
         // description: "Dont worry about the cost",
         icon: "💸",
     },

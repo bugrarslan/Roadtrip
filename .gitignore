@@ -41,3 +41,4 @@ app-example
 /ios
 /constants/index.js
 /.env
+constants/data.js

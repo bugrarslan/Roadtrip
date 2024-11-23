@@ -36,7 +36,7 @@ const destinationSelectModal = () => {
 
         {/* content */}
         <View style={{ flex: 1, backgroundColor: theme.colors.WHITE }}>
-          {/* <GooglePlacesAutocomplete
+          <GooglePlacesAutocomplete
             placeholder="Ara"
             fetchDetails={true}
             onFail={(error) => console.error(error)}
@@ -54,7 +54,7 @@ const destinationSelectModal = () => {
             }}
             query={{
               key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
-              language: "tr",
+              language: "en",
             }}
             styles={{
               textInputContainer: {
@@ -73,7 +73,7 @@ const destinationSelectModal = () => {
                 height: hp(8),
               },
             }}
-          /> */}
+          />
         </View>
       </View>
     </View>
