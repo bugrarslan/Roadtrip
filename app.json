@@ -13,9 +13,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/images/roadtrip.png",
+        "backgroundColor": "#74C8B0"
+      },
+      "package": "com.bugrarslan.RoadTrip"
     },
     "web": {
       "bundler": "metro",
@@ -37,10 +38,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/roadtrip.png",
+          "image": "./assets/images/roadtrip-splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#74C8B0"
         }
       ]
     ],

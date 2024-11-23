@@ -11,7 +11,7 @@ SplashScreen.preventAutoHideAsync();
 
 const _layout = () => {
   const [loaded, error] = useFonts({
-    outfit: require("../assets/fonts/Outfit-Regular.ttf"),
+    "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
     "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
     "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
   });

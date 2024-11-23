@@ -7,13 +7,15 @@ import { theme } from "../../../constants/theme";
 import { useTrip } from "../../../contexts/TripContext";
 import { AI_PROMPT } from "../../../constants/data";
 import { chatSession } from "../../../services/geminiAiModalService";
+import { useRouter } from "expo-router";
 
 const loading = () => {
+  const router = useRouter();
   const { tripData, setTripData } = useTrip();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // tripData && generateAiTrip();
+    tripData && generateAiTrip();
   }, []);
 
   const generateAiTrip = async () => {
@@ -31,6 +33,7 @@ const loading = () => {
     const result = await chatSession.sendMessage(FINAL_PROMPT);
     if (result.response.text()) {
       setLoading(false);
+      router.push("(main)/(home)");
     }
     console.log(result.response.text());
   };
