@@ -42,3 +42,4 @@ app-example
 /constants/index.js
 /.env
 constants/data.js
+.vscode
