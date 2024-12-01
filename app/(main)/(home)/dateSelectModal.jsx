@@ -40,10 +40,12 @@ const dateSelectModal = () => {
     const totalNoOfDays = endDate.diff(startDate, "days") + 1;
     setTripData({
       ...tripData,
-      startDate: startDate,
-      endDate: endDate,
-      totalNoOfDays: totalNoOfDays,
-    })
+      dateInfo: {
+        startDate: startDate,
+        endDate: endDate,
+        totalNoOfDays: totalNoOfDays,
+      },
+    });
     router.back();
   };
 
@@ -119,5 +121,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flex: 1,
   },
-  content: { flex: 1, marginTop: hp(2) , gap: hp(2) },
+  content: { flex: 1, marginTop: hp(2), gap: hp(2) },
 });

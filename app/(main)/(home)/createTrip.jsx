@@ -52,18 +52,18 @@ const createTrip = () => {
           />
           <TripPreviewButton
             title={"Kiminle?"}
-            content={tripData?.companion?.title}
+            content={tripData?.companionInfo?.title}
             onPress={onSubmitCompanion}
             icon={"people-sharp"}
           />
           <TripPreviewButton
             title={"Hangi Günler?"}
-            content={ tripData?.totalNoOfDays &&
-              moment(tripData?.startDate).format("DD MMM") +
+            content={ tripData?.dateInfo?.totalNoOfDays &&
+              moment(tripData?.dateInfo?.startDate).format("DD MMM") +
               " - " +
-              moment(tripData?.endDate).format("DD MMM") +
+              moment(tripData?.dateInfo?.endDate).format("DD MMM") +
               " (" +
-              tripData?.totalNoOfDays +
+              tripData?.dateInfo?.totalNoOfDays +
               " gün)"
             }
             onPress={onSubmitDate}
@@ -71,7 +71,7 @@ const createTrip = () => {
           />
           <TripPreviewButton
             title={"Bütçe?"}
-            content={tripData?.budget?.title}
+            content={tripData?.budgetInfo?.title}
             onPress={onSubmitBudget}
             icon={"cash-sharp"}
           />

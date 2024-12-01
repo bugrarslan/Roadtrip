@@ -22,11 +22,11 @@ const budgetSelectModal = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setSelected(tripData.budget);
+    setSelected(tripData.budgetInfo);
   }, [])
 
   useEffect(() => {
-    selected && setTripData({ ...tripData, budget: selected });
+    selected && setTripData({ ...tripData, budgetInfo: selected });
   }, [selected]);
 
   return (

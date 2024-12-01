@@ -22,11 +22,11 @@ const companionSelectModal = () => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    setSelected(tripData.companion);
+    setSelected(tripData.companionInfo);
   }, [])
 
   useEffect(() => {
-    setTripData({...tripData, companion: selected});
+    setTripData({...tripData, companionInfo: selected});
   }, [selected]);
 
   return (
