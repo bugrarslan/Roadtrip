@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import Button from "../../../components/Button";
 import { supabase } from "../../../lib/supabase";
@@ -8,10 +8,84 @@ import { wp } from "../../../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
 import { useRouter } from "expo-router";
+import { useAuth } from "../../../contexts/AuthContext";
+import { getUserData } from "../../../services/userService";
+import { fetchTrips } from "../../../services/tripService";
 
+var limit = 0;
 const index = () => {
   const router = useRouter();
-  const [userTrips, setUserTrips] = useState([]);
+  const { user } = useAuth();
+  const [trips, setTrips] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    let tripChannel = supabase
+      .channel("trips")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "trips" },
+        handleTripEvent
+      )
+      .subscribe();
+      getTrips();
+      console.log("trips", trips);
+
+      return () => {
+        supabase.removeChannel(tripChannel);
+      };
+  }, []);
+
+  const handleTripEvent = async (payload) => {
+    console.log("trip event: ", payload);
+    if (payload.eventType === "INSERT" && payload?.new?.id) {
+      let newTrip = { ...payload.new };
+      let res = await getUserData(newTrip?.userId);
+      newTrip.tripLikes = [];
+      // newTrip.comments = [{ count: 0 }];
+      newTrip.user = res?.success ? res?.data : {};
+      setTrips((prevTrips) => [newTrip, ...prevTrips]);
+    }
+
+    if (payload.eventType === "DELETE" && payload?.old?.id) {
+      setTrips((prevTrips) => {
+        let updatedTrips = prevTrips.filter(
+          (trip) => trip.id !== payload.old.id
+        );
+        return updatedTrips;
+      });
+    }
+
+    if (payload.eventType === "UPDATE" && payload?.new?.id) {
+      setTrips((prevTrips) => {
+        let updatedTrips = prevTrips.map((trip) => {
+          if (trip.id === payload.new.id) {
+            trip.response = payload.new.response;
+            trip.locationInfo = payload.new.locationInfo;
+            trip.companionInfo = payload.new.companionInfo;
+            trip.budgetInfo = payload.new.budgetInfo;
+            trip.dateInfo = payload.new.dateInfo;
+          }
+          return trip;
+        });
+        return updatedTrips;
+      });
+    }
+  };
+
+  const getTrips = async () => {
+    if (!hasMore) {
+      return null;
+    }
+    limit = limit + 10;
+    let res = await fetchTrips(limit);
+    if (res.success) {
+      if (trips.length === res.data.length) setHasMore(false);
+      setTrips(res.data);
+    } else {
+      Alert.alert("Home", res.msg);
+    }
+  };
 
   const newTripClicked = () => {
     router.push("createTrip");
@@ -30,9 +104,9 @@ const index = () => {
         </View>
 
         {/* content */}
-        {userTrips.length === 0 ? (
+        {trips.length === 0 ? (
           <StartNewTripCard handleNewTrip={newTripClicked} />
-        ) : null}
+        ) : console.log(trips)}
       </View>
     </ScreenWrapper>
   );
