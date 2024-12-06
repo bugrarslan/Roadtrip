@@ -1,16 +1,17 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, Alert, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import Button from "../../../components/Button";
 import { supabase } from "../../../lib/supabase";
 import { StatusBar } from "expo-status-bar";
-import { wp } from "../../../helpers/common";
+import { hp, wp } from "../../../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
 import { useRouter } from "expo-router";
 import { useAuth } from "../../../contexts/AuthContext";
 import { getUserData } from "../../../services/userService";
 import { fetchTrips } from "../../../services/tripService";
+import Loading from "../../../components/Loading";
+import TripCard from "../../../components/TripCard";
 
 var limit = 0;
 const index = () => {
@@ -18,6 +19,7 @@ const index = () => {
   const { user } = useAuth();
   const [trips, setTrips] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let tripChannel = supabase
@@ -28,12 +30,11 @@ const index = () => {
         handleTripEvent
       )
       .subscribe();
-      getTrips();
-      console.log("trips", trips);
+    getTrips();
 
-      return () => {
-        supabase.removeChannel(tripChannel);
-      };
+    return () => {
+      supabase.removeChannel(tripChannel);
+    };
   }, []);
 
   const handleTripEvent = async (payload) => {
@@ -74,11 +75,13 @@ const index = () => {
   };
 
   const getTrips = async () => {
+    setLoading(true);
     if (!hasMore) {
       return null;
     }
     limit = limit + 10;
-    let res = await fetchTrips(limit);
+    let res = await fetchTrips(limit, user.id);
+    setLoading(false);
     if (res.success) {
       if (trips.length === res.data.length) setHasMore(false);
       setTrips(res.data);
@@ -104,9 +107,26 @@ const index = () => {
         </View>
 
         {/* content */}
-        {trips.length === 0 ? (
-          <StartNewTripCard handleNewTrip={newTripClicked} />
-        ) : console.log(trips)}
+        {trips.length === 0 && loading && (
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <Loading />
+          </View>
+        )}
+        {trips.length === 0 && !loading ? (
+          <View style={styles.content}>
+            <StartNewTripCard handleNewTrip={newTripClicked} />
+          </View>
+        ) : (
+          <View style={styles.content}>
+            <FlatList
+              data={trips}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <TripCard item={item} currentUser={user} router={router}/>}
+            />
+          </View>
+        )}
       </View>
     </ScreenWrapper>
   );
@@ -128,5 +148,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: wp(7),
     fontFamily: "outfit-bold",
+  },
+  content: {
+    marginHorizontal: wp(4),
+    flex: 1,
   },
 });

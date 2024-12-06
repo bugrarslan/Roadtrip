@@ -1,6 +1,6 @@
 import { Stack, useRouter } from "expo-router";
 import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
 import { getUserData } from "../services/userService";
@@ -10,21 +10,42 @@ import 'react-native-get-random-values';
 SplashScreen.preventAutoHideAsync();
 
 const _layout = () => {
-  const [loaded, error] = useFonts({
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  const [loaded] = useFonts({
     "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
     "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
     "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
   });
 
   useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
+    const hideSplashScreen = async () => {
+      if (loaded) {
+        await SplashScreen.hideAsync(); // Splash ekranı gizlenir.
+      }
+    };
 
-  if (!loaded && !error) {
-    return null;
+    hideSplashScreen();
+  }, [loaded]);
+
+  if (!loaded) {
+    return null; // Fontlar yüklenene kadar ekran boş bırakılır.
   }
+  // const [loaded, error] = useFonts({
+  //   "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
+  //   "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
+  //   "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
+  // });
+
+  // useEffect(() => {
+  //   if (loaded || error) {
+  //     SplashScreen.hideAsync();
+  //   }
+  // }, [loaded, error]);
+
+  // if (!loaded && !error) {
+  //   return null;
+  // }
 
   return (
     <AuthProvider>
@@ -34,7 +55,7 @@ const _layout = () => {
 };
 
 const MainLayout = () => {
-  const { setAuth, setUserData } = useAuth();
+  const { setAuth, setUserData,  } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -58,6 +79,7 @@ const MainLayout = () => {
   const updateUserData = async (user) => {
     let res = await getUserData(user?.id);
     if (res?.success) setUserData({ ...res?.data });
+    console.log("user data: ", us);
   };
 
   return (

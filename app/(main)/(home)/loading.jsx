@@ -8,14 +8,14 @@ import { useTrip } from "../../../contexts/TripContext";
 import { AI_PROMPT } from "../../../constants/data";
 import { chatSession } from "../../../services/geminiAiModalService";
 import { useRouter } from "expo-router";
-import {data} from "../../../constants/data";
+import { data } from "../../../constants/data";
 import { useAuth } from "../../../contexts/AuthContext";
 import { createOrUpdateTrip } from "../../../services/tripService";
 
 const loading = () => {
   const router = useRouter();
   const { tripData, setTripData } = useTrip();
-  const {user} = useAuth();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,16 +28,15 @@ const loading = () => {
       "{location}",
       tripData?.locationInfo?.name
     )
-      .replace("{totalDays}", tripData?.totalNoOfDays)
-      .replace("{totalNight}", tripData?.totalNoOfDays - 1)
-      .replace("{traveller}", tripData?.companion?.title)
-      .replace("{budget}", tripData?.budget?.title)
-      .replace("{totalDays}", tripData?.totalNoOfDays)
-      .replace("{totalNight}", tripData?.totalNoOfDays - 1);
+      .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
+      .replace("{totalNight}", tripData?.dateInfo?.totalNoOfDays - 1)
+      .replace("{traveller}", tripData?.companionInfo?.title)
+      .replace("{budget}", tripData?.budgetInfo?.title)
+      .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
+      .replace("{totalNight}", tripData?.dateInfo?.totalNoOfDays - 1);
 
-    console.log(FINAL_PROMPT);
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-    
+
     const tripResponse = JSON.parse(result.response.text());
 
     let data = {
@@ -48,8 +47,6 @@ const loading = () => {
       dateInfo: tripData?.dateInfo,
       userId: user?.id,
     };
-
-    console.log("data", data);
 
     const res = await createOrUpdateTrip(data);
     setLoading(false);
@@ -62,24 +59,26 @@ const loading = () => {
 
   return (
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
-      <View style={styles.container}>
-        <View style={styles.loading}>
-          <LottieView
-            source={require("../../../assets/animations/plane-animation.json")}
-            style={{
-              width: wp(100),
-              aspectRatio: 1,
-              padding: wp(4),
-            }}
-            autoPlay
-            loop
-          />
+      {loading && (
+        <View style={styles.container}>
+          <View style={styles.loading}>
+            <LottieView
+              source={require("../../../assets/animations/plane-animation.json")}
+              style={{
+                width: wp(100),
+                aspectRatio: 1,
+                padding: wp(4),
+              }}
+              autoPlay
+              loop
+            />
+          </View>
+          <Text style={styles.text}>Kemerlerinizi bağlayın!</Text>
+          <Text style={[styles.text, { fontFamily: "outfit-bold" }]}>
+            Seyahatiniz hazırlanıyor...
+          </Text>
         </View>
-        <Text style={styles.text}>Kemerlerinizi bağlayın!</Text>
-        <Text style={[styles.text, { fontFamily: "outfit-bold" }]}>
-          Seyahatiniz hazırlanıyor...
-        </Text>
-      </View>
+      )}
     </ScreenWrapper>
   );
 };
