@@ -1,4 +1,11 @@
-import { Pressable, StyleSheet, Text, View, Alert, FlatList } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  FlatList,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { supabase } from "../../../lib/supabase";
@@ -30,6 +37,7 @@ const index = () => {
         handleTripEvent
       )
       .subscribe();
+
     getTrips();
 
     return () => {
@@ -77,13 +85,14 @@ const index = () => {
   const getTrips = async () => {
     setLoading(true);
     if (!hasMore) {
+      setLoading(false);
       return null;
     }
     limit = limit + 10;
     let res = await fetchTrips(limit, user.id);
     setLoading(false);
     if (res.success) {
-      if (trips.length === res.data.length) setHasMore(false);
+      if (res.data.length < limit) setHasMore(false);
       setTrips(res.data);
     } else {
       Alert.alert("Home", res.msg);
@@ -123,7 +132,9 @@ const index = () => {
             <FlatList
               data={trips}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => <TripCard item={item} currentUser={user} router={router}/>}
+              renderItem={({ item }) => (
+                <TripCard item={item} currentUser={user} router={router} />
+              )}
             />
           </View>
         )}
