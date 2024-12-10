@@ -9,43 +9,28 @@ import 'react-native-get-random-values';
 
 SplashScreen.preventAutoHideAsync();
 
-const _layout = () => {
-  const [appIsReady, setAppIsReady] = useState(false);
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
 
-  const [loaded] = useFonts({
+const _layout = () => {
+
+  const [loaded, error] = useFonts({
     "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
     "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
     "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
   });
 
   useEffect(() => {
-    const hideSplashScreen = async () => {
-      if (loaded) {
-        await SplashScreen.hideAsync(); // Splash ekranı gizlenir.
+      if (loaded || error) {
+        SplashScreen.hideAsync(); // Splash ekranı gizlenir.
       }
-    };
+  }, [loaded, error]);
 
-    hideSplashScreen();
-  }, [loaded]);
-
-  if (!loaded) {
+  if (!loaded && !error) {
     return null; // Fontlar yüklenene kadar ekran boş bırakılır.
   }
-  // const [loaded, error] = useFonts({
-  //   "outfit": require("../assets/fonts/Outfit-Regular.ttf"),
-  //   "outfit-bold": require("../assets/fonts/Outfit-Bold.ttf"),
-  //   "outfit-medium": require("../assets/fonts/Outfit-Medium.ttf"),
-  // });
-
-  // useEffect(() => {
-  //   if (loaded || error) {
-  //     SplashScreen.hideAsync();
-  //   }
-  // }, [loaded, error]);
-
-  // if (!loaded && !error) {
-  //   return null;
-  // }
 
   return (
     <AuthProvider>

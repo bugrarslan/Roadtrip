@@ -4,16 +4,21 @@
     "slug": "RoadTrip",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/roadtrip.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    // "splash": {
+    //   "image": "./assets/images/splash.png",
+    //   "resizeMode": "contain",
+    //   "backgroundColor": "#ffffff"
+    // },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/roadtrip.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#74C8B0"
       },
       "package": "com.bugrarslan.RoadTrip"
@@ -26,6 +31,19 @@
     "plugins": [
       "expo-router",
       [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/splash.png",
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
+      [
         "expo-font",
         {
           "fonts": [
@@ -33,15 +51,6 @@
             "assets/fonts/Outfit-Medium.ttf",
             "assets/fonts/Outfit-Regular.ttf"
           ]
-        }
-      ],
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/roadtrip-splash.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#74C8B0"
         }
       ]
     ],
