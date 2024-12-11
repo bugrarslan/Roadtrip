@@ -20,7 +20,7 @@ const Page = () => {
           style={{
             width: wp(100),
             aspectRatio: 1,
-            padding: wp(4)
+            padding: wp(4),
           }}
           autoPlay
           loop
@@ -33,21 +33,20 @@ const Page = () => {
         <View style={{ gap: 20 }}>
           <Text style={styles.title}>RoadTrip</Text>
           <Text style={styles.punchline}>
-            Bir sonraki maceranı zahmetsizce keşfet. Kişiselleştirilmiş seyahat
-            planları parmaklarının ucunda. Yapay zekâ destekli içgörülerle daha
-            akıllı seyahat et.
+            Discover your next adventure effortlessly. Personalized itineraries
+            at your fingertips. Travel smarter with AI-driven insights.
           </Text>
         </View>
 
         <View style={styles.footer}>
           <Button
-            title="Başlayalım!"
+            title="Get Started"
             buttonStyle={{ marginHorizontal: wp(3) }}
             onPress={() => router.push("signUp")}
           />
 
           <View style={styles.bottomTextContainer}>
-            <Text style={styles.loginText}>Zaten bir hesabın var mı?</Text>
+            <Text style={styles.loginText}>Already have an account?</Text>
             <Pressable onPress={() => router.push("/signIn")}>
               <Text
                 style={[
@@ -58,7 +57,7 @@ const Page = () => {
                   },
                 ]}
               >
-                Giriş Yap
+                Sign In
               </Text>
             </Pressable>
           </View>
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(10),
     fontSize: hp(1.7),
     color: theme.colors.text,
-    fontFamily: "outfit",
+    fontFamily: "outfit-medium",
   },
   footer: {
     width: "100%",

@@ -73,9 +73,9 @@ const loading = () => {
               loop
             />
           </View>
-          <Text style={styles.text}>Kemerlerinizi bağlayın!</Text>
+          <Text style={styles.text}>Fasten your seat belts!</Text>
           <Text style={[styles.text, { fontFamily: "outfit-bold" }]}>
-            Seyahatiniz hazırlanıyor...
+            Preparing your trip...
           </Text>
         </View>
       )}

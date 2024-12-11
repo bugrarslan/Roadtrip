@@ -41,41 +41,41 @@ const createTrip = () => {
       <View style={styles.container}>
         <View style={styles.header}>
           <BackButton router={router} />
-          <Text style={styles.title}>Seyahatini oluşturalım</Text>
+          <Text style={styles.title}>Let's create your trip</Text>
         </View>
         <View style={styles.content}>
           <TripPreviewButton
-            title={"Nereye?"}
+            title={"Where to?"}
             content={tripData?.locationInfo?.name}
             onPress={onSubmitDestination}
             icon={"location-sharp"}
           />
           <TripPreviewButton
-            title={"Kiminle?"}
+            title={"With who?"}
             content={tripData?.companionInfo?.title}
             onPress={onSubmitCompanion}
             icon={"people-sharp"}
           />
           <TripPreviewButton
-            title={"Hangi Günler?"}
+            title={"Which days?"}
             content={ tripData?.dateInfo?.totalNoOfDays &&
               moment(tripData?.dateInfo?.startDate).format("DD MMM") +
               " - " +
               moment(tripData?.dateInfo?.endDate).format("DD MMM") +
               " (" +
               tripData?.dateInfo?.totalNoOfDays +
-              " gün)"
+              " days)"
             }
             onPress={onSubmitDate}
             icon={"calendar-sharp"}
           />
           <TripPreviewButton
-            title={"Bütçe?"}
+            title={"Budget?"}
             content={tripData?.budgetInfo?.title}
             onPress={onSubmitBudget}
             icon={"cash-sharp"}
           />
-          <Button title="Oluştur!" onPress={handleCreate} />
+          <Button title="Create!" onPress={handleCreate} />
         </View>
       </View>
     </ScreenWrapper>

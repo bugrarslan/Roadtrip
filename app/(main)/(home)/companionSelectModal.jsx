@@ -25,10 +25,6 @@ const companionSelectModal = () => {
     setSelected(tripData.companionInfo);
   }, [])
 
-  // useEffect(() => {
-  //   setTripData({...tripData, companionInfo: selected});
-  // }, [selected]);
-
   const onItemSelected = (option) => {
     setSelected(option);
     setTripData({ ...tripData, companionInfo: option });
@@ -48,7 +44,7 @@ const companionSelectModal = () => {
         <StatusBar style="auto" />
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Kiminle Gitmek istersin?</Text>
+          <Text style={styles.title}>Who would you like to go with?</Text>
           <CloseButton router={router} />
         </View>
         {/* content */}
@@ -60,7 +56,6 @@ const companionSelectModal = () => {
             renderItem={({ item, index }) => (
               <TripButton
                 option={item}
-                //setSelected={setSelected}
                 selected={selected}
                 onSelect={onItemSelected}
               />

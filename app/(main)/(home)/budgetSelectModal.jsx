@@ -24,10 +24,6 @@ const budgetSelectModal = () => {
     setSelected(tripData.budgetInfo);
   }, [])
 
-  // useEffect(() => {
-  //   selected && setTripData({ ...tripData, budgetInfo: selected });
-  // }, [selected]);
-
   const onItemSelected = (option) => {
     setSelected(option);
     setTripData({ ...tripData, budgetInfo: option });
@@ -47,7 +43,7 @@ const budgetSelectModal = () => {
         <StatusBar style="auto" />
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Bütçen Ne kadar?</Text>
+          <Text style={styles.title}>What is your budget?</Text>
           <CloseButton router={router} />
         </View>
         {/* content */}
@@ -59,7 +55,6 @@ const budgetSelectModal = () => {
             renderItem={({ item, index }) => (
               <TripButton
                 option={item}
-                //setSelected={setSelected}
                 selected={selected}
                 onSelect={onItemSelected}
               />

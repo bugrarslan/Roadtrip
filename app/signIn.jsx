@@ -27,7 +27,7 @@ const signIn = () => {
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
-      return Alert.alert("Giriş Yap", "Lütfen tüm boşlukları doldurun!");
+      return Alert.alert("Sign In", "Please fill all tht blanks!");
     }
 
     let email = emailRef.current.trim();
@@ -47,7 +47,7 @@ const signIn = () => {
     }
 
     if (error) {
-      Alert.alert("Giriş Yap", error.message);
+      Alert.alert("Sign In", error.message);
     }
   };
 
@@ -60,8 +60,8 @@ const signIn = () => {
         {/* welcome */}
 
         <View>
-          <Text style={styles.title}>Hadi giriş yapalım</Text>
-          <Text style={styles.subTitle}>Tekrar Hoşgeldiniz</Text>
+          <Text style={styles.title}>Let's sign in</Text>
+          <Text style={styles.subTitle}>Welcome back 👋</Text>
         </View>
 
         {/* form */}
@@ -69,28 +69,28 @@ const signIn = () => {
         <View style={styles.form}>
           <Input
             icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
-            placeholder="Email adresinizi girin"
+            placeholder="Enter your email"
             keyboardType="email-address"
             autoCapitalize="none"
             onChangeText={(value) => (emailRef.current = value)}
           />
           <Input
             icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
-            placeholder="Parolanızı girin"
+            placeholder="Enter your password"
             secureTextEntry
             onChangeText={(value) => (passwordRef.current = value)}
           />
-          <Text style={styles.forgotPassword}>parolamı unuttum?</Text>
+          <Text style={styles.forgotPassword}>forgot password?</Text>
 
           {/* button */}
 
-          <Button title="Giriş Yap" onPress={onSubmit} loading={loading} />
+          <Button title="Sign In" onPress={onSubmit} loading={loading} />
         </View>
 
         {/* footer */}
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Henüz hesabınız yok mu?</Text>
+          <Text style={styles.footerText}>Don't have an account?</Text>
           <Pressable onPress={() => router.push("signUp")}>
             <Text
               style={[
@@ -101,7 +101,7 @@ const signIn = () => {
                 },
               ]}
             >
-              Kayıt Ol
+              Sign Up
             </Text>
           </Pressable>
         </View>

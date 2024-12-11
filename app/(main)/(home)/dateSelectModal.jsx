@@ -32,8 +32,8 @@ const dateSelectModal = () => {
 
   const onDateSelectionApply = () => {
     if (!startDate || !endDate) {
-      Alert.alert("Hata", "Lütfen başlangıç ve bitiş tarihlerini seçin.", [
-        { text: "Tamam" },
+      Alert.alert("Error", "Please select start and end dates.", [
+        { text: "Ok" },
       ]);
       return;
     }
@@ -60,7 +60,7 @@ const dateSelectModal = () => {
         <StatusBar style="auto" />
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Hangi Günler Gitmek istersin?</Text>
+          <Text style={styles.title}>Which days would you like to go?</Text>
           <CloseButton router={router} />
         </View>
         {/* content */}
@@ -73,27 +73,27 @@ const dateSelectModal = () => {
             selectedRangeStyle={{ backgroundColor: theme.colors.PRIMARY }}
             selectedDayTextStyle={{ color: theme.colors.WHITE }}
             textStyle={{ fontFamily: "outfit-medium" }}
-            weekdays={["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"]}
-            months={[
-              "Ocak",
-              "Şubat",
-              "Mart",
-              "Nisan",
-              "Mayıs",
-              "Haziran",
-              "Temmuz",
-              "Ağustos",
-              "Eylül",
-              "Ekim",
-              "Kasım",
-              "Aralık",
-            ]}
-            previousTitle="Önceki"
-            nextTitle="Sonraki"
-            selectMonthTitle="Ayı Seçin, "
-            selectYearTitle="Yılı Seçin"
+            // weekdays={["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"]}
+            // months={[
+            //   "Ocak",
+            //   "Şubat",
+            //   "Mart",
+            //   "Nisan",
+            //   "Mayıs",
+            //   "Haziran",
+            //   "Temmuz",
+            //   "Ağustos",
+            //   "Eylül",
+            //   "Ekim",
+            //   "Kasım",
+            //   "Aralık",
+            // ]}
+            // previousTitle="Önceki"
+            // nextTitle="Sonraki"
+            // selectMonthTitle="Ayı Seçin, "
+            // selectYearTitle="Yılı Seçin"
           />
-          <Button title="Tamam" onPress={onDateSelectionApply} />
+          <Button title="Apply" onPress={onDateSelectionApply} />
         </View>
       </View>
     </View>

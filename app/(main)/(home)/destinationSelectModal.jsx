@@ -30,7 +30,7 @@ const destinationSelectModal = () => {
         <StatusBar style="auto" />
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Nereye Gitmek istersin?</Text>
+          <Text style={styles.title}>Where would you like to go?</Text>
           <CloseButton router={router} />
         </View>
 

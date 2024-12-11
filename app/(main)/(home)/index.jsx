@@ -109,7 +109,7 @@ const index = () => {
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Seyahatlerim</Text>
+          <Text style={styles.title}>Trips</Text>
           <Pressable onPress={newTripClicked}>
             <MaterialIcons name="add-circle" size={30} color="black" />
           </Pressable>

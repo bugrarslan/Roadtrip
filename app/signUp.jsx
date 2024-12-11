@@ -36,13 +36,11 @@ import {
   
     const onSubmit = async () => {
       if (!emailRef.current || !passwordRef.current || !nameRef.current) {
-        return Alert.alert("Sign Up", "Lütfen tüm boşlukları doldurun!");
-        return;
+        return Alert.alert("Please fill all tht blanks!");
       }
   
       if (passwordRef.current !== passwordConfirmRef.current) {
-        return Alert.alert("Sign Up", "Parolalar eşleşmiyor, tekrar deneyin.");
-        return;
+        return Alert.alert("Sign Up", "Passwords doesn't match, try again.");
       }
   
       let name = nameRef.current.trim();
@@ -67,11 +65,11 @@ import {
   
       setLoading(false);
   
-      console.log("session", session);
-      console.log("error", error);
+      // console.log("session", session);
+      // console.log("error", error);
   
       if (error) {
-        Alert.alert("Kayıt Ol", "Bir hata oluştu, lütfen tekrar deneyin.");
+        Alert.alert("Sign Up", "An error occurred, please try again.");
       }
     };
   
@@ -84,8 +82,8 @@ import {
           {/* welcome */}
   
           <View>
-            <Text style={styles.title}>Hadi kayıt olalım</Text>
-            <Text style={styles.subTitle}>Sizi aramızda görmek güzel!</Text>
+            <Text style={styles.title}>Let's sign up</Text>
+            <Text style={styles.subTitle}>It's nice to see you among us! 😊</Text>
           </View>
   
           {/* form */}
@@ -93,26 +91,26 @@ import {
           <View style={styles.form}>
             <Input
               icon={<Icon name="user" size={26} strokeWidth={1.6} />}
-              placeholder="Kullanıcı adınızı girin"
+              placeholder="Enter your name"
               autoCapitalize="none"
               onChangeText={(value) => (nameRef.current = value)}
             />
             <Input
               icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
-              placeholder="Email adresinizi girin"
+              placeholder="Enter your email"
               keyboardType="email-address"
               autoCapitalize="none"
               onChangeText={(value) => (emailRef.current = value)}
             />
             <Input
               icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
-              placeholder="Parolanızı girin"
+              placeholder="Enter your password"
               secureTextEntry
               onChangeText={(value) => (passwordRef.current = value)}
             />
             <Input
               icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
-              placeholder="Parolanızı tekrar girin"
+              placeholder="Confirm your password"
               secureTextEntry
               onChangeText={(value) => (passwordConfirmRef.current = value)}
             />
@@ -120,7 +118,7 @@ import {
             {/* button */}
   
             <Button 
-              title="Kayıt Ol" 
+              title="Sign Up" 
               onPress={onSubmit} 
               loading={loading} 
             />
@@ -129,7 +127,7 @@ import {
           {/* footer */}
   
           <View style={styles.footer}>
-            <Text style={styles.footerText}>Zaten bir hesabın var mı?</Text>
+            <Text style={styles.footerText}>Already have an account?</Text>
             <Pressable onPress={() => router.push("/signIn")}>
               <Text
                 style={[
@@ -140,7 +138,7 @@ import {
                   },
                 ]}
               >
-                Giriş Yap
+                Sign In
               </Text>
             </Pressable>
           </View>

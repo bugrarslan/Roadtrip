@@ -16,7 +16,7 @@ const StartNewTripCard = ({ handleNewTrip }) => {
           textAlign: "center",
         }}
       >
-        Henüz Planlanmış bir seyehatiniz yok
+        You don't have any trips planned yet
       </Text>
       <Text
         style={{
@@ -26,12 +26,12 @@ const StartNewTripCard = ({ handleNewTrip }) => {
           textAlign: "center",
         }}
       >
-        Yeni bir seyahat deneyimi planlamanın zamanı geldi gibi görünüyor! Hadi
-        başlayalım
+        It seems like it's time to plan a new travel experience! Let's get
+        started
       </Text>
       <Button
         onPress={handleNewTrip}
-        title="Yeni bir seyehat başlat"
+        title="Start a new trip"
         buttonStyle={{ paddingHorizontal: hp(5), marginTop: hp(2) }}
         textStyle={{ fontFamily: "outfit" }}
       />
