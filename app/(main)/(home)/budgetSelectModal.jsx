@@ -7,7 +7,6 @@ import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
-import Button from "../../../components/Button";
 import TripButton from "../../../components/TripButton";
 import { SelectBudgetList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
@@ -25,9 +24,17 @@ const budgetSelectModal = () => {
     setSelected(tripData.budgetInfo);
   }, [])
 
-  useEffect(() => {
-    selected && setTripData({ ...tripData, budgetInfo: selected });
-  }, [selected]);
+  // useEffect(() => {
+  //   selected && setTripData({ ...tripData, budgetInfo: selected });
+  // }, [selected]);
+
+  const onItemSelected = (option) => {
+    setSelected(option);
+    setTripData({ ...tripData, budgetInfo: option });
+    setTimeout(() => {
+      router.back();
+    }, 500);
+  }
 
   return (
     <View
@@ -52,8 +59,9 @@ const budgetSelectModal = () => {
             renderItem={({ item, index }) => (
               <TripButton
                 option={item}
-                setSelected={setSelected}
+                //setSelected={setSelected}
                 selected={selected}
+                onSelect={onItemSelected}
               />
             )}
           />

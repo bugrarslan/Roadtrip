@@ -3,9 +3,9 @@ import React from "react";
 import { theme } from "../constants/theme";
 import { hp } from "../helpers/common";
 
-const TripButton = ({ option, setSelected, selected }) => {
+const TripButton = ({ option, selected, onSelect }) => {
   return (
-    <Pressable style={[styles.container, selected?.id == option?.id && {borderWidth: 2}]} onPress={() => setSelected(option)}>
+    <Pressable style={[styles.container, selected?.id == option?.id && {borderWidth: 2}]} onPress={() => onSelect(option)}>
       <View style={{ gap: 10, backgroundColor: theme.colors.GRAY_LIGHT }}>
         <Text style={styles.title}>{option?.title}</Text>
         <Text style={styles.text}>{option?.description}</Text>

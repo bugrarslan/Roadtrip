@@ -25,9 +25,17 @@ const companionSelectModal = () => {
     setSelected(tripData.companionInfo);
   }, [])
 
-  useEffect(() => {
-    setTripData({...tripData, companionInfo: selected});
-  }, [selected]);
+  // useEffect(() => {
+  //   setTripData({...tripData, companionInfo: selected});
+  // }, [selected]);
+
+  const onItemSelected = (option) => {
+    setSelected(option);
+    setTripData({ ...tripData, companionInfo: option });
+    setTimeout(() => {
+      router.back();
+    }, 500);
+  }
 
   return (
     <View
@@ -52,8 +60,9 @@ const companionSelectModal = () => {
             renderItem={({ item, index }) => (
               <TripButton
                 option={item}
-                setSelected={setSelected}
+                //setSelected={setSelected}
                 selected={selected}
+                onSelect={onItemSelected}
               />
             )}
           />
