@@ -132,9 +132,11 @@ const index = () => {
             <FlatList
               data={trips}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <TripCard item={item} currentUser={user} router={router} />
+              renderItem={({ item, index }) => (
+                <TripCard item={item} currentUser={user} router={router} index={index}/>
               )}
+              contentContainerStyle={{ paddingBottom: hp(12) }}
+              style={{ paddingHorizontal: wp(4)}}
             />
           </View>
         )}
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     fontFamily: "outfit-bold",
   },
   content: {
-    marginHorizontal: wp(4),
+    //marginHorizontal: wp(4),
     flex: 1,
   },
 });
