@@ -19,8 +19,9 @@ import { getUserData } from "../../../services/userService";
 import { fetchTrips } from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import TripCard from "../../../components/TripCard";
+import { theme } from "../../../constants/theme";
 
-var limit = 0;
+var limit = 5;
 const index = () => {
   const router = useRouter();
   const { user } = useAuth();
@@ -29,22 +30,18 @@ const index = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let tripChannel = supabase
-      .channel("trips")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "trips" },
-        handleTripEvent
-      )
-      .subscribe();
+    //let tripChannel = supabase.channel("trips").on("postgres_changes", { event: "*", schema: "public", table: "trips" }, handleTripEvent).subscribe();
 
     getTrips();
 
+    /*
     return () => {
       supabase.removeChannel(tripChannel);
     };
+    */
   }, []);
 
+  /*
   const handleTripEvent = async (payload) => {
     console.log("trip event: ", payload);
     if (payload.eventType === "INSERT" && payload?.new?.id) {
@@ -81,6 +78,7 @@ const index = () => {
       });
     }
   };
+  */
 
   const getTrips = async () => {
     setLoading(true);
@@ -88,7 +86,7 @@ const index = () => {
       setLoading(false);
       return null;
     }
-    limit = limit + 10;
+    limit = limit + 5;
     let res = await fetchTrips(limit, user.id);
     setLoading(false);
     if (res.success) {
@@ -103,6 +101,14 @@ const index = () => {
     router.push("createTrip");
   };
 
+  const handleTripDetails = (tripId) => {
+    router.push({
+      pathname: "/tripDetails",
+      params: { tripId: tripId },
+    });
+    console.log("tripId: ", tripId);
+  };
+ 
   return (
     <ScreenWrapper backgroundColor={"white"}>
       <StatusBar style="dark" />
@@ -116,13 +122,6 @@ const index = () => {
         </View>
 
         {/* content */}
-        {trips.length === 0 && loading && (
-          <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-          >
-            <Loading />
-          </View>
-        )}
         {trips.length === 0 && !loading ? (
           <View style={styles.content}>
             <StartNewTripCard handleNewTrip={newTripClicked} />
@@ -131,12 +130,27 @@ const index = () => {
           <View style={styles.content}>
             <FlatList
               data={trips}
+              contentContainerStyle={{ paddingBottom: hp(12), paddingHorizontal: wp(4) }}
+              showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item, index }) => (
-                <TripCard item={item} currentUser={user} router={router} index={index}/>
+                <TripCard item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)}/>
               )}
-              contentContainerStyle={{ paddingBottom: hp(12) }}
-              style={{ paddingHorizontal: wp(4)}}
+              ListFooterComponent={
+                hasMore ? (
+                  <View style={{ marginVertical: trips.length == 0 ? 200 : 30 }}>
+                    <Loading />
+                  </View>
+                ) : (
+                  <View style={{ marginVertical: 30 }}>
+                    <Text style={styles.noPosts}>No more trips</Text>
+                  </View>
+                )
+              }
+              onEndReached={() => {
+                // console.log("end reached");
+                getTrips();
+              }}
             />
           </View>
         )}
@@ -165,5 +179,10 @@ const styles = StyleSheet.create({
   content: {
     //marginHorizontal: wp(4),
     flex: 1,
+  },
+  noPosts: {
+    fontSize: hp(2),
+    color: theme.colors.text,
+    textAlign: "center",
   },
 });

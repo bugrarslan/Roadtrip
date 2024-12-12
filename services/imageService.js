@@ -1,5 +1,5 @@
 import * as FileSystem from "expo-file-system";
-import { decode } from "base64-arraybuffer";
+//import { decode } from "base64-arraybuffer";
 import { supabase } from "../lib/supabase";
 
 export const getUserImageSrc = (imagePath) => {
@@ -65,3 +65,9 @@ export const getFilePath = (folderName) => {
   return `/${folderName}/${new Date().getTime()}.png`;
   //INFO: profiles/1234567890.png, images/1234567890.png
 };
+
+export const getLocationImage = (imageRef) => {
+  return {
+    uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${imageRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+  }
+}

@@ -11,26 +11,22 @@ import { Image } from "expo-image";
 import { hp, wp } from "../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import moment from "moment";
+import { getLocationImage } from "../services/imageService";
 
-const TripCard = ({ item, currentUser, router }) => {
-  const handleTripDetails = () => {
-    // Detay sayfasına yönlendir
-    router.push({
-      pathname: "tripDetails",
-      params: { tripId: item.id },
-    });
-  };
+const TripCard = ({ item, router, onSubmit }) => {
+  
+  const trimmedTitle =
+    item?.locationInfo?.name.length > 20
+      ? item?.locationInfo?.name.substring(0, 20) + "..."
+      : item?.locationInfo?.name;
 
-  const trimmedTitle = item?.locationInfo?.name.length > 20 ? item?.locationInfo?.name.substring(0, 20) + "..." : item?.locationInfo?.name
   return (
-    <Pressable onPress={handleTripDetails} activeOpacity={0.7}>
+    <Pressable onPress={() => onSubmit(item.id)} activeOpacity={0.7}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
-            source={{
-              uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${item?.locationInfo?.photoRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
-            }}
+            source={getLocationImage(item?.locationInfo?.photoRef)}
             contentFit="cover"
             contentPosition="center"
             cachePolicy="memory-disk"
@@ -70,7 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.darkLight,
     borderRadius: hp(2),
     marginVertical: hp(1),
-
   },
   imageContainer: {
     width: "100%",
