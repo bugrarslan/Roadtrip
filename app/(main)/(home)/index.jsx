@@ -126,8 +126,9 @@ const index = () => {
               contentContainerStyle={{ paddingBottom: hp(12), paddingHorizontal: wp(4) }}
               showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
+              ItemSeparatorComponent={() => <View style={{ height: hp(2) }} />}
               renderItem={({ item, index }) => (
-                <TripCard item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)}/>
+                <TripCard item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)} index={index}/>
               )}
               ListFooterComponent={
                 hasMore ? (

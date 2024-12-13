@@ -13,8 +13,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import moment from "moment";
 import { getLocationImage } from "../services/imageService";
 
-const TripCard = ({ item, router, onSubmit }) => {
-  
+const TripCard = ({ item, router, onSubmit, index }) => {
   const trimmedTitle =
     item?.locationInfo?.name.length > 20
       ? item?.locationInfo?.name.substring(0, 20) + "..."
@@ -22,39 +21,80 @@ const TripCard = ({ item, router, onSubmit }) => {
 
   return (
     <Pressable onPress={() => onSubmit(item.id)} activeOpacity={0.7}>
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
+      {index === 0 ? (
+        <View>
           <Image
-            style={styles.image}
             source={getLocationImage(item?.locationInfo?.photoRef)}
+            style={{ width: "100%", height: 240, borderRadius: 15 }}
             contentFit="cover"
             contentPosition="center"
             cachePolicy="memory-disk"
           />
-        </View>
-
-        <View style={styles.detailsContainer}>
-          <Text style={styles.title}>{trimmedTitle}</Text>
-
-          <View style={styles.dateContainer}>
-            <MaterialIcons
-              name="calendar-today"
-              size={wp(4.5)}
-              color={theme.colors.GRAY}
-            />
-            <Text style={styles.date}>
-              {moment(item?.dateInfo?.startDate).format("MMM D")} -{" "}
-              {moment(item?.dateInfo?.endDate).format("MMM D")}
+          <View style={{ marginTop: 10 }}>
+            <Text style={{ fontSize: 24, fontFamily: "outfit-medium" }}>
+              {item?.response?.location}
             </Text>
-          </View>
-
-          <View style={styles.otherDetailsContainer}>
-            <Text style={styles.otherDetails}>
-              {item?.budgetInfo?.title}, {item?.companionInfo?.title}
-            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginTop: 5,
+                display: "flex",
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "outfit",
+                  fontSize: 17,
+                  color: theme.colors.GRAY,
+                }}
+              >
+                {moment(item?.dateInfo?.startDate).format("DD MMM yyyy")}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "outfit",
+                  fontSize: 17,
+                  color: theme.colors.GRAY,
+                }}
+              >
+                🚌 {item?.companionInfo?.title}
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "black",
+                padding: 15,
+                borderRadius: 15,
+                marginTop: 10,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontFamily: "outfit-medium",
+                  fontSize: 15,
+                }}
+              >
+                See your Plan
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
-      </View>
+      ) : (
+        <View style={{flexDirection: "row", gap: 10, display: "flex", alignItems: "center"}}>
+          <Image
+            source={getLocationImage(item?.locationInfo?.photoRef)}
+            style={{ width: 100, height: 100, borderRadius: 15 }}
+          />
+          <View>
+            <Text style={{fontFamily: "outfit-medium", fontSize: 18, color: "black"}}>{item?.locationInfo?.name}</Text>
+            <Text style={{fontFamily: "outfit", fontSize: 14, color: theme.colors.GRAY}}>{moment(item?.dateInfo?.startDate).format("DD MMM yyyy")}</Text>
+            <Text style={{fontFamily: "outfit", fontSize: 14, color: theme.colors.GRAY}}>Travelling: {item?.companionInfo?.title}</Text>
+          </View>
+        </View>
+      )}
     </Pressable>
   );
 };
