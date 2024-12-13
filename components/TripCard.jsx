@@ -1,150 +1,141 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
 import React from "react";
-import { theme } from "../constants/theme";
+import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
 import { Image } from "expo-image";
-import { hp, wp } from "../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import moment from "moment";
+import { theme } from "../constants/theme";
+import { hp, wp } from "../helpers/common";
 import { getLocationImage } from "../services/imageService";
 
-const TripCard = ({ item, router, onSubmit, index }) => {
-  const trimmedTitle =
-    item?.locationInfo?.name.length > 20
-      ? item?.locationInfo?.name.substring(0, 20) + "..."
-      : item?.locationInfo?.name;
+const TripCard = ({ item, onSubmit, index }) => {
+  const trimmedTitle = item?.response?.location.length > 20
+    ? item?.response?.location.substring(0, 20) + "..."
+    : item?.response?.location;
 
   return (
-    <Pressable onPress={() => onSubmit(item.id)} activeOpacity={0.7}>
+    <View>
       {index === 0 ? (
         <View>
           <Image
             source={getLocationImage(item?.locationInfo?.photoRef)}
-            style={{ width: "100%", height: 240, borderRadius: 15 }}
+            style={styles.mainImage}
             contentFit="cover"
             contentPosition="center"
             cachePolicy="memory-disk"
           />
-          <View style={{ marginTop: 10 }}>
-            <Text style={{ fontSize: 24, fontFamily: "outfit-medium" }}>
-              {item?.response?.location}
+          <View style={styles.marginTop10}>
+            <Text style={styles.titleText}>
+              {trimmedTitle}
             </Text>
             <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginTop: 5,
-                display: "flex",
-              }}
+              style={styles.rowSpaceBetween}
             >
               <Text
-                style={{
-                  fontFamily: "outfit",
-                  fontSize: 17,
-                  color: theme.colors.GRAY,
-                }}
+                style={styles.grayText}
               >
                 {moment(item?.dateInfo?.startDate).format("DD MMM yyyy")}
               </Text>
               <Text
-                style={{
-                  fontFamily: "outfit",
-                  fontSize: 17,
-                  color: theme.colors.GRAY,
-                }}
+                style={styles.grayText}
               >
                 🚌 {item?.companionInfo?.title}
               </Text>
             </View>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "black",
-                padding: 15,
-                borderRadius: 15,
-                marginTop: 10,
-              }}
+            <Pressable
+              onPress={() => onSubmit(item.id)}
+              style={styles.submitButton}
             >
               <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  fontFamily: "outfit-medium",
-                  fontSize: 15,
-                }}
+                style={styles.submitButtonText}
               >
                 See your Plan
               </Text>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       ) : (
-        <View style={{flexDirection: "row", gap: 10, display: "flex", alignItems: "center"}}>
+        <Pressable
+          onPress={() => onSubmit(item.id)}
+          style={styles.rowGap}
+        >
           <Image
             source={getLocationImage(item?.locationInfo?.photoRef)}
-            style={{ width: 100, height: 100, borderRadius: 15 }}
+            style={styles.thumbnailImage}
           />
           <View>
-            <Text style={{fontFamily: "outfit-medium", fontSize: 18, color: "black"}}>{item?.locationInfo?.name}</Text>
-            <Text style={{fontFamily: "outfit", fontSize: 14, color: theme.colors.GRAY}}>{moment(item?.dateInfo?.startDate).format("DD MMM yyyy")}</Text>
-            <Text style={{fontFamily: "outfit", fontSize: 14, color: theme.colors.GRAY}}>Travelling: {item?.companionInfo?.title}</Text>
+            <Text style={styles.mediumBlackText}>
+              {trimmedTitle}
+            </Text>
+            <Text style={styles.smallGrayText}>
+              {moment(item?.dateInfo?.startDate).format("DD MMM yyyy")}
+            </Text>
+            <Text
+              style={styles.smallGrayText}
+            >
+              Travelling: {item?.companionInfo?.title}
+            </Text>
           </View>
-        </View>
+        </Pressable>
       )}
-    </Pressable>
+    </View>
   );
 };
 
 export default TripCard;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.darkLight,
-    borderRadius: hp(2),
-    marginVertical: hp(1),
-  },
-  imageContainer: {
+  mainImage: {
     width: "100%",
-    height: hp(25),
-    borderTopLeftRadius: hp(2),
-    borderTopRightRadius: hp(2),
+    height: hp(30),
+    borderRadius: wp(3.75),
   },
-  image: {
-    width: "100%",
-    height: hp(25),
-    backgroundColor: theme.colors.darkLight,
-    borderTopLeftRadius: hp(2),
-    borderTopRightRadius: hp(2),
+  marginTop10: {
+    marginTop: hp(1.25),
   },
-  detailsContainer: {
-    gap: hp(0.5),
-    paddingLeft: wp(2),
-  },
-  title: {
-    fontSize: wp(8),
+  titleText: {
+    fontSize: wp(6),
     fontFamily: "outfit-medium",
-    color: theme.colors.BLACK,
   },
-  dateContainer: {
+  rowSpaceBetween: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: hp(0.625),
+  },
+  grayText: {
+    fontFamily: "outfit",
+    fontSize: wp(4.25),
+    color: theme.colors.GRAY,
+  },
+  submitButton: {
+    backgroundColor: "black",
+    padding: hp(1.875),
+    borderRadius: wp(3.75),
+    marginTop: hp(1.25),
+  },
+  submitButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontFamily: "outfit-medium",
+    fontSize: wp(3.75),
+  },
+  rowGap: {
+    flexDirection: "row",
+    gap: wp(2.5),
     alignItems: "center",
-    gap: wp(1),
   },
-  date: {
-    fontSize: wp(3),
-    color: theme.colors.GRAY,
+  thumbnailImage: {
+    width: wp(25),
+    height: wp(25),
+    borderRadius: wp(3.75),
+  },
+  mediumBlackText: {
+    fontFamily: "outfit-medium",
+    fontSize: wp(4.5),
+    color: "black",
+  },
+  smallGrayText: {
     fontFamily: "outfit",
-  },
-  otherDetailsContainer: {
-    marginBottom: hp(0.5),
-  },
-  otherDetails: {
-    fontSize: wp(4),
+    fontSize: wp(3.5),
     color: theme.colors.GRAY,
-    fontFamily: "outfit",
   },
 });
