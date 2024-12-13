@@ -1,11 +1,4 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  FlatList,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View, Alert, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { supabase } from "../../../lib/supabase";
@@ -95,7 +88,7 @@ const index = () => {
     } else {
       Alert.alert("Home", res.msg);
     }
-  };
+   };
 
   const newTripClicked = () => {
     router.push("createTrip");
@@ -138,8 +131,8 @@ const index = () => {
               )}
               ListFooterComponent={
                 hasMore ? (
-                  <View style={{ marginVertical: trips.length == 0 ? 200 : 30 }}>
-                    <Loading />
+                  <View style={{ marginVertical: trips.length == 0 ? 200 : 30, alignItems: "center", justifyContent: "center" }}>
+                    <Loading size={"large"}/>
                   </View>
                 ) : (
                   <View style={{ marginVertical: 30 }}>

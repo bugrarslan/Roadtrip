@@ -1,15 +1,23 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { theme } from '../constants/theme'
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { theme } from "../constants/theme";
+import { hp, wp } from "../helpers/common";
+import LottieView from "lottie-react-native";
 
-const Loading = ({color=theme.colors.primary, size='large'}) => {
+const Loading = ({ color = theme.colors.primary, size }) => {
   return (
-    <View style={{justifyContent:'center', alignItems:'center'}}>
-      <ActivityIndicator size={size} color={color} />
-    </View>
-  )
-}
+    <LottieView
+      source={require("../assets/animations/loading.json")}
+      style={[size === "large" ? {width: hp(20)} : {width: hp(8)},  {
+        aspectRatio: 1,
+        padding: wp(4),
+      }]}
+      autoPlay
+      loop
+    />
+  );
+};
 
-export default Loading
+export default Loading;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

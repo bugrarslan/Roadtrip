@@ -8,7 +8,7 @@ const index = () => {
 
   return (
     <View style={styles.container}>
-      <Loading />
+      <Loading size={"large"}/>
     </View>
   );
 };
