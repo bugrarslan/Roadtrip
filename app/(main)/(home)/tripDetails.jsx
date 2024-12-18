@@ -1,4 +1,11 @@
-import { Alert, FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { fetchTripDetails, removeTrip } from "../../../services/tripService";
@@ -10,7 +17,8 @@ import Header from "../../../components/Header";
 import { Image } from "expo-image";
 import { getLocationImage } from "../../../services/imageService";
 import moment from "moment";
-import HotelCard from "../../../components/HotelCard";
+import FlightInfoCard from "../../../components/FlightInfoCard";
+import HotelList from "../../../components/HotelList";
 
 const tripDetails = () => {
   const router = useRouter();
@@ -52,7 +60,10 @@ const tripDetails = () => {
       <View
         style={[
           styles.center,
-          { justifyContent: "flex-start", marginTop: 100 },
+          {
+            justifyContent: "flex-start",
+            marginTop: 100,
+          },
         ]}
       >
         <Text style={styles.notFound}>Trip not found!</Text>
@@ -61,60 +72,74 @@ const tripDetails = () => {
   }
 
   return (
-    <ScreenWrapper backgroundColor={"white"}>
-      <View style={styles.container}>
-        <View style={{paddingHorizontal: wp(4)}}>
-          <Header title={trip?.response?.location} />
-        </View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.list}
+    <View>
+      <Image
+        source={getLocationImage(trip?.locationInfo?.photoRef)}
+        style={{
+          width: "100%",
+          height: 330,
+        }}
+      />
+      <View
+        style={{
+          padding: 15,
+          backgroundColor: theme.colors.WHITE,
+          height: "100%",
+          marginTop: -30,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+        }}
+      >
+        <Text style={{ fontSize: 25, fontFamily: "outfit-bold" }}>
+          {trip?.response?.location}
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            display: "flex",
+            gap: 5,
+            marginTop: 5,
+          }}
         >
-          {/* image */}
-          <Image
-            style={styles.image}
-            source={getLocationImage(trip?.locationInfo?.photoRef)}
-            contentFit="cover"
-            contentPosition="center"
-            cachePolicy="memory-disk"
-          />
+          <Text
+            style={{
+              fontFamily: "outfit",
+              fontSize: 18,
+              color: theme.colors.GRAY,
+            }}
+          >
+            {moment(trip?.dateInfo?.startDate).format("DD MMM yyyy")}
+          </Text>
+          <Text
+            style={{
+              fontFamily: "outfit",
+              fontSize: 18,
+              color: theme.colors.GRAY,
+            }}
+          >
+            {" "}
+            - {moment(trip?.dateInfo?.endDate).format("DD MMM yyyy")}
+          </Text>
+        </View>
+        <Text
+          style={{
+            fontFamily: "outfit",
+            fontSize: wp(4.25),
+            color: theme.colors.GRAY,
+          }}
+        >
+          🚌 {trip?.companionInfo?.title}
+        </Text>
 
-          {/* info */}
-          <View style={styles.infoContainer}>
-            <Text style={styles.title}>{trip?.response?.location}</Text>
-            <Text style={styles.dates}>
-              {moment(trip?.dateInfo?.startDate).format("MMM DD, YYYY")} -{" "}
-              {moment(trip?.dateInfo?.endDate).format("MMM DD, YYYY")}
-            </Text>
-            <Text style={styles.companion}>
-              Travelling: {trip?.companionInfo?.title} {trip?.companionInfo?.icon}
-            </Text>
-            <Text style={styles.budget}>
-              Budget: {trip?.budgetInfo?.title} {trip?.budgetInfo?.icon}
-            </Text>
-          </View>
+        {/* Flight Info */}
+        <FlightInfoCard flightDetails={trip?.response?.flightDetails} />
 
-          {/* hotels */}
-          <View style={styles.hotelsContainer}>
-            <Text style={styles.title}>Hotels</Text>
-            <FlatList
-              data={trip?.response?.hotelOptions}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <HotelCard item={item} router={router}/>
-              )}
-              ItemSeparatorComponent={() => <View style={{ width: wp(2) }} />}
-            />
-          </View>
+        {/* Hotels List */}
+        <HotelList hotels={trip?.response?.hotelOptions} />
 
-          {console.log(trip?.response?.itinerary.day1)}
-
-          {/* activities */}
-          
-        </ScrollView>
+        {/* Trip Day Planner Info*/}
       </View>
-    </ScreenWrapper>
+    </View>
   );
 };
 
@@ -130,44 +155,5 @@ const styles = StyleSheet.create({
     fontSize: hp(2.5),
     color: theme.colors.text,
     fontWeight: theme.fonts.medium,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    // paddingVertical: wp(7),
-    //paddingHorizontal: wp(4),
-  },
-  list: {
-    backgroundColor: "white",
-    paddingBottom: hp(12),
-  },
-  image: {
-    height: hp(30),
-    backgroundColor: theme.colors.darkLight,
-    borderRadius: hp(2),
-  },
-  infoContainer: {
-    padding: wp(4),
-    gap: hp(0.7),
-  },
-  title: {
-    fontSize: hp(3),
-    fontFamily: "outfit-bold",
-    color: theme.colors.textDark,
-  },
-  dates: {
-    fontSize: hp(2),
-    color: theme.colors.textDark,
-  },
-  companion: {
-    fontSize: hp(2),
-    color: theme.colors.textLight,
-  },
-  budget: {
-    fontSize: hp(2),
-    color: theme.colors.textLight,
-  },
-  hotelsContainer: {
-    padding: wp(4)
-  },
+  }
 });
