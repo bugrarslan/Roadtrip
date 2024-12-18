@@ -12,8 +12,6 @@ import { fetchTripDetails, removeTrip } from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
-import ScreenWrapper from "../../../components/ScreenWrapper";
-import Header from "../../../components/Header";
 import { Image } from "expo-image";
 import { getLocationImage } from "../../../services/imageService";
 import moment from "moment";
@@ -62,7 +60,7 @@ const tripDetails = () => {
           styles.center,
           {
             justifyContent: "flex-start",
-            marginTop: 100,
+            marginTop: hp(12.5),
           },
         ]}
       >
@@ -75,59 +73,21 @@ const tripDetails = () => {
     <View>
       <Image
         source={getLocationImage(trip?.locationInfo?.photoRef)}
-        style={{
-          width: "100%",
-          height: 330,
-        }}
+        style={styles.image}
       />
-      <View
-        style={{
-          padding: 15,
-          backgroundColor: theme.colors.WHITE,
-          height: "100%",
-          marginTop: -30,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-        }}
-      >
-        <Text style={{ fontSize: 25, fontFamily: "outfit-bold" }}>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title}>
           {trip?.response?.location}
         </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            display: "flex",
-            gap: 5,
-            marginTop: 5,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: 18,
-              color: theme.colors.GRAY,
-            }}
-          >
+        <View style={styles.dateContainer}>
+          <Text style={styles.date}>
             {moment(trip?.dateInfo?.startDate).format("DD MMM yyyy")}
           </Text>
-          <Text
-            style={{
-              fontFamily: "outfit",
-              fontSize: 18,
-              color: theme.colors.GRAY,
-            }}
-          >
-            {" "}
-            - {moment(trip?.dateInfo?.endDate).format("DD MMM yyyy")}
+          <Text style={styles.date}>
+            {" "} - {moment(trip?.dateInfo?.endDate).format("DD MMM yyyy")}
           </Text>
         </View>
-        <Text
-          style={{
-            fontFamily: "outfit",
-            fontSize: wp(4.25),
-            color: theme.colors.GRAY,
-          }}
-        >
+        <Text style={styles.companion}>
           🚌 {trip?.companionInfo?.title}
         </Text>
 
@@ -155,5 +115,38 @@ const styles = StyleSheet.create({
     fontSize: hp(2.5),
     color: theme.colors.text,
     fontWeight: theme.fonts.medium,
-  }
+  },
+  image: {
+    width: "100%",
+    height: hp(39),
+  },
+  detailsContainer: {
+    padding: wp(3.75),
+    backgroundColor: theme.colors.WHITE,
+    height: "100%",
+    marginTop: hp(-3.75),
+    borderTopLeftRadius: wp(7.5),
+    borderTopRightRadius: wp(7.5),
+  },
+  title: {
+    fontSize: wp(6.25),
+    fontFamily: "outfit-bold",
+  },
+  dateContainer: {
+    flexDirection: "row",
+    display: "flex",
+    gap: wp(1.25),
+    marginTop: hp(0.625),
+  },
+  date: {
+    fontFamily: "outfit",
+    fontSize: wp(4.5),
+    color: theme.colors.GRAY,
+  },
+  companion: {
+    fontFamily: "outfit",
+    fontSize: wp(4.25),
+    color: theme.colors.GRAY,
+    marginTop: hp(1.25),
+  },
 });
