@@ -5,7 +5,7 @@ import { wp, hp } from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { theme } from "../../../constants/theme";
 import { useTrip } from "../../../contexts/TripContext";
-import { AI_PROMPT } from "../../../constants/data";
+import { AI_PROMPT } from "../../../constants/index";
 import { chatSession } from "../../../services/geminiAiModalService";
 import { useRouter } from "expo-router";
 import { data } from "../../../constants/data";
@@ -24,16 +24,13 @@ const loading = () => {
 
   const generateAiTrip = async () => {
     setLoading(true);
-    const FINAL_PROMPT = AI_PROMPT.replace(
-      "{location}",
-      tripData?.locationInfo?.name
-    )
+    const FINAL_PROMPT = AI_PROMPT
+      .replace("{location}", tripData?.locationInfo?.name)
       .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
       .replace("{totalNight}", tripData?.dateInfo?.totalNoOfDays - 1)
       .replace("{traveller}", tripData?.companionInfo?.title)
       .replace("{budget}", tripData?.budgetInfo?.title)
       .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
-      .replace("{totalNight}", tripData?.dateInfo?.totalNoOfDays - 1);
 
     const result = await chatSession.sendMessage(FINAL_PROMPT);
 

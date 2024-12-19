@@ -17,6 +17,7 @@ import { getLocationImage } from "../../../services/imageService";
 import moment from "moment";
 import FlightInfoCard from "../../../components/FlightInfoCard";
 import HotelList from "../../../components/HotelList";
+import PlannedTrip from "../../../components/PlannedTrip";
 
 const tripDetails = () => {
   const router = useRouter();
@@ -70,7 +71,7 @@ const tripDetails = () => {
   }
 
   return (
-    <View>
+    <ScrollView>
       <Image
         source={getLocationImage(trip?.locationInfo?.photoRef)}
         style={styles.image}
@@ -98,8 +99,9 @@ const tripDetails = () => {
         <HotelList hotels={trip?.response?.hotelOptions} />
 
         {/* Trip Day Planner Info*/}
+        <PlannedTrip details={trip?.response?.itinerary}/>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
     marginTop: hp(-3.75),
     borderTopLeftRadius: wp(7.5),
     borderTopRightRadius: wp(7.5),
+    paddingBottom: hp(13),
   },
   title: {
     fontSize: wp(6.25),
