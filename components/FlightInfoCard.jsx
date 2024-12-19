@@ -4,7 +4,6 @@ import { theme } from "../constants/theme";
 import * as Linking from "expo-linking";
  
 const FlightInfoCard = ({ flightDetails }) => {
-  console.log(flightDetails);
   return (
     <View
       style={{
@@ -28,7 +27,7 @@ const FlightInfoCard = ({ flightDetails }) => {
             marginTop: 7,
           }}
           onPress={() => {
-            Linking.openURL('https://www.turkishairlines.com/');
+            Linking.openURL(flightDetails[0]?.booking_URL);
           }}
         >
           <Text
@@ -50,7 +49,7 @@ const FlightInfoCard = ({ flightDetails }) => {
           marginTop: 7,
         }}
       >
-        Airline: Turkish Airlines
+        Airline: {flightDetails[0]?.Flight_name}
       </Text>
       <Text
         style={{
@@ -58,7 +57,7 @@ const FlightInfoCard = ({ flightDetails }) => {
           fontSize: 17,
         }}
       >
-        Price: {flightDetails?.price}
+        Price: {flightDetails[0]?.flight_price}
       </Text>
     </View>
   );

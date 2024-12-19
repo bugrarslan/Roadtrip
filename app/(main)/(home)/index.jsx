@@ -99,7 +99,6 @@ const index = () => {
       pathname: "/tripDetails",
       params: { tripId: tripId },
     });
-    console.log("tripId: ", tripId);
   };
  
   return (
@@ -142,7 +141,6 @@ const index = () => {
                 )
               }
               onEndReached={() => {
-                // console.log("end reached");
                 getTrips();
               }}
             />

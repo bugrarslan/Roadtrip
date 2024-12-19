@@ -4,7 +4,16 @@ import { Image } from "expo-image";
 import { theme } from "../constants/theme";
 
 const HotelList = ({ hotels }) => {
-  console.log(hotels);
+  
+
+  const trimmedName = (name) => {
+    if (name.length > 21) {
+      return( name.substring(0, 21) + "...")
+    } else {
+      return name
+    }
+  }
+
   return (
     <View
       style={{
@@ -31,14 +40,14 @@ const HotelList = ({ hotels }) => {
             <View style={{
                 marginRight: 10,
                 flex: 1,
-                width: 180,
+                width: 200,
                 backgroundColor: theme.colors.GRAY_LIGHT,
                 borderRadius: 15,
             }}>
                 <Image
                     source={require('../assets/images/icon.png')}
                     style={{
-                        width: 180,
+                        width: 200,
                         height: 120,
                         borderRadius: 15,
                     }}
@@ -51,16 +60,16 @@ const HotelList = ({ hotels }) => {
                         fontSize: 17,
                         
                     }}>
-                        {item?.hotelName}
+                        {trimmedName(item?.Hotel_name)}
                     </Text>
 
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={{
                             fontFamily: "outfit",
-                        }}>⭐ {item?.rating}</Text>
+                        }}>⭐ {item?.Rating}</Text>
                         <Text style={{
                             fontFamily: "outfit",
-                        }}>💰 {item?.price}</Text>
+                        }}>💰 {item?.Price_per_night}</Text>
                     </View>
                 </View>
             </View>

@@ -32,7 +32,6 @@ const createTrip = () => {
   }
 
   useEffect(() => {
-    console.log(tripData);
   }, []);
 
   return (

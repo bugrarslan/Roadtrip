@@ -18,6 +18,7 @@ import moment from "moment";
 import FlightInfoCard from "../../../components/FlightInfoCard";
 import HotelList from "../../../components/HotelList";
 import PlannedTrip from "../../../components/PlannedTrip";
+import { StatusBar } from "expo-status-bar";
 
 const tripDetails = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const tripDetails = () => {
   const [startLoading, setStartLoading] = useState(true);
 
   useEffect(() => {
-    getTripDetails();
+    tripId && getTripDetails();
   }, [tripId]);
 
   const getTripDetails = async () => {
@@ -72,34 +73,32 @@ const tripDetails = () => {
 
   return (
     <ScrollView>
+      <StatusBar style="inverted"/>
       <Image
         source={getLocationImage(trip?.locationInfo?.photoRef)}
         style={styles.image}
       />
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>
-          {trip?.response?.location}
-        </Text>
+        <Text style={styles.title}>{trip?.locationInfo?.name}</Text>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>
             {moment(trip?.dateInfo?.startDate).format("DD MMM yyyy")}
           </Text>
           <Text style={styles.date}>
-            {" "} - {moment(trip?.dateInfo?.endDate).format("DD MMM yyyy")}
+            {" "}
+            - {moment(trip?.dateInfo?.endDate).format("DD MMM yyyy")}
           </Text>
         </View>
-        <Text style={styles.companion}>
-          🚌 {trip?.companionInfo?.title}
-        </Text>
+        <Text style={styles.companion}>🚌 {trip?.companionInfo?.title}</Text>
 
         {/* Flight Info */}
-        <FlightInfoCard flightDetails={trip?.response?.flightDetails} />
+        <FlightInfoCard flightDetails={trip?.response?.Flight_Details} />
 
         {/* Hotels List */}
-        <HotelList hotels={trip?.response?.hotelOptions} />
+        <HotelList hotels={trip?.response?.Hotel_Options} />
 
         {/* Trip Day Planner Info*/}
-        <PlannedTrip details={trip?.response?.itinerary}/>
+        <PlannedTrip details={trip?.response?.Day_by_Day_Plan} />
       </View>
     </ScrollView>
   );

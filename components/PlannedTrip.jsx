@@ -13,12 +13,12 @@ const PlannedTrip = ({details}) => {
         fontFamily: "outfit-bold",
       }}>🏕️ Plan Details</Text>
 
-      {Object.entries(details).map(([day, details]) => (
+      {Object.entries(details).map(([Day, details]) => (
         <View>
-            <Text>{day.charAt(0).toUpperCase()+day.slice(1)}</Text>
-            {details?.plan?.map((place, index) => (
+            <Text>{Day.charAt(0).toUpperCase()+Day.slice(1)}</Text>
+            {details?.Activities_or_places_to_visit_for_each_day?.map((place, index) => (
                 <View>
-                    <Text>{place?.placeName}</Text>
+                    <Text>{place}</Text>
                 </View>
             ))}
         </View>

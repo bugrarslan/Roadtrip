@@ -25,6 +25,7 @@ const dateSelectModal = () => {
   const onDateChange = (date, type) => {
     if (type === "START_DATE") {
       setStartDate(moment(date));
+      setEndDate(null);
     } else {
       setEndDate(moment(date));
     }
@@ -67,31 +68,13 @@ const dateSelectModal = () => {
         <View style={styles.content}>
           <CalendarPicker
             onDateChange={onDateChange}
+            showDayStragglers
             allowRangeSelection
             minDate={new Date()}
             maxRangeDuration={6}
             selectedRangeStyle={{ backgroundColor: theme.colors.PRIMARY }}
             selectedDayTextStyle={{ color: theme.colors.WHITE }}
             textStyle={{ fontFamily: "outfit-medium" }}
-            // weekdays={["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"]}
-            // months={[
-            //   "Ocak",
-            //   "Şubat",
-            //   "Mart",
-            //   "Nisan",
-            //   "Mayıs",
-            //   "Haziran",
-            //   "Temmuz",
-            //   "Ağustos",
-            //   "Eylül",
-            //   "Ekim",
-            //   "Kasım",
-            //   "Aralık",
-            // ]}
-            // previousTitle="Önceki"
-            // nextTitle="Sonraki"
-            // selectMonthTitle="Ayı Seçin, "
-            // selectYearTitle="Yılı Seçin"
           />
           <Button title="Apply" onPress={onDateSelectionApply} />
         </View>

@@ -8,9 +8,9 @@ import { hp, wp } from "../helpers/common";
 import { getLocationImage } from "../services/imageService";
 
 const TripCard = ({ item, onSubmit, index }) => {
-  const trimmedTitle = item?.response?.location.length > 20
-    ? item?.response?.location.substring(0, 20) + "..."
-    : item?.response?.location;
+  const trimmedTitle = item?.locationInfo?.name?.length > 20
+    ? item?.locationInfo?.name?.substring(0, 20) + "..."
+    : item?.locationInfo?.name;
 
   return (
     <View>
@@ -42,7 +42,7 @@ const TripCard = ({ item, onSubmit, index }) => {
               </Text>
             </View>
             <Pressable
-              onPress={() => onSubmit(item.id)}
+              onPress={() => onSubmit(item?.id)}
               style={styles.submitButton}
             >
               <Text
@@ -55,7 +55,7 @@ const TripCard = ({ item, onSubmit, index }) => {
         </View>
       ) : (
         <Pressable
-          onPress={() => onSubmit(item.id)}
+          onPress={() => onSubmit(item?.id)}
           style={styles.rowGap}
         >
           <Image
