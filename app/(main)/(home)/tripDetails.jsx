@@ -77,6 +77,7 @@ const tripDetails = () => {
       <Image
         source={getLocationImage(trip?.locationInfo?.photoRef)}
         style={styles.image}
+        cachePolicy="memory"
       />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{trip?.locationInfo?.name}</Text>

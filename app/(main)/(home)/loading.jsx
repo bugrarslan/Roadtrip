@@ -8,7 +8,7 @@ import { useTrip } from "../../../contexts/TripContext";
 import { AI_PROMPT } from "../../../constants/index";
 import { chatSession } from "../../../services/geminiAiModalService";
 import { useRouter } from "expo-router";
-import { data } from "../../../constants/data";
+import { data } from "../../../constants/data.json";
 import { useAuth } from "../../../contexts/AuthContext";
 import { createOrUpdateTrip } from "../../../services/tripService";
 

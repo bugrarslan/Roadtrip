@@ -51,6 +51,7 @@ const HotelList = ({ hotels }) => {
                         height: 120,
                         borderRadius: 15,
                     }}
+                    cachePolicy="memory"
                 />
                 <View style={{
                     padding: 5,
