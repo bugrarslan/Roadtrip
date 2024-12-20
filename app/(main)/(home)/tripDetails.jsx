@@ -17,7 +17,7 @@ import { getLocationImage } from "../../../services/imageService";
 import moment from "moment";
 import FlightInfoCard from "../../../components/FlightInfoCard";
 import HotelList from "../../../components/HotelList";
-import PlannedTrip from "../../../components/PlannedTrip";
+import PlannedTripList from "../../../components/PlannedTripList";
 import { StatusBar } from "expo-status-bar";
 
 const tripDetails = () => {
@@ -99,7 +99,7 @@ const tripDetails = () => {
         <HotelList hotels={trip?.response?.Hotel_Options} />
 
         {/* Trip Day Planner Info*/}
-        <PlannedTrip details={trip?.response?.Day_by_Day_Plan} />
+        <PlannedTripList details={trip?.response?.Day_by_Day_Plan} />
       </View>
     </ScrollView>
   );
