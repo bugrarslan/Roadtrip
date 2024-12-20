@@ -8,13 +8,12 @@ import { useTrip } from "../../../contexts/TripContext";
 import { AI_PROMPT } from "../../../constants/index";
 import { chatSession } from "../../../services/geminiAiModalService";
 import { useRouter } from "expo-router";
-import { data } from "../../../constants/data.json";
 import { useAuth } from "../../../contexts/AuthContext";
 import { createOrUpdateTrip } from "../../../services/tripService";
 
 const loading = () => {
   const router = useRouter();
-  const { tripData, setTripData } = useTrip();
+  const { tripData } = useTrip();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
 
