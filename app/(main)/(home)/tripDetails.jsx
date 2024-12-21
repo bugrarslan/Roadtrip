@@ -91,6 +91,7 @@ const tripDetails = () => {
           </Text>
         </View>
         <Text style={styles.companion}>🚌 {trip?.companionInfo?.title}</Text>
+        <Text style={styles.companion}>💰 {trip?.budgetInfo?.title}</Text>
 
         {/* Flight Info */}
         <FlightInfoCard flightDetails={trip?.response?.Flight_Details} />

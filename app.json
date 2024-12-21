@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#74C8B0"
       },
       "package": "com.bugrarslan.RoadTrip"
@@ -28,14 +28,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash.png",
+          "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#74C8B0",
-          "dark": {
-            "image": "./assets/images/splash.png",
-            "backgroundColor": "#000000"
-          }
+          "resizeMode": "cover",
+          "backgroundColor": "#74C8B0"
         }
       ],
       [

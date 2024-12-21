@@ -10,13 +10,13 @@ const FlightInfoCard = ({ flightDetails }) => {
         marginTop: 20,
         backgroundColor: theme.colors.GRAY_LIGHT,
         padding: 10,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 15
       }}
     >
       <View style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
         <Text style={{ fontFamily: "outfit-bold", fontSize: 20 }}>
-          ✈️ Flights
+          ✈️ Flight
         </Text>
         <Pressable
           style={{

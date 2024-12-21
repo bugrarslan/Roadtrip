@@ -28,7 +28,7 @@ const PlannedTripList = ({details}) => {
                         }}>
                             {item?.Day}
                         </Text>
-                        <Text style={{fontSize: 15, fontFamily: "outfit", marginTop: 10}}>🟢 Time to travel between
+                        <Text style={{fontSize: 15, fontFamily: "outfit", marginTop: 10}}>⚫ Time to travel between
                             locations: {item?.Travel_time_between_locations}</Text>
                         <Text style={{fontSize: 15, fontFamily: "outfit", marginTop: 10}}>🟢 Best Time to Visit Each
                             Place: {item?.Best_times_to_visit_each_place}</Text>
