@@ -17,19 +17,10 @@ const Page = () => {
       <View style={styles.container}>
         <LottieView
           source={require("../assets/animations/welcome.json")}
-          style={{
-            width: wp(100),
-            aspectRatio: 1,
-            padding: wp(4),
-          }}
+          style={styles.welcomeImage}
           autoPlay
           loop
         />
-        {/* <Image
-          source={require("../assets/images/welcome1.png")}
-          style={styles.welcomeImage}
-          resizeMode="cover"
-        /> */}
         <View style={{ gap: 20 }}>
           <Text style={styles.title}>RoadTrip</Text>
           <Text style={styles.punchline}>
@@ -41,7 +32,6 @@ const Page = () => {
         <View style={styles.footer}>
           <Button
             title="Get Started"
-            buttonStyle={{ marginHorizontal: wp(3) }}
             onPress={() => router.push("signUp")}
           />
 
@@ -53,7 +43,6 @@ const Page = () => {
                   styles.loginText,
                   {
                     color: theme.colors.secondary,
-                    fontWeight: theme.fonts.semibold,
                   },
                 ]}
               >
@@ -78,9 +67,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(4),
   },
   welcomeImage: {
-    width: wp(100),
-    height: hp(30),
-    alignSelf: "center",
+    width: "100%",
+    aspectRatio: 1,
+    padding: wp(4),
   },
   title: {
     color: theme.colors.text,
@@ -108,7 +97,7 @@ const styles = StyleSheet.create({
   loginText: {
     textAlign: "center",
     color: theme.colors.text,
-    fontSize: hp(1.6),
+    fontSize: hp(1.5),
     fontFamily: "outfit-medium",
   },
 });

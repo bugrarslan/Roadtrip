@@ -7,12 +7,7 @@ import { getUserData } from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
 import 'react-native-get-random-values';
 
-SplashScreen.preventAutoHideAsync();
-
-SplashScreen.setOptions({
-  duration: 1000,
-  fade: true,
-});
+SplashScreen.preventAutoHideAsync()
 
 const _layout = () => {
 
@@ -29,7 +24,7 @@ const _layout = () => {
   }, [loaded, error]);
 
   if (!loaded && !error) {
-    return null; // Fontlar yüklenene kadar ekran boş bırakılır.
+    SplashScreen.preventAutoHideAsync()
   }
 
   return (

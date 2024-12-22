@@ -9,12 +9,15 @@ const Input = (props) => {
       {
         props.icon && props.icon
       }
-      <TextInput 
+      <TextInput
         style={styles.input}
         placeholderTextColor={theme.colors.textLight}
         ref={props.inputRef && props.inputRef}
         {...props}
       />
+      {
+        props.showPasswordToggle && props.showPasswordToggle
+      }
     </View>
   )
 }
@@ -22,20 +25,22 @@ const Input = (props) => {
 export default Input
 
 const styles = StyleSheet.create({
-    input: {
-        flex: 1,
-        fontFamily: 'outfit',
-    },
-    container: {
-        flexDirection: 'row',
-        height: hp(7.2),
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 0.4,
-        borderColor: theme.colors.text,
-        borderCurve: 'continuous',
-        paddingHorizontal: 18,
-        borderRadius: theme.radius.xxl,
-        gap: 12
-    }
+  input: {
+    flex: 1,
+    fontFamily: 'outfit',
+    height: "100%",
+    width: "100%",
+  },
+  container: {
+    flexDirection: 'row',
+    height: hp(7.2),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.4,
+    borderColor: theme.colors.text,
+    borderCurve: 'continuous',
+    paddingHorizontal: 18,
+    borderRadius: theme.radius.xxl,
+    gap: 12
+  }
 })

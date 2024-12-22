@@ -17,6 +17,9 @@ import {
   import Icon from "../assets/icons";
   import Button from "../components/Button";
   import { supabase } from "../lib/supabase";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Ionicons from '@expo/vector-icons/Ionicons';
+
   
   
   const signUp = () => {
@@ -27,7 +30,9 @@ import {
     const passwordRef = useRef("");
     const passwordConfirmRef = useRef("");
     const [loading, setLoading] = useState(false);
-  
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
+
+
     useEffect(() => {
       navigation.setOptions({
         headerShown: false,
@@ -104,14 +109,15 @@ import {
             />
             <Input
               icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
+              showPasswordToggle={<Pressable onPress={()=>setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye" size={26} color="black" /></Pressable>}
               placeholder="Enter your password"
-              secureTextEntry
+              secureTextEntry={secureTextEntry}
               onChangeText={(value) => (passwordRef.current = value)}
             />
             <Input
               icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
               placeholder="Confirm your password"
-              secureTextEntry
+              secureTextEntry={secureTextEntry}
               onChangeText={(value) => (passwordConfirmRef.current = value)}
             />
   
@@ -167,7 +173,7 @@ import {
     footerText: {
       color: theme.colors.text,
       textAlign: "center",
-      fontSize: hp(1.6),
+      fontSize: hp(1.5),
       fontFamily: "outfit-medium",
     },
     title: {

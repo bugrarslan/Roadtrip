@@ -10,6 +10,7 @@ import Input from "../components/Input";
 import Icon from "../assets/icons";
 import Button from "../components/Button";
 import { supabase } from "../lib/supabase";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const signIn = () => {
   const navigaiton = useNavigation();
@@ -18,6 +19,7 @@ const signIn = () => {
   const passwordRef = useRef("");
 
   const [loading, setLoading] = useState(false);
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   useEffect(() => {
     navigaiton.setOptions({
@@ -76,8 +78,9 @@ const signIn = () => {
           />
           <Input
             icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
+            showPasswordToggle={<Pressable onPress={()=>setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye" size={26} color="black" /></Pressable>}
             placeholder="Enter your password"
-            secureTextEntry
+            secureTextEntry={secureTextEntry}
             onChangeText={(value) => (passwordRef.current = value)}
           />
           <Text style={styles.forgotPassword}>forgot password?</Text>
@@ -97,7 +100,6 @@ const signIn = () => {
                 styles.footerText,
                 {
                   color: theme.colors.secondary,
-                  fontWeight: theme.fonts.semibold,
                 },
               ]}
             >
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 45,
-    paddingHorizontal: wp(5),
+    paddingHorizontal: wp(4),
   },
   form: {
     gap: 25,
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
   footerText: {
     color: theme.colors.text,
     textAlign: "center",
-    fontSize: hp(1.6),
+    fontSize: hp(1.5),
     fontFamily: "outfit-medium",
   },
   title: {
