@@ -43,7 +43,7 @@ const Page = () => {
                 style={[
                   styles.loginText,
                   {
-                    color: theme.colors.primaryDark,
+                    color: theme.colors.secondary,
                     fontWeight: theme.fonts.semibold,
                   },
                 ]}

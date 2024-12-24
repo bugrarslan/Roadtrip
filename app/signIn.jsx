@@ -1,7 +1,18 @@
-import {StyleSheet, Text, View, Pressable, Alert} from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Alert,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Keyboard
+} from "react-native";
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigation, useRouter} from "expo-router";
-import {hp, wp} from "@/helpers/common";
+import {hp, wp} from "../helpers/common";
 import ScreenWrapper from "../components/ScreenWrapper";
 import {StatusBar} from "expo-status-bar";
 import BackButton from "../components/BackButton";
@@ -64,6 +75,8 @@ const signIn = () => {
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             keyboardShouldPersistTaps="handled"
+            bounces={false} // iOS için
+            overScrollMode="never" // Android için
           >
             <BackButton router={router}/>
 
@@ -102,8 +115,6 @@ const signIn = () => {
             </View>
 
             {/* footer */}
-
-            {/* footer */}
             <View style={styles.footer}>
               <Text style={styles.footerText}>Don't have an account?</Text>
               <Pressable onPress={() => router.push("signUp")}>
@@ -111,7 +122,7 @@ const signIn = () => {
                   style={[
                     styles.footerText,
                     {
-                      color: theme.colors.primaryDark,
+                      color: theme.colors.secondary,
                       fontWeight: theme.fonts.semibold,
                     },
                   ]}

@@ -10,6 +10,7 @@ import { theme } from "../../../constants/theme";
 import TripButton from "../../../components/TripButton";
 import { SelectBudgetList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
+import Header from "../../../components/Header";
 
 const budgetSelectModal = () => {
   const router = useRouter();
@@ -42,10 +43,7 @@ const budgetSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>What is your budget?</Text>
-          <CloseButton router={router} />
-        </View>
+        <Header title="Select Budget" showCloseButton={true}/>
         {/* content */}
         <View style={styles.content}>
           <FlatList

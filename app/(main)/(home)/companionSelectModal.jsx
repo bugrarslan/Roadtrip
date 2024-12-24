@@ -11,6 +11,7 @@ import Button from "../../../components/Button";
 import TripButton from "../../../components/TripButton";
 import { SelectTravellerList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
+import Header from "../../../components/Header";
 
 const companionSelectModal = () => {
   const router = useRouter();
@@ -43,10 +44,7 @@ const companionSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>Who would you like to go with?</Text>
-          <CloseButton router={router} />
-        </View>
+        <Header title="Select Companion" showCloseButton={true}/>
         {/* content */}
         <View style={styles.content}>
           <FlatList

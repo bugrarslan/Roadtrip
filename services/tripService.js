@@ -21,7 +21,7 @@ export const fetchTripDetails = async (tripId) => {
   }
 };
 
-export const fetchTrips = async (limit = 10, userId) => {
+export const fetchTrips = async (limit = 5, userId) => {
   try {
     if (userId) {
       const { data, error } = await supabase

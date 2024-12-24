@@ -7,15 +7,18 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Ionicons } from "@expo/vector-icons";
 
 const TripPreviewButton = ({ title, content, onPress, icon }) => {
+  const trimmedContent = content && content.length > 25 ? content.substring(0, 25) + "..." : content;
+
+
   return (
     <Pressable
-      style={[styles.container, { borderWidth: 2 }]}
+      style={[styles.container]}
       onPress={() => onPress(onPress)}
     >
       <Ionicons name={icon} size={24} color={theme.colors.dark} />
-      <View style={{ gap: 10, backgroundColor: theme.colors.GRAY_LIGHT }}>
+      <View style={{ gap: 10, backgroundColor: theme.colors.darkLight }}>
         <Text style={styles.title}>{title}</Text>
-        {content && (<Text style={styles.text}>{content && content}</Text>)}
+        {content && (<Text style={styles.text}>{content && trimmedContent}</Text>)}
       </View>
       <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.colors.PRIMARY} />
     </Pressable>
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: hp(10),
-    backgroundColor: theme.colors.GRAY_LIGHT,
+    backgroundColor: theme.colors.darkLight,
     borderRadius: theme.radius.xl,
     borderCurve: "continuous",
     flexDirection: "row",
@@ -37,14 +40,16 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   title: {
-    color: "black",
+    color: theme.colors.textDark,
     fontSize: hp(2.5),
-    fontFamily: "outfit-bold",
+    textAlign: "center",
+    fontWeight: theme.fonts.semibold
   },
   text: {
-    color: "gray",
+    color: theme.colors.textLight,
     fontSize: hp(2),
-    fontFamily: "outfit",
+    textAlign: "center",
+    fontWeight: theme.fonts.medium
   },
   icon: {
     fontSize: hp(6),

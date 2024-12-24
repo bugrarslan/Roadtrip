@@ -2,23 +2,26 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
   Pressable,
-  Alert, Keyboard, TouchableWithoutFeedback, KeyboardAvoidingView, ScrollView,
+  Alert,
+  Keyboard,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
 } from "react-native";
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigation, useRouter} from "expo-router";
-import {hp, wp} from "@/helpers/common";
-import ScreenWrapper from "@/components/ScreenWrapper";
+import {hp, wp} from "../helpers/common";
+import ScreenWrapper from "../components/ScreenWrapper";
 import {StatusBar} from "expo-status-bar";
 import {theme} from "../constants/theme";
-import BackButton from "@/components/BackButton";
+import BackButton from "../components/BackButton";
 import Input from "../components/Input";
 import Icon from "../assets/icons";
 import Button from "../components/Button";
 import {supabase} from "../lib/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 const signUp = () => {
@@ -88,6 +91,8 @@ const signUp = () => {
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             keyboardShouldPersistTaps="handled"
+            bounces={false} // iOS için
+            overScrollMode="never" // Android için
           >
             <BackButton router={router}/>
 
@@ -100,7 +105,7 @@ const signUp = () => {
             {/* form */}
 
             <View style={styles.form}>
-              <Text style={{ fontSize: hp(1.5), color: theme.colors.text }}>
+              <Text style={{fontSize: hp(1.5), color: theme.colors.text}}>
                 Please fill the details to create an account
               </Text>
               <Input
@@ -143,17 +148,17 @@ const signUp = () => {
             {/* footer */}
             <View style={styles.footer}>
               <Text style={styles.footerText}>Already have an account?</Text>
-              <Pressable onPress={() => router.push("/login")}>
+              <Pressable onPress={() => router.push("/signIn")}>
                 <Text
                   style={[
                     styles.footerText,
                     {
-                      color: theme.colors.primaryDark,
+                      color: theme.colors.secondary,
                       fontWeight: theme.fonts.semibold,
                     },
                   ]}
                 >
-                  Login
+                  Sign In
                 </Text>
               </Pressable>
             </View>

@@ -11,6 +11,7 @@ import CalendarPicker from "react-native-calendar-picker";
 import moment from "moment";
 import Button from "../../../components/Button";
 import { useTrip } from "../../../contexts/TripContext";
+import Header from "../../../components/Header";
 
 const dateSelectModal = () => {
   const router = useRouter();
@@ -60,10 +61,7 @@ const dateSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>Which days would you like to go?</Text>
-          <CloseButton router={router} />
-        </View>
+        <Header title={"Select Dates"} showCloseButton/>
         {/* content */}
         <View style={styles.content}>
           <CalendarPicker

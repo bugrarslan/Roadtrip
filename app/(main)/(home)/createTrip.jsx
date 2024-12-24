@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import {Alert, StyleSheet, Text, View} from "react-native";
 import React, { useEffect } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { useRouter } from "expo-router";
@@ -10,25 +10,30 @@ import BackButton from "../../../components/BackButton";
 import { useTrip } from "../../../contexts/TripContext";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
+import Header from "../../../components/Header";
 
 const createTrip = () => {
   const router = useRouter();
   const { tripData, setTripData } = useTrip();
 
   const onSubmitDestination = () => {
-    router.push("destinationSelectModal");
+    router.push("/destinationSelectModal");
   };
   const onSubmitCompanion = () => {
-    router.push("companionSelectModal");
+    router.push("/companionSelectModal");
   };
   const onSubmitDate = () => {
-    router.push("dateSelectModal");
+    router.push("/dateSelectModal");
   };
   const onSubmitBudget = () => {
-    router.push("budgetSelectModal");
+    router.push("/budgetSelectModal");
   };
   const handleCreate = () => {
-    router.push("loading");
+    if (tripData?.locationInfo && tripData?.companionInfo && tripData?.dateInfo && tripData?.budgetInfo) {
+      router.replace("(main)/(home)/loading");
+    } else {
+      Alert.alert("Create Trip", "Please fill all the details");
+    }
   }
 
   useEffect(() => {
@@ -38,10 +43,7 @@ const createTrip = () => {
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
       <StatusBar style="dark" />
       <View style={styles.container}>
-        <View style={styles.header}>
-          <BackButton router={router} />
-          <Text style={styles.title}>Let's create your trip</Text>
-        </View>
+        <Header title="Let's create your trip" showBackButton isResetContext/>
         <View style={styles.content}>
           <TripPreviewButton
             title={"Where to?"}

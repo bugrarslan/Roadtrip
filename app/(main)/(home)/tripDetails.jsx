@@ -50,7 +50,7 @@ const tripDetails = () => {
   if (startLoading) {
     return (
       <View style={styles.center}>
-        <Loading />
+        <Loading size={"large"}/>
       </View>
     );
   }

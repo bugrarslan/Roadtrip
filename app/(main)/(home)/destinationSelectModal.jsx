@@ -11,6 +11,7 @@ import Button from "../../../components/Button";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { mapsPlacesApiKey } from "../../../constants/index";
 import { useTrip } from "../../../contexts/TripContext";
+import Header from "../../../components/Header";
 
 const destinationSelectModal = () => {
   const router = useRouter();
@@ -29,10 +30,7 @@ const destinationSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>Where would you like to go?</Text>
-          <CloseButton router={router} />
-        </View>
+        <Header title="Select Destination" showCloseButton={true}/>
 
         {/* content */}
         <View style={{ flex: 1, backgroundColor: theme.colors.WHITE }}>

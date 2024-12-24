@@ -35,7 +35,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-app-example
 # my custom rules
 /android
 /ios

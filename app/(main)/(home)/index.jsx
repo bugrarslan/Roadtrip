@@ -143,6 +143,8 @@ const index = () => {
               onEndReached={() => {
                 getTrips();
               }}
+              refreshing={loading}
+              onRefresh={() => getTrips()}
             />
           </View>
         )}

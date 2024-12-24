@@ -1,24 +1,39 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import {Alert, StyleSheet, Text, View, BackHandler} from "react-native";
+import React, {useEffect, useState} from "react";
 import LottieView from "lottie-react-native";
-import { wp, hp } from "../../../helpers/common";
+import {wp, hp} from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import { theme } from "../../../constants/theme";
-import { useTrip } from "../../../contexts/TripContext";
-import { AI_PROMPT } from "../../../constants/index";
-import { chatSession } from "../../../services/geminiAiModalService";
-import { useRouter } from "expo-router";
-import { useAuth } from "../../../contexts/AuthContext";
-import { createOrUpdateTrip } from "../../../services/tripService";
+import {theme} from "../../../constants/theme";
+import {useTrip} from "../../../contexts/TripContext";
+import {AI_PROMPT} from "../../../constants/index";
+import {chatSession} from "../../../services/geminiAiModalService";
+import {useRouter} from "expo-router";
+import {useAuth} from "../../../contexts/AuthContext";
+import {createOrUpdateTrip} from "../../../services/tripService";
 
 const loading = () => {
   const router = useRouter();
-  const { tripData } = useTrip();
-  const { user } = useAuth();
+  const {tripData, setTripData} = useTrip();
+  const {user} = useAuth();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Uyarı!", "Bu sayfadan geri dönemezsiniz.", [
+        { text: "Tamam", onPress: () => {} },
+      ]);
+      return true; // Geri dönüşü iptal et
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
     tripData && generateAiTrip();
+
+    return () => backHandler.remove();
+
   }, []);
 
   const generateAiTrip = async () => {
@@ -47,9 +62,10 @@ const loading = () => {
     const res = await createOrUpdateTrip(data);
     setLoading(false);
     if (res.success) {
-      router.push("(main)/(home)");
+      setTripData([]);
+      router.replace("/(main)/(home)");
     } else {
-      Alert.alert("Trip", res.msg);
+      Alert.alert("Trip", res.msg, [{text: "OK", style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);
     }
   };
 
@@ -61,7 +77,7 @@ const loading = () => {
             <LottieView
               source={require("../../../assets/animations/plane-animation.json")}
               style={{
-                width: wp(100),
+                width: "100%",
                 aspectRatio: 1,
                 padding: wp(4),
               }}
@@ -70,7 +86,7 @@ const loading = () => {
             />
           </View>
           <Text style={styles.text}>Fasten your seat belts!</Text>
-          <Text style={[styles.text, { fontFamily: "outfit-bold" }]}>
+          <Text style={[styles.text, {fontFamily: "outfit-bold"}]}>
             Preparing your trip...
           </Text>
         </View>
@@ -85,6 +101,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingHorizontal: wp(4),
   },
   loading: {
     justifyContent: "center",

@@ -15,7 +15,7 @@ const TripCard = ({ item, onSubmit, index }) => {
   return (
     <View>
       {index === 0 ? (
-        <View>
+        <Pressable onPress={() => onSubmit(item?.id)}>
           <Image
             source={getLocationImage(item?.locationInfo?.photoRef)}
             style={styles.mainImage}
@@ -52,7 +52,7 @@ const TripCard = ({ item, onSubmit, index }) => {
               </Text>
             </Pressable>
           </View>
-        </View>
+        </Pressable>
       ) : (
         <Pressable
           onPress={() => onSubmit(item?.id)}
