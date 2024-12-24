@@ -43,7 +43,7 @@ export default Button
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: theme.colors.PRIMARY,
+        backgroundColor: theme.colors.primary,
         height: hp(6.6),
         justifyContent: 'center',
         alignItems: 'center',
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: hp(2.5),
         color: 'white',
-        fontFamily: 'outfit-bold'
+        fontWeight: theme.fonts.bold,
     }
 })

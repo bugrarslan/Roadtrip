@@ -9,15 +9,20 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bugrarslan.RoadTrip",
+      "icon": {
+        "light": "./assets/images/ios/ios-light.png",
+        "dark": "./assets/images/ios/ios-dark.png",
+      }
     },
     "android": {
       "icon": "./assets/images/icon.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/android-foreground.png",
-        "monochromeImage": "./assets/images/android-monochrome.png",
-        "backgroundImage": "./assets/images/android-background.png",
-        "backgroundColor": "#ffffff",
+        "foregroundImage": "./assets/images/android/android-foreground.png",
+        "monochromeImage": "./assets/images/android/android-monochrome.png",
+        "backgroundImage": "./assets/images/android/android-background.png",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.bugrarslan.RoadTrip"
     },
@@ -31,12 +36,12 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon-light.png",
+          "image": "./assets/images/splash/splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
-            "image": "./assets/images/splash-icon-dark.png",
+            "image": "./assets/images/splash/splash.png",
             "backgroundColor": "#252525"
           }
         }

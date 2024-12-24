@@ -1,15 +1,15 @@
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigation, useRouter } from "expo-router";
-import { hp, wp } from "@/helpers/common";
+import {StyleSheet, Text, View, Pressable, Alert} from "react-native";
+import React, {useEffect, useRef, useState} from "react";
+import {useNavigation, useRouter} from "expo-router";
+import {hp, wp} from "@/helpers/common";
 import ScreenWrapper from "../components/ScreenWrapper";
-import { StatusBar } from "expo-status-bar";
+import {StatusBar} from "expo-status-bar";
 import BackButton from "../components/BackButton";
-import { theme } from "../constants/theme";
+import {theme} from "../constants/theme";
 import Input from "../components/Input";
 import Icon from "../assets/icons";
 import Button from "../components/Button";
-import { supabase } from "../lib/supabase";
+import {supabase} from "../lib/supabase";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const signIn = () => {
@@ -37,7 +37,7 @@ const signIn = () => {
 
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const {data, error} = await supabase.auth.signInWithPassword({
       email: emailRef.current,
       password: passwordRef.current,
     });
@@ -54,61 +54,76 @@ const signIn = () => {
   };
 
   return (
-    <ScreenWrapper backgroundColor="white">
-      <StatusBar style="dark" />
-      <View style={styles.container}>
-        <BackButton router={router} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ScreenWrapper backgroundColor="white">
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <StatusBar style="dark"/>
+          <ScrollView
+            contentContainerStyle={styles.scrollContainer}
+            keyboardShouldPersistTaps="handled"
+          >
+            <BackButton router={router}/>
 
-        {/* welcome */}
+            {/* welcome */}
+            <View>
+              <Text style={styles.welcomeText}>Hey,</Text>
+              <Text style={styles.welcomeText}>Welcome Back 👋</Text>
+            </View>
 
-        <View>
-          <Text style={styles.title}>Let's sign in</Text>
-          <Text style={styles.subTitle}>Welcome back 👋</Text>
-        </View>
+            {/* form */}
+            <View style={styles.form}>
+              <Text style={{fontSize: hp(1.5), color: theme.colors.text}}>
+                Please login to continue
+              </Text>
+              <Input
+                icon={<Icon name="mail" size={26} strokeWidth={1.6}/>}
+                placeholder="Enter your email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={(value) => (emailRef.current = value)}
+              />
+              <Input
+                icon={<Icon name="lock" size={26} strokeWidth={1.6}/>}
+                showPasswordToggle={<Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye"
+                                                                                                              size={26}
+                                                                                                              color="black"/></Pressable>}
+                placeholder="Enter your password"
+                secureTextEntry={secureTextEntry}
+                onChangeText={(value) => (passwordRef.current = value)}
+              />
+              <Text style={styles.forgotPassword}>forgot password?</Text>
 
-        {/* form */}
+              {/* button */}
 
-        <View style={styles.form}>
-          <Input
-            icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
-            placeholder="Enter your email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={(value) => (emailRef.current = value)}
-          />
-          <Input
-            icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
-            showPasswordToggle={<Pressable onPress={()=>setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye" size={26} color="black" /></Pressable>}
-            placeholder="Enter your password"
-            secureTextEntry={secureTextEntry}
-            onChangeText={(value) => (passwordRef.current = value)}
-          />
-          <Text style={styles.forgotPassword}>forgot password?</Text>
+              <Button title="Sign In" onPress={onSubmit} loading={loading}/>
+            </View>
 
-          {/* button */}
+            {/* footer */}
 
-          <Button title="Sign In" onPress={onSubmit} loading={loading} />
-        </View>
-
-        {/* footer */}
-
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>Don't have an account?</Text>
-          <Pressable onPress={() => router.push("signUp")}>
-            <Text
-              style={[
-                styles.footerText,
-                {
-                  color: theme.colors.secondary,
-                },
-              ]}
-            >
-              Sign Up
-            </Text>
-          </Pressable>
-        </View>
-      </View>
-    </ScreenWrapper>
+            {/* footer */}
+            <View style={styles.footer}>
+              <Text style={styles.footerText}>Don't have an account?</Text>
+              <Pressable onPress={() => router.push("signUp")}>
+                <Text
+                  style={[
+                    styles.footerText,
+                    {
+                      color: theme.colors.primaryDark,
+                      fontWeight: theme.fonts.semibold,
+                    },
+                  ]}
+                >
+                  Sign up
+                </Text>
+              </Pressable>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </ScreenWrapper>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -117,8 +132,16 @@ export default signIn;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
     gap: 45,
-    paddingHorizontal: wp(4),
+    paddingHorizontal: wp(4)
+  },
+  welcomeText: {
+    fontSize: hp(4),
+    fontWeight: theme.fonts.bold,
+    color: theme.colors.text,
   },
   form: {
     gap: 25,
@@ -127,7 +150,6 @@ const styles = StyleSheet.create({
     textAlign: "right",
     color: theme.colors.text,
     fontSize: hp(1.6),
-    fontFamily: "outfit-medium",
   },
   footer: {
     flexDirection: "row",
@@ -138,18 +160,6 @@ const styles = StyleSheet.create({
   footerText: {
     color: theme.colors.text,
     textAlign: "center",
-    fontSize: hp(1.5),
-    fontFamily: "outfit-medium",
-  },
-  title: {
-    marginTop: hp(8),
-    fontSize: 30,
-    fontFamily: "outfit-bold",
-  },
-  subTitle: {
-    fontSize: 30,
-    fontFamily: "outfit-medium",
-    color: theme.colors.GRAY,
-    marginTop: hp(2),
+    fontSize: hp(1.6),
   },
 });

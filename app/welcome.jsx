@@ -31,8 +31,9 @@ const Page = () => {
 
         <View style={styles.footer}>
           <Button
-            title="Get Started"
-            onPress={() => router.push("signUp")}
+            title="Getting Started"
+            buttonStyle={{ marginHorizontal: wp(3) }}
+            onPress={() => router.push("/signUp")}
           />
 
           <View style={styles.bottomTextContainer}>
@@ -42,7 +43,8 @@ const Page = () => {
                 style={[
                   styles.loginText,
                   {
-                    color: theme.colors.secondary,
+                    color: theme.colors.primaryDark,
+                    fontWeight: theme.fonts.semibold,
                   },
                 ]}
               >
@@ -67,22 +69,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp(4),
   },
   welcomeImage: {
-    width: "100%",
-    aspectRatio: 1,
-    padding: wp(4),
+    width: wp(100),
+    height: hp(30),
+    alignSelf: "center",
   },
   title: {
     color: theme.colors.text,
     fontSize: hp(4),
     textAlign: "center",
-    fontFamily: "outfit-bold",
+    fontWeight: theme.fonts.extraBold,
   },
   punchline: {
     textAlign: "center",
     paddingHorizontal: wp(10),
     fontSize: hp(1.7),
     color: theme.colors.text,
-    fontFamily: "outfit-medium",
   },
   footer: {
     width: "100%",
@@ -97,7 +98,6 @@ const styles = StyleSheet.create({
   loginText: {
     textAlign: "center",
     color: theme.colors.text,
-    fontSize: hp(1.5),
-    fontFamily: "outfit-medium",
+    fontSize: hp(1.6),
   },
 });
