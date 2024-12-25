@@ -56,24 +56,24 @@
     "companion": "Companion",
     "days": "Days",
     "budget": "Budget",
-    "createButton": "Create!",
+    "createButton": "Create!"
   },
   "destinationSelectModal": {
     "headerTitle": "Select Destination",
     placeholder: "Search"
   },
   "companionSelectModal": {
-    "headerTitle": "Select Companion",
+    "headerTitle": "Select Companion"
   },
   "dateSelectModal": {
     "headerTitle": "Select Dates",
     "errorTitle": "Error",
     "errorContent": "Please select start and end dates.",
     "errorButton": "OK",
-    "applyButton": "Apply",
+    "applyButton": "Apply"
   },
   "budgetSelectModal": {
-    "headerTitle": "Select Budget",
+    "headerTitle": "Select Budget"
   },
   "loading": {
     "backAlertTitle": "Warning?",
@@ -82,6 +82,51 @@
     "responseAlertTitle": "Error",
     "responseAlertButton": "OK",
     "text1": "Fasten your seat belts!",
-    "text2": "We are preparing your trip...",
+    "text2": "We are preparing your trip..."
+  },
+  "selectTravellerList": {
+    "1": {
+      title: "Just Me",
+      description: "a solo trip",
+      people: "1 person"
+    },
+    "2": {
+      title: "Me and My Partner",
+      description: "a couple in love",
+      people: "2 people"
+    },
+    "3": {
+      title: "Me and My Friends",
+      description: "a group of friends",
+      people: "3-5 people"
+    },
+    "4": {
+      title: "Me and My Family",
+      description: "a family trip",
+      people: "6+ people"
+    }
+  },
+  "SelectBudgetList": {
+    "1": {
+      title: "Cheap",
+      description: "stay conscious of costs"
+    },
+    "2": {
+      title: "Moderate",
+      description: "a balance between cost and quality"
+    },
+    "3": {
+      title: "Expensive",
+      description: "a luxurious experience"
+    },
+  },
+  "tabBarButton": {
+    "Trips": "Trips",
+    "Discover": "Discover",
+    "Profile": "Profile"
+  },
+  "tripCard": {
+    "seeYourPlanButton": "See Your Plan",
+    "travellingText": "Travelling",
   }
 }

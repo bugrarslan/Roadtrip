@@ -7,7 +7,7 @@ import { theme } from "../constants/theme";
 import { hp, wp } from "../helpers/common";
 import { getLocationImage } from "../services/imageService";
 
-const TripCard = ({ item, onSubmit, index }) => {
+const TripCard = ({ item, onSubmit, index, t }) => {
   const trimmedTitle = item?.locationInfo?.name?.length > 20
     ? item?.locationInfo?.name?.substring(0, 20) + "..."
     : item?.locationInfo?.name;
@@ -48,7 +48,7 @@ const TripCard = ({ item, onSubmit, index }) => {
               <Text
                 style={styles.submitButtonText}
               >
-                See your Plan
+                {t("tripCard.seeYourPlanButton")}
               </Text>
             </Pressable>
           </View>
@@ -72,7 +72,7 @@ const TripCard = ({ item, onSubmit, index }) => {
             <Text
               style={styles.smallGrayText}
             >
-              Travelling: {item?.companionInfo?.title}
+              {t("tripCard.travellingText")}: {item?.companionInfo?.title}
             </Text>
           </View>
         </Pressable>

@@ -56,24 +56,24 @@
     "companion": "Yol Arkadaşı",
     "days": "Günler",
     "budget": "Bütçe",
-    "createButton": "Oluştur!",
+    "createButton": "Oluştur!"
   },
   "destinationSelectModal": {
     "headerTitle": "Varış Yeri Seç",
     "placeholder": "Ara"
   },
   "companionSelectModal": {
-    "headerTitle": "Yol Arkadaşı Seç",
+    "headerTitle": "Yol Arkadaşı Seç"
   },
   "dateSelectModal": {
     "headerTitle": "Tarihler Seç",
     "errorTitle": "Hata",
     "errorContent": "Lütfen başlangıç ve bitiş tarihlerini seçin.",
     "errorButton": "Tamam",
-    "applyButton": "Uygula",
+    "applyButton": "Uygula"
   },
   "budgetSelectModal": {
-    "headerTitle": "Bütçe Seç",
+    "headerTitle": "Bütçe Seç"
   },
   "loading": {
     "backAlertTitle": "Uyarı?",
@@ -82,6 +82,51 @@
     "responseAlertTitle": "Hata",
     "responseAlertButton": "Tamam",
     "text1": "Kemerlerinizi bağlayın!",
-    "text2": "Seyahatinizi hazırlıyoruz...",
+    "text2": "Seyahatinizi hazırlıyoruz..."
+  },
+  "selectTravellerList": {
+    "1": {
+      "title": "Sadece Ben",
+      "description": "tek başına bir seyahat",
+      "people": "1 kişi"
+    },
+    "2": {
+      "title": "Ben ve Partnerim",
+      "description": "aşık bir çift",
+      "people": "2 kişi"
+    },
+    "3": {
+      "title": "Ben ve Arkadaşlarım",
+      "description": "bir grup arkadaş",
+      "people": "3-5 kişi"
+    },
+    "4": {
+      "title": "Ben ve Ailem",
+      "description": "bir aile gezisi",
+      "people": "6+ kişi"
+    }
+  },
+  "SelectBudgetList": {
+    "1": {
+      "title": "Ucuz",
+      "description": "maliyetlere dikkat edin"
+    },
+    "2": {
+      "title": "Orta",
+      "description": "maliyet ve kalite arasında bir denge"
+    },
+    "3": {
+      "title": "Pahalı",
+      "description": "lüks bir deneyim"
+    }
+  },
+  "tabBarButton": {
+    "Trips": "Seyahatler",
+    "Discover": "Keşfet",
+    "Profile": "Profil"
+  },
+  "tripCard": {
+    "seeYourPlanButton": "Planını Gör",
+    "travellingText": "Seyahat Ediliyor"
   }
 }

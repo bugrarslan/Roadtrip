@@ -5,10 +5,9 @@ import { theme } from "../constants/theme";
 import TabBarButton from "./TabBarButton";
 import {hp, wp} from "../helpers/common";
 
-const TabBar = ({ state, descriptors, navigation }) => {
-  const pathname = usePathname(); // Geçerli sayfanın yolunu al
+const TabBar = ({ state, descriptors, navigation, t}) => {
+  const pathname = usePathname();
 
-  // TabBar'ın görünmemesi gereken sayfalar
   const hiddenRoutes = [
     "/budgetSelectModal",
     "/companionSelectModal",
@@ -18,9 +17,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
     "/loading",
   ];
 
-  console.log("pathname", pathname);
-
-  // Eğer geçerli sayfa gizlenecek rotalardaysa, null döndür
   if (hiddenRoutes.includes(pathname)) {
     return null;
   }
@@ -59,6 +55,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
         return (
           <TabBarButton
+            t={t}
             key={route.name}
             style={styles.tabBarItem}
             onPress={onPress}

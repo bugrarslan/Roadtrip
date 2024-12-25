@@ -8,7 +8,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import TripButton from "../../../components/TripButton";
-import { SelectBudgetList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
@@ -22,6 +21,27 @@ const budgetSelectModal = () => {
   const { t } = useTranslation();
 
   const [selected, setSelected] = useState(null);
+
+  const SelectBudgetList = [
+    {
+      id: 1,
+      title: t("selectBudgetList.1.title"),
+      description: t("selectBudgetList.1.description"),
+      icon: "💵",
+    },
+    {
+      id: 2,
+      title: t("selectBudgetList.2.title"),
+      description: t("selectBudgetList.2.description"),
+      icon: "💰",
+    },
+    {
+      id: 3,
+      title: t("selectBudgetList.3.title"),
+      description: t("selectBudgetList.3.description"),
+      icon: "💸",
+    },
+  ]
 
   useEffect(() => {
     setSelected(tripData.budgetInfo);

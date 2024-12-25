@@ -15,65 +15,71 @@ import TripCard from "../../../components/TripCard";
 import {theme} from "../../../constants/theme";
 import {useTranslation} from "react-i18next";
 
-var limit = 5;
+var limit = 0;
 const index = () => {
   const router = useRouter();
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {user} = useAuth();
+
   const [trips, setTrips] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  // const handleTripEvent = async (payload) => {
+  //   console.log("trip event: ", payload);
+  //   if (payload.eventType === "INSERT" && payload?.new?.id) {
+  //     let newTrip = {...payload.new};
+  //     let res = await getUserData(newTrip?.userId);
+  //     newTrip.tripLikes = [];
+  //     // newTrip.comments = [{ count: 0 }];
+  //     newTrip.user = res?.success ? res?.data : {};
+  //     setTrips((prevTrips) => [newTrip, ...prevTrips]);
+  //   }
+  //
+  //   if (payload.eventType === "DELETE" && payload?.old?.id) {
+  //     setTrips((prevTrips) => {
+  //       let updatedTrips = prevTrips.filter(
+  //         (trip) => trip.id !== payload.old.id
+  //       );
+  //       return updatedTrips;
+  //     });
+  //   }
+  //
+  //   if (payload.eventType === "UPDATE" && payload?.new?.id) {
+  //     setTrips((prevTrips) => {
+  //       let updatedTrips = prevTrips.map((trip) => {
+  //         if (trip.id === payload.new.id) {
+  //           trip.response = payload.new.response;
+  //           trip.locationInfo = payload.new.locationInfo;
+  //           trip.companionInfo = payload.new.companionInfo;
+  //           trip.budgetInfo = payload.new.budgetInfo;
+  //           trip.dateInfo = payload.new.dateInfo;
+  //         }
+  //         return trip;
+  //       });
+  //       return updatedTrips;
+  //     });
+  //   }
+  // };
+
   useEffect(() => {
-    //let tripChannel = supabase.channel("trips").on("postgres_changes", { event: "*", schema: "public", table: "trips" }, handleTripEvent).subscribe();
+    // let tripChannel = supabase
+    //   .channel("trips")
+    //   .on("postgres_changes", {
+    //     event: "*",
+    //     schema: "public",
+    //     table: "trips"
+    //   }, handleTripEvent)
+    //   .subscribe();
 
     getTrips();
 
-    /*
-    return () => {
-      supabase.removeChannel(tripChannel);
-    };
-    */
+    // return () => {
+    //   supabase.removeChannel(tripChannel);
+    // };
+
   }, []);
 
-  /*
-  const handleTripEvent = async (payload) => {
-    console.log("trip event: ", payload);
-    if (payload.eventType === "INSERT" && payload?.new?.id) {
-      let newTrip = { ...payload.new };
-      let res = await getUserData(newTrip?.userId);
-      newTrip.tripLikes = [];
-      // newTrip.comments = [{ count: 0 }];
-      newTrip.user = res?.success ? res?.data : {};
-      setTrips((prevTrips) => [newTrip, ...prevTrips]);
-    }
-
-    if (payload.eventType === "DELETE" && payload?.old?.id) {
-      setTrips((prevTrips) => {
-        let updatedTrips = prevTrips.filter(
-          (trip) => trip.id !== payload.old.id
-        );
-        return updatedTrips;
-      });
-    }
-
-    if (payload.eventType === "UPDATE" && payload?.new?.id) {
-      setTrips((prevTrips) => {
-        let updatedTrips = prevTrips.map((trip) => {
-          if (trip.id === payload.new.id) {
-            trip.response = payload.new.response;
-            trip.locationInfo = payload.new.locationInfo;
-            trip.companionInfo = payload.new.companionInfo;
-            trip.budgetInfo = payload.new.budgetInfo;
-            trip.dateInfo = payload.new.dateInfo;
-          }
-          return trip;
-        });
-        return updatedTrips;
-      });
-    }
-  };
-  */
 
   const getTrips = async () => {
     setLoading(true);
@@ -83,13 +89,13 @@ const index = () => {
     }
     limit = limit + 5;
     let res = await fetchTrips(limit, user.id);
-    setLoading(false);
     if (res.success) {
       if (res.data.length < limit) setHasMore(false);
       setTrips(res.data);
     } else {
       Alert.alert(t("home.title"), res.msg);
     }
+    setLoading(false);
   };
 
   const newTripClicked = () => {
@@ -102,6 +108,8 @@ const index = () => {
       params: {tripId: tripId},
     });
   };
+
+  console.log(limit)
 
   return (
     <ScreenWrapper backgroundColor={"white"}>
@@ -131,7 +139,7 @@ const index = () => {
               keyExtractor={(item) => item.id.toString()}
               ItemSeparatorComponent={() => <View style={{height: hp(2)}}/>}
               renderItem={({item, index}) => (
-                <TripCard item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)} index={index}/>
+                <TripCard t={t} item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)} index={index}/>
               )}
               ListFooterComponent={
                 hasMore ? (
@@ -151,8 +159,7 @@ const index = () => {
               onEndReached={() => {
                 getTrips();
               }}
-              refreshing={loading}
-              onRefresh={() => getTrips()}
+              onEndReachedThreshold={0}
             />
           </View>
         )}

@@ -10,7 +10,7 @@ import { icons } from "../assets/icons/TabBarIcons";
 import {theme} from "../constants/theme";
 
 const TabBarButton = (props) => {
-  const { isFocused, label, routeName, color } = props;
+  const { isFocused, label, routeName, color, t } = props;
   const scale = useSharedValue(0);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const TabBarButton = (props) => {
       <Animated.Text
         style={[{ color, fontWeight: theme.fonts.medium }, animatedTextStyle]}
       >
-        {label}
+        {t(`tabBarButton.${label}`)}
       </Animated.Text>
     </Pressable>
   );
