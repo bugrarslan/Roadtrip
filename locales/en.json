@@ -34,5 +34,54 @@
     "signInButtonText": "Sign In",
     "signInFooterText": "Don't have an account?",
     "signInFooterButtonText": "Sign Up"
+  },
+  "home": {
+    "AlertTitle": "Home",
+    "title": "Trips",
+    "createTrip": "Create Trip",
+    "noMoreTrips": "No more trips"
+  },
+  "discover": {
+    "signOut": "Sign Out"
+  },
+  "profile": {
+    "signOut": "Sign Out"
+  },
+  "createTrip": {
+    "alertTitle": "Create Trip",
+    "alertContent": "Please fill all the details",
+    "alertButton": "OK",
+    "headerTitle": "Let's create your trip",
+    "destination": "Destination",
+    "companion": "Companion",
+    "days": "Days",
+    "budget": "Budget",
+    "createButton": "Create!",
+  },
+  "destinationSelectModal": {
+    "headerTitle": "Select Destination",
+    placeholder: "Search"
+  },
+  "companionSelectModal": {
+    "headerTitle": "Select Companion",
+  },
+  "dateSelectModal": {
+    "headerTitle": "Select Dates",
+    "errorTitle": "Error",
+    "errorContent": "Please select start and end dates.",
+    "errorButton": "OK",
+    "applyButton": "Apply",
+  },
+  "budgetSelectModal": {
+    "headerTitle": "Select Budget",
+  },
+  "loading": {
+    "backAlertTitle": "Warning?",
+    "backAlertContent": "You can not go back while loading.",
+    "backAlertButton": "OK",
+    "responseAlertTitle": "Error",
+    "responseAlertButton": "OK",
+    "text1": "Fasten your seat belts!",
+    "text2": "We are preparing your trip...",
   }
 }

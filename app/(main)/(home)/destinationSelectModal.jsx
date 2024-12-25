@@ -1,17 +1,14 @@
 import { StyleSheet, Text, View, Platform } from "react-native";
 import React from "react";
-import BackButton from "../../../components/BackButton";
 import { useRouter } from "expo-router";
-import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
-import Button from "../../../components/Button";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { mapsPlacesApiKey } from "../../../constants/index";
 import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
+import {useTranslation} from "react-i18next";
 
 const destinationSelectModal = () => {
   const router = useRouter();
@@ -19,6 +16,7 @@ const destinationSelectModal = () => {
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
   const { tripData, setTripData } = useTrip();
+  const { t } = useTranslation();
 
   return (
     <View
@@ -30,12 +28,12 @@ const destinationSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <Header title="Select Destination" showCloseButton={true}/>
+        <Header title={t("destinationSelectModal.headerTitle")} showCloseButton={true}/>
 
         {/* content */}
         <View style={{ flex: 1, backgroundColor: theme.colors.WHITE }}>
           <GooglePlacesAutocomplete
-            placeholder="Ara"
+            placeholder={t("destinationSelectModal.placeholder")}
             fetchDetails={true}
             onFail={(error) => console.error(error)}
             onPress={(data, details = null) => {
@@ -63,7 +61,7 @@ const destinationSelectModal = () => {
                 justifyContent: "center",
               },
               textInput: {
-                fontFamily: "outfit",
+                fontWeight: theme.fonts.bold,
                 fontSize: hp(2.5),
                 color: "black",
                 borderRadius: theme.radius.xl,

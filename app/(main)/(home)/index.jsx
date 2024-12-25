@@ -13,10 +13,12 @@ import {fetchTrips} from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import TripCard from "../../../components/TripCard";
 import {theme} from "../../../constants/theme";
+import {useTranslation} from "react-i18next";
 
 var limit = 5;
 const index = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const {user} = useAuth();
   const [trips, setTrips] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -86,12 +88,12 @@ const index = () => {
       if (res.data.length < limit) setHasMore(false);
       setTrips(res.data);
     } else {
-      Alert.alert("Home", res.msg);
+      Alert.alert(t("home.title"), res.msg);
     }
   };
 
   const newTripClicked = () => {
-    router.push("createTrip");
+    router.push("/createTrip");
   };
 
   const handleTripDetails = (tripId) => {
@@ -107,11 +109,11 @@ const index = () => {
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Trips</Text>
+          <Text style={styles.title}>{t("home.title")}</Text>
           <Pressable
             onPress={newTripClicked}
             style={{backgroundColor: "black", padding: 10, borderRadius: theme.radius.lg}}>
-            <Text style={{fontSize: 15, fontWeight: theme.fonts.medium, color: "white"}}>Create Trip</Text>
+            <Text style={{fontSize: 15, fontWeight: theme.fonts.medium, color: "white"}}>{t("home.createTrip")}</Text>
           </Pressable>
         </View>
 
@@ -142,7 +144,7 @@ const index = () => {
                   </View>
                 ) : (
                   <View style={{marginVertical: 30}}>
-                    <Text style={styles.noPosts}>No more trips</Text>
+                    <Text style={styles.noPosts}>{t("home.noMoreTrips")}</Text>
                   </View>
                 )
               }

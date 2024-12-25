@@ -12,6 +12,7 @@ import TripButton from "../../../components/TripButton";
 import { SelectTravellerList } from "../../../constants/tripOptions";
 import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
+import {useTranslation} from "react-i18next";
 
 const companionSelectModal = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const companionSelectModal = () => {
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
   const { tripData, setTripData } = useTrip();
+  const { t } = useTranslation();
 
   const [selected, setSelected] = useState(null);
 
@@ -44,7 +46,7 @@ const companionSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <Header title="Select Companion" showCloseButton={true}/>
+        <Header title={t("companionSelectModal.headerTitle")} showCloseButton={true}/>
         {/* content */}
         <View style={styles.content}>
           <FlatList

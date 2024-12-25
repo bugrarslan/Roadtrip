@@ -11,9 +11,11 @@ import { useTrip } from "../../../contexts/TripContext";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
 import Header from "../../../components/Header";
+import {useTranslation} from "react-i18next";
 
 const createTrip = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const { tripData, setTripData } = useTrip();
 
   const onSubmitDestination = () => {
@@ -32,7 +34,12 @@ const createTrip = () => {
     if (tripData?.locationInfo && tripData?.companionInfo && tripData?.dateInfo && tripData?.budgetInfo) {
       router.replace("(main)/(home)/loading");
     } else {
-      Alert.alert("Create Trip", "Please fill all the details");
+      Alert.alert(t("createTrip.alertTitle"), t("createTrip.alertContent"), [
+        {
+          text: t("createTrip.alertButton"),
+          onPress: () => {},
+        },
+      ]);
     }
   }
 
@@ -43,22 +50,22 @@ const createTrip = () => {
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
       <StatusBar style="dark" />
       <View style={styles.container}>
-        <Header title="Let's create your trip" showBackButton isResetContext/>
+        <Header title={t("createTrip.headerTitle")} showBackButton isResetContext/>
         <View style={styles.content}>
           <TripPreviewButton
-            title={"Where to?"}
+            title={t("createTrip.destination")}
             content={tripData?.locationInfo?.name}
             onPress={onSubmitDestination}
             icon={"location-sharp"}
           />
           <TripPreviewButton
-            title={"With who?"}
+            title={t("createTrip.companion")}
             content={tripData?.companionInfo?.title}
             onPress={onSubmitCompanion}
             icon={"people-sharp"}
           />
           <TripPreviewButton
-            title={"Which days?"}
+            title={t("createTrip.days")}
             content={ tripData?.dateInfo?.totalNoOfDays &&
               moment(tripData?.dateInfo?.startDate).format("DD MMM") +
               " - " +
@@ -71,12 +78,12 @@ const createTrip = () => {
             icon={"calendar-sharp"}
           />
           <TripPreviewButton
-            title={"Budget?"}
+            title={t("createTrip.budget")}
             content={tripData?.budgetInfo?.title}
             onPress={onSubmitBudget}
             icon={"cash-sharp"}
           />
-          <Button title="Create!" onPress={handleCreate} />
+          <Button title={t("createTrip.createButton")} onPress={handleCreate} />
         </View>
       </View>
     </ScreenWrapper>

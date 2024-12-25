@@ -7,7 +7,7 @@ import {getUserData} from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
 import {TripProvider} from "../contexts/TripContext";
 import {I18nextProvider} from 'react-i18next';
-import i18n from '../helpers/i18n';
+import i18n from '../services/i18nService';
 import 'react-native-get-random-values';
 
 SplashScreen.preventAutoHideAsync()
@@ -22,7 +22,7 @@ const _layout = () => {
 
   useEffect(() => {
     if (loaded || error) {
-      SplashScreen.hideAsync(); // Splash ekranı gizlenir.
+      SplashScreen.hideAsync();
     }
   }, [loaded, error]);
 
@@ -47,7 +47,6 @@ const MainLayout = () => {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
-      // console.log("session: ", session?.user);
 
       if (session) {
         // move to ho me screen

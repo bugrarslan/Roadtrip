@@ -11,11 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 const Page = () => {
   const router = useRouter();
-  const { t, i18n } = useTranslation(); // t() çeviriyi almak için, i18n ile dil değiştirmek için
-
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang); // Dil değiştir
-  };
+  const { t } = useTranslation();
 
   return (
     <ScreenWrapper backgroundColor="white">

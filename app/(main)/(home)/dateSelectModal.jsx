@@ -12,8 +12,10 @@ import moment from "moment";
 import Button from "../../../components/Button";
 import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
+import {useTranslation} from "react-i18next";
 
 const dateSelectModal = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
@@ -34,8 +36,8 @@ const dateSelectModal = () => {
 
   const onDateSelectionApply = () => {
     if (!startDate || !endDate) {
-      Alert.alert("Error", "Please select start and end dates.", [
-        { text: "Ok" },
+      Alert.alert(t("dateSelectModal.errorTitle"), t("dateSelectModal.errorContent"), [
+        { text: t("dateSelectModal.errorButton") },
       ]);
       return;
     }
@@ -61,7 +63,7 @@ const dateSelectModal = () => {
       <View style={styles.container}>
         <StatusBar style="auto" />
         {/* header */}
-        <Header title={"Select Dates"} showCloseButton/>
+        <Header title={t("dateSelectModal.headerTitle")} showCloseButton/>
         {/* content */}
         <View style={styles.content}>
           <CalendarPicker
@@ -72,9 +74,9 @@ const dateSelectModal = () => {
             maxRangeDuration={6}
             selectedRangeStyle={{ backgroundColor: theme.colors.PRIMARY }}
             selectedDayTextStyle={{ color: theme.colors.WHITE }}
-            textStyle={{ fontFamily: "outfit-medium" }}
+            textStyle={{ fontWeight: theme.fonts.medium }}
           />
-          <Button title="Apply" onPress={onDateSelectionApply} />
+          <Button title={t("dateSelectModal.applyButton")} onPress={onDateSelectionApply} />
         </View>
       </View>
     </View>

@@ -8,32 +8,80 @@
   "signUp": {
     "signUpText": "Kayıt ol",
     "fillAllFields": "Lütfen tüm eksik bilgileri doldurun!",
-    "passwordsNotMatch": "Şifreler uyuşmuyor, lütfen tekrar deneyin.",
+    "passwordsNotMatch": "Şifreler eşleşmiyor, tekrar deneyin.",
     "errorOccurred": "Bir hata oluştu, lütfen tekrar deneyin.",
-    "welcomeText1": "Haydi",
+    "welcomeText1": "Hadi",
     "welcomeText2": "Başlayalım",
-    "formText": "Bir hesap oluşturmak için lütfen bilgilerinizi doldurun",
+    "formText": "Bir hesap oluşturmak için lütfen bilgileri doldurun",
     "nameInput": "Adınızı girin",
     "emailInput": "E-posta adresinizi girin",
     "passwordInput": "Şifrenizi girin",
     "confirmPasswordInput": "Şifrenizi onaylayın",
-    "signUpButtonText": "Kayıt ol",
+    "signUpButtonText": "Kayıt Ol",
     "signUpFooterText": "Zaten bir hesabınız var mı?",
     "signUpFooterButtonText": "Giriş Yap"
   },
   "signIn": {
     "signInText": "Giriş Yap",
-    "fillAllFields": "Lütfen tüm boşlukları doldurun!",
+    "fillAllFields": "Lütfen tüm eksik bilgileri doldurun!",
     "errorOccurred": "Bir hata oluştu, lütfen tekrar deneyin.",
     "welcomeText1": "Merhaba",
     "welcomeText2": "Hoşgeldiniz",
-    "formText": "Devam etmek için lütfen giriş yapın",
+    "formText": "Devam edebilmek için giriş yapın",
     "emailInput": "E-posta adresinizi girin",
     "passwordInput": "Şifrenizi girin",
-    "forgotPasswordText": "Şifrenizi mi unuttunuz?",
+    "forgotPasswordText": "Şifremi unuttum?",
     "signInButtonText": "Giriş Yap",
-    "signInFooterText": "Hesabınız yok mu?",
+    "signInFooterText": "Bir hesabınız yok mu?",
     "signInFooterButtonText": "Kayıt Ol"
+  },
+  "home": {
+    "AlertTitle": "Ana Sayfa",
+    "title": "Seyahatler",
+    "createTrip": "Seyahat Oluştur",
+    "noMoreTrips": "Başka seyahat yok"
+  },
+  "discover": {
+    "signOut": "Çıkış Yap"
+  },
+  "profile": {
+    "signOut": "Çıkış Yap"
+  },
+  "createTrip": {
+    "alertTitle": "Seyahat Oluştur",
+    "alertContent": "Lütfen tüm detayları doldurun",
+    "alertButton": "Tamam",
+    "headerTitle": "Hadi seyahatinizi oluşturalım",
+    "destination": "Varış Yeri",
+    "companion": "Yol Arkadaşı",
+    "days": "Günler",
+    "budget": "Bütçe",
+    "createButton": "Oluştur!",
+  },
+  "destinationSelectModal": {
+    "headerTitle": "Varış Yeri Seç",
+    "placeholder": "Ara"
+  },
+  "companionSelectModal": {
+    "headerTitle": "Yol Arkadaşı Seç",
+  },
+  "dateSelectModal": {
+    "headerTitle": "Tarihler Seç",
+    "errorTitle": "Hata",
+    "errorContent": "Lütfen başlangıç ve bitiş tarihlerini seçin.",
+    "errorButton": "Tamam",
+    "applyButton": "Uygula",
+  },
+  "budgetSelectModal": {
+    "headerTitle": "Bütçe Seç",
+  },
+  "loading": {
+    "backAlertTitle": "Uyarı?",
+    "backAlertContent": "Yükleniyor iken geri gidemezsiniz.",
+    "backAlertButton": "Tamam",
+    "responseAlertTitle": "Hata",
+    "responseAlertButton": "Tamam",
+    "text1": "Kemerlerinizi bağlayın!",
+    "text2": "Seyahatinizi hazırlıyoruz...",
   }
 }
-

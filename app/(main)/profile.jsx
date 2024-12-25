@@ -5,13 +5,16 @@ import Button from "../../components/Button";
 import { supabase } from "../../lib/supabase";
 import { StatusBar } from "expo-status-bar";
 import { wp } from "../../helpers/common";
+import {useTranslation} from "react-i18next";
 
 const profile = () => {
+  const { t } = useTranslation();
+
   return (
     <ScreenWrapper backgroundColor={"white"}>
       <View style={styles.container}>
       <StatusBar style="dark" />
-      <Button title="Sign out" onPress={() => supabase.auth.signOut()} />
+      <Button title={t("profile.signOut")} onPress={() => supabase.auth.signOut()} />
       </View>
     </ScreenWrapper>
   );

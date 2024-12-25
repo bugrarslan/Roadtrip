@@ -10,19 +10,21 @@ import {chatSession} from "../../../services/geminiAiModalService";
 import {useRouter} from "expo-router";
 import {useAuth} from "../../../contexts/AuthContext";
 import {createOrUpdateTrip} from "../../../services/tripService";
+import {useTranslation} from "react-i18next";
 
 const loading = () => {
   const router = useRouter();
   const {tripData, setTripData} = useTrip();
   const {user} = useAuth();
   const [loading, setLoading] = useState(true);
+  const {t} = useTranslation()
 
   useEffect(() => {
     const backAction = () => {
-      Alert.alert("Uyarı!", "Bu sayfadan geri dönemezsiniz.", [
-        { text: "Tamam", onPress: () => {} },
+      Alert.alert(t("loading.backAlertTitle"), t("loading.backAlertContent"), [
+        { text: t("loading.backAlertButton"), onPress: () => {} },
       ]);
-      return true; // Geri dönüşü iptal et
+      return true;
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -65,7 +67,7 @@ const loading = () => {
       setTripData([]);
       router.replace("/(main)/(home)");
     } else {
-      Alert.alert("Trip", res.msg, [{text: "OK", style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);
+      Alert.alert(t("loading.responseAlertTitle"), res.msg, [{text: t("loading.responseAlertButton"), style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);
     }
   };
 
@@ -85,9 +87,9 @@ const loading = () => {
               loop
             />
           </View>
-          <Text style={styles.text}>Fasten your seat belts!</Text>
+          <Text style={styles.text}>{t("loading.text1")}</Text>
           <Text style={[styles.text, {fontWeight: theme.fonts.bold}]}>
-            Preparing your trip...
+            {t("loading.text2")}
           </Text>
         </View>
       )}
