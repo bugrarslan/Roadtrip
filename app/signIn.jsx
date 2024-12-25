@@ -22,6 +22,7 @@ import Icon from "../assets/icons";
 import Button from "../components/Button";
 import {supabase} from "../lib/supabase";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import {useTranslation} from "react-i18next";
 
 const signIn = () => {
   const navigaiton = useNavigation();
@@ -32,6 +33,12 @@ const signIn = () => {
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
+  const {t, i18n} = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Dil değiştir
+  };
+
   useEffect(() => {
     navigaiton.setOptions({
       headerShown: false,
@@ -40,7 +47,7 @@ const signIn = () => {
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
-      return Alert.alert("Sign In", "Please fill all tht blanks!");
+      return Alert.alert(t("signIn.signInText"), t("signIn.fillAllFields"));
     }
 
     let email = emailRef.current.trim();
@@ -56,11 +63,7 @@ const signIn = () => {
     setLoading(false);
 
     if (error) {
-      console.log("error", error);
-    }
-
-    if (error) {
-      Alert.alert("Sign In", error.message);
+      Alert.alert(t("signIn.signInText"), error.message);
     }
   };
 
@@ -75,25 +78,25 @@ const signIn = () => {
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             keyboardShouldPersistTaps="handled"
-            bounces={false} // iOS için
-            overScrollMode="never" // Android için
+            bounces={false} // for iOS
+            overScrollMode="never" // for Android
           >
             <BackButton router={router}/>
 
             {/* welcome */}
             <View>
-              <Text style={styles.welcomeText}>Hey,</Text>
-              <Text style={styles.welcomeText}>Welcome Back 👋</Text>
+              <Text style={styles.welcomeText}>{t("signIn.welcomeText1")}</Text>
+              <Text style={styles.welcomeText}>{t("signIn.welcomeText2")}</Text>
             </View>
 
             {/* form */}
             <View style={styles.form}>
               <Text style={{fontSize: hp(1.5), color: theme.colors.text}}>
-                Please login to continue
+                {t("signIn.formText")}
               </Text>
               <Input
                 icon={<Icon name="mail" size={26} strokeWidth={1.6}/>}
-                placeholder="Enter your email"
+                placeholder={t("signIn.emailInput")}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={(value) => (emailRef.current = value)}
@@ -103,20 +106,20 @@ const signIn = () => {
                 showPasswordToggle={<Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye"
                                                                                                               size={26}
                                                                                                               color="black"/></Pressable>}
-                placeholder="Enter your password"
+                placeholder={t("signIn.passwordInput")}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(value) => (passwordRef.current = value)}
               />
-              <Text style={styles.forgotPassword}>forgot password?</Text>
+              <Text style={styles.forgotPassword}>{t("signIn.forgotPasswordText")}</Text>
 
               {/* button */}
 
-              <Button title="Sign In" onPress={onSubmit} loading={loading}/>
+              <Button title={t("signIn.signInButtonText")} onPress={onSubmit} loading={loading}/>
             </View>
 
             {/* footer */}
             <View style={styles.footer}>
-              <Text style={styles.footerText}>Don't have an account?</Text>
+              <Text style={styles.footerText}>{t("signIn.signInFooterText")}</Text>
               <Pressable onPress={() => router.push("signUp")}>
                 <Text
                   style={[
@@ -127,7 +130,7 @@ const signIn = () => {
                     },
                   ]}
                 >
-                  Sign up
+                  {t("signIn.signInFooterButtonText")}
                 </Text>
               </Pressable>
             </View>

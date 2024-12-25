@@ -22,6 +22,7 @@ import Icon from "../assets/icons";
 import Button from "../components/Button";
 import {supabase} from "../lib/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from 'react-i18next';
 
 
 const signUp = () => {
@@ -34,6 +35,11 @@ const signUp = () => {
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Dil değiştir
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -43,11 +49,11 @@ const signUp = () => {
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current || !nameRef.current) {
-      return Alert.alert("Please fill all tht blanks!");
+      return Alert.alert(t("signUp.signUpText"), t("signUp.fillAllFields"));
     }
 
     if (passwordRef.current !== passwordConfirmRef.current) {
-      return Alert.alert("Sign Up", "Passwords doesn't match, try again.");
+      return Alert.alert(t("signUp.signUpText"), t("signUp.passwordsNotMatch"));
     }
 
     let name = nameRef.current.trim();
@@ -72,11 +78,8 @@ const signUp = () => {
 
     setLoading(false);
 
-    // console.log("session", session);
-    // console.log("error", error);
-
     if (error) {
-      Alert.alert("Sign Up", "An error occurred, please try again.");
+      Alert.alert(t("signUp.signUpText"), error.message);
     }
   };
 
@@ -91,32 +94,32 @@ const signUp = () => {
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             keyboardShouldPersistTaps="handled"
-            bounces={false} // iOS için
-            overScrollMode="never" // Android için
+            bounces={false} // for iOS
+            overScrollMode="never" // for Android
           >
             <BackButton router={router}/>
 
             {/* welcome */}
             <View>
-              <Text style={styles.welcomeText}>Let's</Text>
-              <Text style={styles.welcomeText}>Get Started</Text>
+              <Text style={styles.welcomeText}>{t("signUp.welcomeText1")}</Text>
+              <Text style={styles.welcomeText}>{t("signUp.welcomeText2")}</Text>
             </View>
 
             {/* form */}
 
             <View style={styles.form}>
               <Text style={{fontSize: hp(1.5), color: theme.colors.text}}>
-                Please fill the details to create an account
+                {t("signUp.formText")}
               </Text>
               <Input
                 icon={<Icon name="user" size={26} strokeWidth={1.6}/>}
-                placeholder="Enter your name"
+                placeholder={t("signUp.nameInput")}
                 autoCapitalize="none"
                 onChangeText={(value) => (nameRef.current = value)}
               />
               <Input
                 icon={<Icon name="mail" size={26} strokeWidth={1.6}/>}
-                placeholder="Enter your email"
+                placeholder={t("signUp.emailInput")}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={(value) => (emailRef.current = value)}
@@ -126,20 +129,20 @@ const signUp = () => {
                 showPasswordToggle={<Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye"
                                                                                                               size={26}
                                                                                                               color="black"/></Pressable>}
-                placeholder="Enter your password"
+                placeholder={t("signUp.passwordInput")}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(value) => (passwordRef.current = value)}
               />
               <Input
                 icon={<Icon name="lock" size={26} strokeWidth={1.6}/>}
-                placeholder="Confirm your password"
+                placeholder={t("signUp.confirmPasswordInput")}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(value) => (passwordConfirmRef.current = value)}
               />
 
               {/* button */}
               <Button
-                title="Sign Up"
+                title={t("signUp.signUpButtonText")}
                 onPress={onSubmit}
                 loading={loading}
               />
@@ -147,7 +150,7 @@ const signUp = () => {
 
             {/* footer */}
             <View style={styles.footer}>
-              <Text style={styles.footerText}>Already have an account?</Text>
+              <Text style={styles.footerText}>{t("signUp.signUpFooterText")}</Text>
               <Pressable onPress={() => router.push("/signIn")}>
                 <Text
                   style={[
@@ -158,7 +161,7 @@ const signUp = () => {
                     },
                   ]}
                 >
-                  Sign In
+                  {t("signUp.signUpFooterButtonText")}
                 </Text>
               </Pressable>
             </View>

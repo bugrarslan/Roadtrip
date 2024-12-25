@@ -30,19 +30,19 @@ const Page = () => {
         <View style={{ gap: 20 }}>
           <Text style={styles.title}>RoadTrip</Text>
           <Text style={styles.punchline}>
-            {t("welcomeText")}
+            {t("welcome.welcomeText")}
           </Text>
         </View>
 
         <View style={styles.footer}>
           <Button
-            title={t("welcomeButtonText")}
+            title={t("welcome.welcomeButtonText")}
             buttonStyle={{ marginHorizontal: wp(3) }}
             onPress={() => router.push("/signUp")}
           />
 
           <View style={styles.bottomTextContainer}>
-            <Text style={styles.loginText}>{t("welcomeFooterText")}</Text>
+            <Text style={styles.loginText}>{t("welcome.welcomeFooterText")}</Text>
             <Pressable onPress={() => router.push("/signIn")}>
               <Text
                 style={[
@@ -53,7 +53,7 @@ const Page = () => {
                   },
                 ]}
               >
-                {t("welcomeFooterButtonText")}
+                {t("welcome.welcomeFooterButtonText")}
               </Text>
             </Pressable>
           </View>

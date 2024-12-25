@@ -1,6 +1,38 @@
 {
-  "welcomeText": "Discover your next adventure effortlessly. Personalized itineraries at your fingertips. Travel smarter with AI-driven insights.",
-  "welcomeButtonText": "Getting Started!",
-  "welcomeFooterText": "Already have an account?",
-  "welcomeFooterButtonText": "Sign In"
+  "welcome": {
+    "welcomeText": "Discover your next adventure effortlessly. Personalized itineraries at your fingertips. Travel smarter with AI-driven insights.",
+    "welcomeButtonText": "Getting Started!",
+    "welcomeFooterText": "Already have an account?",
+    "welcomeFooterButtonText": "Sign In"
+  },
+  "signUp": {
+    "signUpText": "Sign Up",
+    "fillAllFields": "Please fill all the blanks!",
+    "passwordsNotMatch": "Passwords doesn't match, try again.",
+    "errorOccurred": "An error occured, please try again.",
+    "welcomeText1": "Let's",
+    "welcomeText2": "Get Started",
+    "formText": "Please fill the details to create an account",
+    "nameInput": "Enter your name",
+    "emailInput": "Enter your email",
+    "passwordInput": "Enter your password",
+    "confirmPasswordInput": "Confirm your password",
+    "signUpButtonText": "Sign Up",
+    "signUpFooterText": "Already have an account?",
+    "signUpFooterButtonText": "Sign In"
+  },
+  "signIn": {
+    "signInText": "Sign In",
+    "fillAllFields": "Please fill all the blanks!",
+    "errorOccurred": "An error occured, please try again.",
+    "welcomeText1": "Hey",
+    "welcomeText2": "Welcome Back",
+    "formText": "Please login to continue",
+    "emailInput": "Enter your email",
+    "passwordInput": "Enter your password",
+    "forgotPasswordText": "Forgot password?",
+    "signInButtonText": "Sign In",
+    "signInFooterText": "Don't have an account?",
+    "signInFooterButtonText": "Sign Up"
+  }
 }
