@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Image } from "expo-image";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import moment from "moment";
 import { theme } from "../constants/theme";
 import { hp, wp } from "../helpers/common";

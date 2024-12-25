@@ -1,14 +1,15 @@
 import {Stack, useRouter} from "expo-router";
 import {useFonts} from "expo-font";
 import {useEffect, useState} from "react";
-import {AuthProvider, useAuth} from "../contexts/AuthContext";
 import {supabase} from "../lib/supabase";
 import {getUserData} from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
-import {TripProvider} from "../contexts/TripContext";
 import {I18nextProvider} from 'react-i18next';
 import i18n from '../services/i18nService';
 import 'react-native-get-random-values';
+import {Provider, useDispatch} from "react-redux";
+import store from "../contexts/redux/store";
+import {setAuth, clearAuth} from "../contexts/redux/slices/authSlice";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -31,32 +32,27 @@ const _layout = () => {
   }
 
   return (
-    <I18nextProvider i18n={i18n}>
-      <AuthProvider>
-        <TripProvider>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
           <MainLayout/>
-        </TripProvider>
-      </AuthProvider>
-    </I18nextProvider>
+      </I18nextProvider>
+    </Provider>
   );
 };
 
 const MainLayout = () => {
-  const {setAuth, setUserData,} = useAuth();
+  const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
 
       if (session) {
-        // move to ho me screen
-        setAuth(session?.user);
+        dispatch(setAuth(session?.user));
         updateUserData(session?.user);
         router.replace("/(main)/(home)");
       } else {
-        // move to welcome screen
-        // set context null
-        setAuth(null);
+        dispatch(clearAuth());
         router.replace("/welcome");
       }
     });
@@ -64,8 +60,9 @@ const MainLayout = () => {
 
   const updateUserData = async (user) => {
     let res = await getUserData(user?.id);
-    if (res?.success) setUserData({...res?.data});
-    console.log("user data: ", us);
+    if (res?.success) {
+      dispatch(setAuth({ ...res.data }));
+    }
   };
 
   return (

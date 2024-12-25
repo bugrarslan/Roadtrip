@@ -6,17 +6,20 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const destinationSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
-  const { tripData, setTripData } = useTrip();
   const { t } = useTranslation();
+  const tripData = useSelector((state) => state.trip.tripData);
+  const dispatch = useDispatch();
+
 
   return (
     <View
@@ -37,7 +40,7 @@ const destinationSelectModal = () => {
             fetchDetails={true}
             onFail={(error) => console.error(error)}
             onPress={(data, details = null) => {
-              setTripData({
+              dispatch(setTripData({
                 ...tripData,
                 locationInfo: {
                   name: data.description,
@@ -45,7 +48,7 @@ const destinationSelectModal = () => {
                   photoRef: details?.photos[0]?.photo_reference,
                   url: details?.url,
                 },
-              });
+              }));
               router.back();
             }}
             query={{

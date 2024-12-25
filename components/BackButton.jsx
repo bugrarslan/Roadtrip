@@ -1,15 +1,16 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native'
+import {Pressable, StyleSheet} from 'react-native'
 import React from 'react'
 import Icon from '../assets/icons'
 import {theme} from '../constants/theme'
-import {useTrip} from "../contexts/TripContext";
+import { useDispatch } from "react-redux";
+import { clearTripData } from "../contexts/redux/slices/tripSlice"
 
 const BackButton = ({size = 26, router, isResetContext, buttonStyle}) => {
-  const {setTripData} = useTrip();
+  const dispatch = useDispatch();
 
   const handleBack = () => {
     if(isResetContext) {
-      setTripData([]);
+      dispatch(clearTripData());
     }
     router.back();
   }

@@ -4,20 +4,24 @@ import LottieView from "lottie-react-native";
 import {wp, hp} from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import {theme} from "../../../constants/theme";
-import {useTrip} from "../../../contexts/TripContext";
+// import {useTrip} from "../../../contexts/TripContext";
+// import {useAuth} from "../../../contexts/AuthContext";
 import {AI_PROMPT} from "../../../constants/index";
 import {chatSession} from "../../../services/geminiAiModalService";
 import {useRouter} from "expo-router";
-import {useAuth} from "../../../contexts/AuthContext";
 import {createOrUpdateTrip} from "../../../services/tripService";
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
+import { setAuth, clearAuth } from "../../../contexts/redux/slices/authSlice"
 
 const loading = () => {
   const router = useRouter();
-  const {tripData, setTripData} = useTrip();
-  const {user} = useAuth();
   const [loading, setLoading] = useState(true);
-  const {t} = useTranslation()
+  const {t} = useTranslation();
+  const tripData = useSelector((state) => state.trip.tripData);
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const backAction = () => {
@@ -64,7 +68,7 @@ const loading = () => {
     const res = await createOrUpdateTrip(data);
     setLoading(false);
     if (res.success) {
-      setTripData([]);
+      dispatch(clearTripData());
       router.replace("/(main)/(home)");
     } else {
       Alert.alert(t("loading.responseAlertTitle"), res.msg, [{text: t("loading.responseAlertButton"), style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);

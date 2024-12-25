@@ -10,9 +10,10 @@ import { theme } from "../../../constants/theme";
 import CalendarPicker from "react-native-calendar-picker";
 import moment from "moment";
 import Button from "../../../components/Button";
-import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const dateSelectModal = () => {
   const { t } = useTranslation();
@@ -20,7 +21,8 @@ const dateSelectModal = () => {
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
-  const { tripData, setTripData } = useTrip();
+  const tripData = useSelector((state) => state.trip.tripData);
+  const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -42,14 +44,14 @@ const dateSelectModal = () => {
       return;
     }
     const totalNoOfDays = endDate.diff(startDate, "days") + 1;
-    setTripData({
+    dispatch(setTripData({
       ...tripData,
       dateInfo: {
         startDate: startDate,
         endDate: endDate,
         totalNoOfDays: totalNoOfDays,
       },
-    });
+    }));
     router.back();
   };
 

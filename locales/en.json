@@ -106,7 +106,7 @@
       people: "6+ people"
     }
   },
-  "SelectBudgetList": {
+  "selectBudgetList": {
     "1": {
       title: "Cheap",
       description: "stay conscious of costs"

@@ -1,8 +1,7 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet} from "react-native";
 import React from "react";
 import Icon from "../assets/icons";
 import {theme} from "../constants/theme";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const CloseButton = ({size = 26, router}) => {
   return (

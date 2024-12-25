@@ -9,17 +9,19 @@ import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import Button from "../../../components/Button";
 import TripButton from "../../../components/TripButton";
-import { useTrip } from "../../../contexts/TripContext";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const companionSelectModal = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
-  const { tripData, setTripData } = useTrip();
   const { t } = useTranslation();
+  const tripData = useSelector((state) => state.trip.tripData);
+  const dispatch = useDispatch();
 
   const SelectTravellerList = [
     {
@@ -60,7 +62,7 @@ const companionSelectModal = () => {
 
   const onItemSelected = (option) => {
     setSelected(option);
-    setTripData({ ...tripData, companionInfo: option });
+    dispatch(setTripData({ ...tripData, companionInfo: option }));
     setTimeout(() => {
       router.back();
     }, 500);

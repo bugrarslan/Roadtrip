@@ -7,16 +7,19 @@ import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
 import BackButton from "../../../components/BackButton";
-import { useTrip } from "../../../contexts/TripContext";
+// import { useTrip } from "../../../contexts/TripContext";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
+import { useSelector, useDispatch } from "react-redux";
+import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const createTrip = () => {
   const router = useRouter();
   const { t } = useTranslation();
-  const { tripData, setTripData } = useTrip();
+  const tripData = useSelector((state) => state.trip.tripData);
+  const dispatch = useDispatch();
 
   const onSubmitDestination = () => {
     router.push("/destinationSelectModal");

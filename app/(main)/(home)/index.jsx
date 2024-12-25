@@ -7,19 +7,19 @@ import {hp, wp} from "../../../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
 import {useRouter} from "expo-router";
-import {useAuth} from "../../../contexts/AuthContext";
 import {getUserData} from "../../../services/userService";
 import {fetchTrips} from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import TripCard from "../../../components/TripCard";
 import {theme} from "../../../constants/theme";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 var limit = 0;
 const index = () => {
   const router = useRouter();
   const {t} = useTranslation();
-  const {user} = useAuth();
+  const user = useSelector((state) => state.auth.user)
 
   const [trips, setTrips] = useState([]);
   const [hasMore, setHasMore] = useState(true);
@@ -80,7 +80,6 @@ const index = () => {
 
   }, []);
 
-
   const getTrips = async () => {
     setLoading(true);
     if (!hasMore) {
@@ -108,8 +107,6 @@ const index = () => {
       params: {tripId: tripId},
     });
   };
-
-  console.log(limit)
 
   return (
     <ScreenWrapper backgroundColor={"white"}>

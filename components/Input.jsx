@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, View, TextInput } from 'react-native'
 import React from 'react'
 import { theme } from '../constants/theme'
 import { hp } from '../helpers/common'

@@ -1,7 +1,6 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet} from "react-native";
 import React from "react";
 import {Stack} from "expo-router";
-import {TripProvider} from "../../../contexts/TripContext";
 
 const _layout = () => {
   return (
