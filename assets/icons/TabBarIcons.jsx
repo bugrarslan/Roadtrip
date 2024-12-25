@@ -1,13 +1,14 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import Icon from "./index";
 
 export const icons = {
   "(home)": (props) => (
-    <MaterialIcons name="flight" size={26} color="black" {...props} />
+    <Icon name={"plane"} color="black" {...props} />
   ),
   discover: (props) => (
-    <MaterialIcons name="search" size={26} color="black" {...props} />
+    <Icon name={"search"} color="black" {...props} />
   ),
   profile: (props) => (
-    <MaterialIcons name="person" size={26} color="black" {...props} />
+    <Icon name={"user"} color="black" {...props} />
   ),
 };

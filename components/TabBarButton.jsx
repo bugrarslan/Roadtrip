@@ -7,6 +7,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { icons } from "../assets/icons/TabBarIcons";
+import {theme} from "../constants/theme";
 
 const TabBarButton = (props) => {
   const { isFocused, label, routeName, color } = props;
@@ -45,7 +46,7 @@ const TabBarButton = (props) => {
         })}
       </Animated.View>
       <Animated.Text
-        style={[{ color, fontFamily: "outfit" }, animatedTextStyle]}
+        style={[{ color, fontWeight: theme.fonts.medium }, animatedTextStyle]}
       >
         {label}
       </Animated.Text>

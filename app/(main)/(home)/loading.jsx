@@ -86,7 +86,7 @@ const loading = () => {
             />
           </View>
           <Text style={styles.text}>Fasten your seat belts!</Text>
-          <Text style={[styles.text, {fontFamily: "outfit-bold"}]}>
+          <Text style={[styles.text, {fontWeight: theme.fonts.bold}]}>
             Preparing your trip...
           </Text>
         </View>
@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
     color: "#000",
     textAlign: "center",
     overflow: "hidden",
-    fontFamily: "outfit",
+    fontWeight: theme.fonts.medium,
   },
 });

@@ -1,11 +1,30 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { MaterialIcons } from "@expo/vector-icons";
-import { color } from "@rneui/themed/dist/config";
+import { usePathname } from "expo-router";
 import { theme } from "../constants/theme";
 import TabBarButton from "./TabBarButton";
+import {hp, wp} from "../helpers/common";
 
 const TabBar = ({ state, descriptors, navigation }) => {
+  const pathname = usePathname(); // Geçerli sayfanın yolunu al
+
+  // TabBar'ın görünmemesi gereken sayfalar
+  const hiddenRoutes = [
+    "/budgetSelectModal",
+    "/companionSelectModal",
+    "/dateSelectModal",
+    "/destinationSelectModal",
+    "/createTrip",
+    "/loading",
+  ];
+
+  console.log("pathname", pathname);
+
+  // Eğer geçerli sayfa gizlenecek rotalardaysa, null döndür
+  if (hiddenRoutes.includes(pathname)) {
+    return null;
+  }
+
   return (
     <View style={styles.tabBar}>
       {state.routes.map((route, index) => {
@@ -16,18 +35,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
             : options.title !== undefined
             ? options.title
             : route.name;
-
-        // console.log(route.name);
-
-        if (
-          [
-            "(home)/budgetSelectModal",
-            "(home)/companionSelectModal",
-            "(home)/dateSelectModal",
-            "(home)/destinationSelectModal",
-          ].includes(route.name)
-        )
-          return null;
 
         const isFocused = state.index === index;
 
@@ -77,9 +84,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "white",
-    marginHorizontal: 20,
-    paddingVertical: 15,
-    borderRadius: 25,
+    marginHorizontal: wp(4),
+    paddingVertical: hp(2),
+    borderRadius: theme.radius.xxl,
     borderCurve: "continuous",
     shadowOffset: { width: 0, height: 10 },
     shadowColor: "black",

@@ -25,6 +25,7 @@ import Video from "./Video";
 import ArrowRight from "./ArrowRight";
 import ArrowDown from "./ArrowDown";
 import Cancel from "./Cancel";
+import Plane from "./Plane";
 
 const icons = {
   home: Home,
@@ -51,6 +52,7 @@ const icons = {
   image: Image,
   video: Video,
   cancel: Cancel,
+  plane: Plane
 };
 
 const Icon = ({ name, ...props }) => {
