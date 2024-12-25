@@ -22,6 +22,9 @@ import Delete from "./Delete";
 import Logout from "./logout";
 import Image from "./Image";
 import Video from "./Video";
+import ArrowRight from "./ArrowRight";
+import ArrowDown from "./ArrowDown";
+import Cancel from "./Cancel";
 
 const icons = {
   home: Home,
@@ -36,6 +39,8 @@ const icons = {
   camera: Camera,
   edit: Edit,
   arrowLeft: ArrowLeft,
+  arrowRight: ArrowRight,
+  arrowDown: ArrowDown,
   threeDotsCircle: ThreeDotsCircle,
   threeDotsHorizontal: ThreeDotsHorizontal,
   comment: Comment,
@@ -45,6 +50,7 @@ const icons = {
   logout: Logout,
   image: Image,
   video: Video,
+  cancel: Cancel,
 };
 
 const Icon = ({ name, ...props }) => {

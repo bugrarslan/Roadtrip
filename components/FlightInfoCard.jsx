@@ -2,29 +2,29 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../constants/theme";
 import * as Linking from "expo-linking";
+import {hp} from "../helpers/common";
  
 const FlightInfoCard = ({ flightDetails }) => {
   return (
     <View
       style={{
-        marginTop: 20,
-        backgroundColor: theme.colors.GRAY_LIGHT,
+        backgroundColor: theme.colors.containerColor,
         padding: 10,
-        borderWidth: 0.5,
-        borderRadius: 15
+        borderRadius: theme.radius.xxl,
+        borderCurve: "continuous",
+        gap: 5,
       }}
     >
-      <View style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
-        <Text style={{ fontFamily: "outfit-bold", fontSize: 20 }}>
+      <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+        <Text style={{ fontWeight: theme.fonts.extraBold,  fontSize: hp(2) }}>
           ✈️ Flight
         </Text>
         <Pressable
           style={{
             backgroundColor: theme.colors.PRIMARY,
-            padding: 5,
+            padding: hp(1),
             width: 100,
-            borderRadius: 7,
-            marginTop: 7,
+            borderRadius: theme.radius.lg,
           }}
           onPress={() => {
             Linking.openURL(flightDetails[0]?.booking_URL);
@@ -34,7 +34,7 @@ const FlightInfoCard = ({ flightDetails }) => {
             style={{
               textAlign: "center",
               color: theme.colors.WHITE,
-              fontFamily: "outfit",
+              fontWeight: theme.fonts.medium,
             }}
           >
             Book Here
@@ -44,17 +44,17 @@ const FlightInfoCard = ({ flightDetails }) => {
 
       <Text
         style={{
-          fontFamily: "outfit",
-          fontSize: 17,
-          marginTop: 7,
+          fontWeight: theme.fonts.medium,
+          fontSize: hp(1.8),
         }}
       >
         Airline: {flightDetails[0]?.Flight_name}
       </Text>
+
       <Text
         style={{
-          fontFamily: "outfit",
-          fontSize: 17,
+          fontWeight: theme.fonts.medium,
+          fontSize: hp(1.8),
         }}
       >
         Price: {flightDetails[0]?.flight_price}

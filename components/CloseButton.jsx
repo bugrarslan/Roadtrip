@@ -7,7 +7,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 const CloseButton = ({size = 26, router}) => {
   return (
     <Pressable style={styles.button} onPress={() => router.back()}>
-      <MaterialIcons name="close" size={size} color={theme.colors.text}/>
+      <Icon name={"cancel"} strokeWidth={2.5} color={theme.colors.text}/>
     </Pressable>
   );
 };

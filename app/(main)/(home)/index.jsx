@@ -1,23 +1,23 @@
-import { Pressable, StyleSheet, Text, View, Alert, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import {Pressable, StyleSheet, Text, View, Alert, FlatList} from "react-native";
+import React, {useEffect, useState} from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import { supabase } from "../../../lib/supabase";
-import { StatusBar } from "expo-status-bar";
-import { hp, wp } from "../../../helpers/common";
+import {supabase} from "../../../lib/supabase";
+import {StatusBar} from "expo-status-bar";
+import {hp, wp} from "../../../helpers/common";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
-import { useRouter } from "expo-router";
-import { useAuth } from "../../../contexts/AuthContext";
-import { getUserData } from "../../../services/userService";
-import { fetchTrips } from "../../../services/tripService";
+import {useRouter} from "expo-router";
+import {useAuth} from "../../../contexts/AuthContext";
+import {getUserData} from "../../../services/userService";
+import {fetchTrips} from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import TripCard from "../../../components/TripCard";
-import { theme } from "../../../constants/theme";
+import {theme} from "../../../constants/theme";
 
 var limit = 5;
 const index = () => {
   const router = useRouter();
-  const { user } = useAuth();
+  const {user} = useAuth();
   const [trips, setTrips] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -88,7 +88,7 @@ const index = () => {
     } else {
       Alert.alert("Home", res.msg);
     }
-   };
+  };
 
   const newTripClicked = () => {
     router.push("createTrip");
@@ -97,45 +97,51 @@ const index = () => {
   const handleTripDetails = (tripId) => {
     router.push({
       pathname: "/tripDetails",
-      params: { tripId: tripId },
+      params: {tripId: tripId},
     });
   };
- 
+
   return (
     <ScreenWrapper backgroundColor={"white"}>
-      <StatusBar style="dark" />
+      <StatusBar style="dark"/>
       <View style={styles.container}>
         {/* header */}
         <View style={styles.header}>
           <Text style={styles.title}>Trips</Text>
-          <Pressable onPress={newTripClicked}>
-            <MaterialIcons name="add-circle" size={30} color="black" />
+          <Pressable
+            onPress={newTripClicked}
+            style={{backgroundColor: "black", padding: 10, borderRadius: theme.radius.lg}}>
+            <Text style={{fontSize: 15, fontWeight: theme.fonts.medium, color: "white"}}>Create Trip</Text>
           </Pressable>
         </View>
 
         {/* content */}
         {trips.length === 0 && !loading ? (
           <View style={styles.content}>
-            <StartNewTripCard handleNewTrip={newTripClicked} />
+            <StartNewTripCard handleNewTrip={newTripClicked}/>
           </View>
         ) : (
           <View style={styles.content}>
             <FlatList
               data={trips}
-              contentContainerStyle={{ paddingBottom: hp(12), paddingHorizontal: wp(4) }}
+              contentContainerStyle={{paddingBottom: hp(12), paddingHorizontal: wp(4)}}
               showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
-              ItemSeparatorComponent={() => <View style={{ height: hp(2) }} />}
-              renderItem={({ item, index }) => (
+              ItemSeparatorComponent={() => <View style={{height: hp(2)}}/>}
+              renderItem={({item, index}) => (
                 <TripCard item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)} index={index}/>
               )}
               ListFooterComponent={
                 hasMore ? (
-                  <View style={{ marginVertical: trips.length == 0 ? 200 : 30, alignItems: "center", justifyContent: "center" }}>
+                  <View style={{
+                    marginVertical: trips.length == 0 ? 200 : 30,
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}>
                     <Loading size={"large"}/>
                   </View>
                 ) : (
-                  <View style={{ marginVertical: 30 }}>
+                  <View style={{marginVertical: 30}}>
                     <Text style={styles.noPosts}>No more trips</Text>
                   </View>
                 )

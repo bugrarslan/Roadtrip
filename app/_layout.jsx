@@ -1,10 +1,11 @@
-import { Stack, useRouter } from "expo-router";
-import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
-import { AuthProvider, useAuth } from "../contexts/AuthContext";
-import { supabase } from "../lib/supabase";
-import { getUserData } from "../services/userService";
+import {Stack, useRouter} from "expo-router";
+import {useFonts} from "expo-font";
+import {useEffect, useState} from "react";
+import {AuthProvider, useAuth} from "../contexts/AuthContext";
+import {supabase} from "../lib/supabase";
+import {getUserData} from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
+import {TripProvider} from "../contexts/TripContext";
 import 'react-native-get-random-values';
 
 SplashScreen.preventAutoHideAsync()
@@ -18,9 +19,9 @@ const _layout = () => {
   });
 
   useEffect(() => {
-      if (loaded || error) {
-        SplashScreen.hideAsync(); // Splash ekranı gizlenir.
-      }
+    if (loaded || error) {
+      SplashScreen.hideAsync(); // Splash ekranı gizlenir.
+    }
   }, [loaded, error]);
 
   if (!loaded && !error) {
@@ -29,13 +30,15 @@ const _layout = () => {
 
   return (
     <AuthProvider>
-      <MainLayout />
+      <TripProvider>
+        <MainLayout/>
+      </TripProvider>
     </AuthProvider>
   );
 };
 
 const MainLayout = () => {
-  const { setAuth, setUserData,  } = useAuth();
+  const {setAuth, setUserData,} = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -58,13 +61,13 @@ const MainLayout = () => {
 
   const updateUserData = async (user) => {
     let res = await getUserData(user?.id);
-    if (res?.success) setUserData({ ...res?.data });
+    if (res?.success) setUserData({...res?.data});
     console.log("user data: ", us);
   };
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="welcome" options={{ headerShown: false }} />
+    <Stack screenOptions={{headerShown: false}}>
+      <Stack.Screen name="welcome" options={{headerShown: false}}/>
     </Stack>
   );
 };

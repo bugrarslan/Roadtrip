@@ -3,6 +3,7 @@ import {Image} from "expo-image";
 import {Text, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import {getLocationImage, getPhotoRef} from "../services/imageService";
+import {hp, wp} from "../helpers/common";
 
 const HotelCard = ({item}) => {
 
@@ -18,35 +19,34 @@ const HotelCard = ({item}) => {
     }, [])
 
     const trimmedName = (name) => {
-        if (name.length > 21) {
-            return (name.substring(0, 21) + "...")
+        if (name.length > 20) {
+            return (name.substring(0, 20) + "...")
         } else {
             return name
         }
     }
     return (
         <View style={{
-            marginRight: 10,
             flex: 1,
-            width: 200,
-            backgroundColor: theme.colors.GRAY_LIGHT,
-            borderRadius: 15,
+            width: wp(50),
+            backgroundColor: theme.colors.containerColor,
+            borderRadius: theme.radius.md,
         }}>
             <Image
                 source={getLocationImage(photoRef)}
                 style={{
-                    width: 200,
-                    height: 120,
-                    borderRadius: 15,
+                    width: wp(50),
+                    height: hp(13),
+                    borderRadius: theme.radius.md,
                 }}
                 cachePolicy="memory"
             />
             <View style={{
-                padding: 5,
+                padding: wp(2),
             }}>
                 <Text style={{
-                    fontFamily: 'outfit-medium',
-                    fontSize: 17,
+                    fontWeight: theme.fonts.medium,
+                    fontSize: hp(1.7),
 
                 }}>
                     {trimmedName(item?.Hotel_name)}
@@ -54,10 +54,12 @@ const HotelCard = ({item}) => {
 
                 <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                     <Text style={{
-                        fontFamily: "outfit",
+                        fontWeight: theme.fonts.medium,
+                        fontSize: hp(1.5),
                     }}>⭐ {item?.Rating}</Text>
                     <Text style={{
-                        fontFamily: "outfit",
+                        fontWeight: theme.fonts.medium,
+                        fontSize: hp(1.5),
                     }}>💰 {item?.Price_per_night}</Text>
                 </View>
             </View>

@@ -13,6 +13,7 @@ export const theme = {
     GRAY_LIGHT: "#f4f4f4",
 
     text: "#494949",
+    containerColor: "#f1f1f1",
     textLight: "#7c7c7c",
     textDark: "#1d1d1d",
 

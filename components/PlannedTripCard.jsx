@@ -21,10 +21,9 @@ const PlannedTripCard = ({place}) => {
 
     return(
         <View style={{
-            backgroundColor: theme.colors.GRAY_LIGHT,
+            backgroundColor: theme.colors.containerColor,
             padding: 10,
             borderRadius: 15,
-            borderColor: theme.colors.GRAY,
             marginTop: 20
         }}>
             <Image source={getLocationImage(photoRef)}

@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   mainImage: {
     width: "100%",
     height: hp(30),
-    borderRadius: wp(3.75),
+    borderRadius: theme.radius.lg,
   },
   marginTop10: {
     marginTop: hp(1.25),
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   thumbnailImage: {
     width: wp(25),
     height: wp(25),
-    borderRadius: wp(3.75),
+    borderRadius: theme.radius.lg,
   },
   mediumBlackText: {
     fontFamily: "outfit-medium",

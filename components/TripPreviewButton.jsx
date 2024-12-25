@@ -16,11 +16,11 @@ const TripPreviewButton = ({ title, content, onPress, icon }) => {
       onPress={() => onPress(onPress)}
     >
       <Ionicons name={icon} size={24} color={theme.colors.dark} />
-      <View style={{ gap: 10, backgroundColor: theme.colors.darkLight }}>
+      <View style={{ gap: 10, backgroundColor: theme.colors.containerColor }}>
         <Text style={styles.title}>{title}</Text>
         {content && (<Text style={styles.text}>{content && trimmedContent}</Text>)}
       </View>
-      <MaterialIcons name="keyboard-arrow-right" size={24} color={theme.colors.PRIMARY} />
+      <Icon name={"arrowRight"} strokeWidth={2.5} color={theme.colors.text}/>
     </Pressable>
   );
 };
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: hp(10),
-    backgroundColor: theme.colors.darkLight,
+    backgroundColor: theme.colors.containerColor,
     borderRadius: theme.radius.xl,
     borderCurve: "continuous",
     flexDirection: "row",
