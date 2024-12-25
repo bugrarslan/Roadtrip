@@ -7,9 +7,15 @@ import Button from "../components/Button";
 import { StatusBar } from "expo-status-bar";
 import ScreenWrapper from "../components/ScreenWrapper";
 import LottieView from "lottie-react-native";
+import { useTranslation } from 'react-i18next';
 
 const Page = () => {
   const router = useRouter();
+  const { t, i18n } = useTranslation(); // t() çeviriyi almak için, i18n ile dil değiştirmek için
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Dil değiştir
+  };
 
   return (
     <ScreenWrapper backgroundColor="white">
@@ -24,20 +30,19 @@ const Page = () => {
         <View style={{ gap: 20 }}>
           <Text style={styles.title}>RoadTrip</Text>
           <Text style={styles.punchline}>
-            Discover your next adventure effortlessly. Personalized itineraries
-            at your fingertips. Travel smarter with AI-driven insights.
+            {t("welcomeText")}
           </Text>
         </View>
 
         <View style={styles.footer}>
           <Button
-            title="Getting Started"
+            title={t("welcomeButtonText")}
             buttonStyle={{ marginHorizontal: wp(3) }}
             onPress={() => router.push("/signUp")}
           />
 
           <View style={styles.bottomTextContainer}>
-            <Text style={styles.loginText}>Already have an account?</Text>
+            <Text style={styles.loginText}>{t("welcomeFooterText")}</Text>
             <Pressable onPress={() => router.push("/signIn")}>
               <Text
                 style={[
@@ -48,7 +53,7 @@ const Page = () => {
                   },
                 ]}
               >
-                Sign In
+                {t("welcomeFooterButtonText")}
               </Text>
             </Pressable>
           </View>

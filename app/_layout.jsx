@@ -6,6 +6,8 @@ import {supabase} from "../lib/supabase";
 import {getUserData} from "../services/userService";
 import * as SplashScreen from "expo-splash-screen";
 import {TripProvider} from "../contexts/TripContext";
+import {I18nextProvider} from 'react-i18next';
+import i18n from '../helpers/i18n';
 import 'react-native-get-random-values';
 
 SplashScreen.preventAutoHideAsync()
@@ -29,11 +31,13 @@ const _layout = () => {
   }
 
   return (
-    <AuthProvider>
-      <TripProvider>
-        <MainLayout/>
-      </TripProvider>
-    </AuthProvider>
+    <I18nextProvider i18n={i18n}>
+      <AuthProvider>
+        <TripProvider>
+          <MainLayout/>
+        </TripProvider>
+      </AuthProvider>
+    </I18nextProvider>
   );
 };
 

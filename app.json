@@ -13,7 +13,7 @@
       "bundleIdentifier": "com.bugrarslan.RoadTrip",
       "icon": {
         "light": "./assets/images/ios/ios-light.png",
-        "dark": "./assets/images/ios/ios-dark.png",
+        "dark": "./assets/images/ios/ios-dark.png"
       }
     },
     "android": {
@@ -55,7 +55,8 @@
             "assets/fonts/Outfit-Regular.ttf"
           ]
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true
