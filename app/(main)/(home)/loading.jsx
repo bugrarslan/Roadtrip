@@ -4,8 +4,6 @@ import LottieView from "lottie-react-native";
 import {wp, hp} from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import {theme} from "../../../constants/theme";
-// import {useTrip} from "../../../contexts/TripContext";
-// import {useAuth} from "../../../contexts/AuthContext";
 import {AI_PROMPT} from "../../../constants/index";
 import {chatSession} from "../../../services/geminiAiModalService";
 import {useRouter} from "expo-router";

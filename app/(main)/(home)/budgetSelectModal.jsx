@@ -10,6 +10,7 @@ import { theme } from "../../../constants/theme";
 import TripButton from "../../../components/TripButton";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
+import {SelectBudgetList} from "../../../constants/tripOptions";
 import { useSelector, useDispatch } from "react-redux";
 import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
@@ -24,30 +25,11 @@ const budgetSelectModal = () => {
 
   const [selected, setSelected] = useState(null);
 
-  const SelectBudgetList = [
-    {
-      id: 1,
-      title: t("selectBudgetList.1.title"),
-      description: t("selectBudgetList.1.description"),
-      icon: "💵",
-    },
-    {
-      id: 2,
-      title: t("selectBudgetList.2.title"),
-      description: t("selectBudgetList.2.description"),
-      icon: "💰",
-    },
-    {
-      id: 3,
-      title: t("selectBudgetList.3.title"),
-      description: t("selectBudgetList.3.description"),
-      icon: "💸",
-    },
-  ]
-
   useEffect(() => {
     setSelected(tripData.budgetInfo);
   }, [])
+
+  const translatedBudgetList = SelectBudgetList(t);
 
   const onItemSelected = (option) => {
     setSelected(option);
@@ -73,7 +55,7 @@ const budgetSelectModal = () => {
           <FlatList
             style={{ width: "100%" }}
             contentContainerStyle={{ gap: 10 }}
-            data={SelectBudgetList}
+            data={translatedBudgetList}
             renderItem={({ item, index }) => (
               <TripButton
                 option={item}
