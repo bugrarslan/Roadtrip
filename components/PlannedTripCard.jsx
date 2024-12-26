@@ -6,7 +6,7 @@ import {Ionicons} from "@expo/vector-icons";
 import React, {useEffect, useState} from "react";
 
 
-const PlannedTripCard = ({place}) => {
+const PlannedTripCard = ({place, t}) => {
 
     const [photoRef, setPhotoRef] = useState(null)
 
@@ -26,8 +26,12 @@ const PlannedTripCard = ({place}) => {
             borderRadius: 15,
             marginTop: 20
         }}>
-            <Image source={getLocationImage(photoRef)}
-                   style={{width: "100%", height: 120, borderRadius: 15}}/>
+            <Image
+              source={getLocationImage(photoRef)}
+              style={{width: "100%", aspectRatio:16/9, borderRadius: 15}}
+              cachePolicy="memory"
+              contentFit={"cover"}
+            />
             <View>
                 <Text style={{fontFamily: "outfit-bold", fontSize: 20}}>{place?.Place_name}</Text>
                 <Text style={{
@@ -42,11 +46,11 @@ const PlannedTripCard = ({place}) => {
                     overflow: "scroll"
                 }}>
                     <View>
-                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>🎟️ Ticket
-                            Price: <Text
+                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>
+                            🎟️ {t("plannedTripCard.price")}: <Text
                                 style={{fontFamily: "outfit-medium"}}>{place?.Ticket_pricing}</Text></Text>
-                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>⏱️ Time to
-                            Travel: <Text
+                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>
+                            ⏱️ {t("plannedTripCard.time")}: <Text
                                 style={{fontFamily: "outfit-medium"}}>{place?.Travel_time_to_the_location_from_the_hotel}</Text></Text>
                     </View>
                     <TouchableOpacity style={{

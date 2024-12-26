@@ -1,15 +1,19 @@
-import React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import { Image } from "expo-image";
+import React, { memo } from "react";
+import {StyleSheet, Text, View, Pressable} from "react-native";
+import {Image} from "expo-image";
 import moment from "moment";
-import { theme } from "../constants/theme";
-import { hp, wp } from "../helpers/common";
-import { getLocationImage } from "../services/imageService";
+import {theme} from "../constants/theme";
+import {hp, wp} from "../helpers/common";
+import {getLocationImage} from "../services/imageService";
+import {SelectTravellerList} from "../constants/tripOptions";
 
-const TripCard = ({ item, onSubmit, index, t }) => {
+const TripCard = ({item, onSubmit, index, t}) => {
+
   const trimmedTitle = item?.locationInfo?.name?.length > 20
     ? item?.locationInfo?.name?.substring(0, 20) + "..."
     : item?.locationInfo?.name;
+
+  const translatedTraveller = SelectTravellerList(t)[item?.companionInfo?.id - 1];
 
   return (
     <View>
@@ -71,7 +75,7 @@ const TripCard = ({ item, onSubmit, index, t }) => {
             <Text
               style={styles.smallGrayText}
             >
-              {t("tripCard.travellingText")}: {item?.companionInfo?.title}
+              {t("tripCard.travellingText")}: {translatedTraveller?.title}
             </Text>
           </View>
         </Pressable>

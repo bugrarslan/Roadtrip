@@ -8,19 +8,19 @@ import PlannedTripCard from "./PlannedTripCard";
 import {hp} from "../helpers/common";
 import Icon from "../assets/icons";
 
-const PlannedTripList = ({details}) => {
+const PlannedTripList = ({details, t}) => {
   const [expandedDays, setExpandedDays] = useState({});
 
   const toggleDay = (day) => {
     setExpandedDays((prev) => ({
       ...prev,
-      [day]: !prev[day], // Tıklanan günü ters çevir
+      [day]: !prev[day],
     }));
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>🏕️ Plan Details</Text>
+      <Text style={styles.title}>🏕️ {t("plannedTriplist.title")}</Text>
 
       {details.map((item, index) => (
         <View key={index} style={{marginVertical: 10}}>
@@ -38,14 +38,14 @@ const PlannedTripList = ({details}) => {
           {expandedDays[item?.Day] && ( // Eğer gün genişletilmişse
             <View>
               <Text style={styles.infoText}>
-                ⚫ Time to travel between locations: {item?.Travel_time_between_locations}
+                • {t("plannedTriplist.timeTravel")}: {item?.Travel_time_between_locations}
               </Text>
               <Text style={styles.infoText}>
-                🟢 Best Time to Visit Each Place: {item?.Best_times_to_visit_each_place}
+                • {t("plannedTriplist.bestTime")}: {item?.Best_times_to_visit_each_place}
               </Text>
 
               {item?.Activities_or_places_to_visit_for_each_day.map((place, idx) => (
-                <PlannedTripCard key={idx} place={place}/>
+                <PlannedTripCard key={idx} place={place} t={t}/>
               ))}
             </View>
           )}

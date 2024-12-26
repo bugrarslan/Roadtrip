@@ -1,32 +1,28 @@
-import {
-  Alert,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import {Alert, FlatList, ScrollView, StyleSheet, Text, View} from "react-native";
 import React, {useEffect, useState} from "react";
+import {StatusBar} from "expo-status-bar";
 import {useLocalSearchParams, useRouter} from "expo-router";
+import {Image} from "expo-image";
+import moment from "moment";
+import {useTranslation} from "react-i18next";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {fetchTripDetails, removeTrip} from "../../../services/tripService";
 import Loading from "../../../components/Loading";
 import {hp, wp} from "../../../helpers/common";
 import {theme} from "../../../constants/theme";
-import {Image} from "expo-image";
 import {getLocationImage} from "../../../services/imageService";
-import moment from "moment";
 import FlightInfoCard from "../../../components/FlightInfoCard";
 import HotelList from "../../../components/HotelList";
 import PlannedTripList from "../../../components/PlannedTripList";
-import {StatusBar} from "expo-status-bar";
 import BackButton from "../../../components/BackButton";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {SelectBudgetList, SelectTravellerList} from "../../../constants/tripOptions";
 
 const tripDetails = () => {
   const router = useRouter();
   const {tripId} = useLocalSearchParams();
-  const { top } = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
+  const {t} = useTranslation();
 
   const [trip, setTrip] = useState(null);
   const [startLoading, setStartLoading] = useState(true);
@@ -70,7 +66,7 @@ const tripDetails = () => {
           },
         ]}
       >
-        <Text style={styles.notFound}>Trip not found!</Text>
+        <Text style={styles.notFound}>{t("tripDetails.notFound")}</Text>
       </View>
     );
   }
@@ -97,19 +93,19 @@ const tripDetails = () => {
             </Text>
           </View>
           <View style={{gap: 5}}>
-            <Text style={styles.companion}>🚌 {trip?.companionInfo?.title}</Text>
-            <Text style={styles.companion}>💰 {trip?.budgetInfo?.title}</Text>
+            <Text style={styles.companion}>🚌 {SelectTravellerList(t)[trip?.companionInfo?.id - 1].title}</Text>
+            <Text style={styles.companion}>💰 {SelectBudgetList(t)[trip?.budgetInfo?.id - 1].title}</Text>
           </View>
         </View>
 
         {/* Flight Info */}
-        <FlightInfoCard flightDetails={trip?.response?.Flight_Details}/>
+        <FlightInfoCard flightDetails={trip?.response?.Flight_Details} t={t}/>
 
         {/* Hotels List */}
-        <HotelList hotels={trip?.response?.Hotel_Options}/>
+        <HotelList hotels={trip?.response?.Hotel_Options} t={t}/>
 
         {/* Trip Day Planner Info*/}
-        <PlannedTripList details={trip?.response?.Day_by_Day_Plan}/>
+        <PlannedTripList details={trip?.response?.Day_by_Day_Plan} t={t}/>
       </View>
     </ScrollView>
   );

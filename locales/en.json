@@ -118,7 +118,7 @@
     "3": {
       title: "Expensive",
       description: "a luxurious experience"
-    },
+    }
   },
   "tabBarButton": {
     "Trips": "Trips",
@@ -127,6 +127,27 @@
   },
   "tripCard": {
     "seeYourPlanButton": "See Your Plan",
-    "travellingText": "Travelling",
-  }
+    "travellingText": "Travelling"
+  },
+  "tripDetails": {
+    "notFound": "Trip not found!"
+  },
+  "flightInfoCard": {
+    "flight": "Flight",
+    "bookButton": "Book Here",
+    "price": "Price"
+  },
+  "hotelList": {
+    "hotel": "Hotel Recommendation",
+  },
+  "plannedTriplist": {
+    "title": "Plan Details",
+    "noMoreTrips": "No more planned trips",
+    "timeTravel": "Time to travel between locations",
+    "bestTime": "Best Time to Visit Each Place"
+  },
+  "plannedTripCard": {
+    "price": "Ticket Price",
+    "time": "Time to Travel"
+  },
 }

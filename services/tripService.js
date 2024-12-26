@@ -21,7 +21,7 @@ export const fetchTripDetails = async (tripId) => {
   }
 };
 
-export const fetchTrips = async (limit = 5, userId) => {
+export const fetchTrips = async (userId) => {
   try {
     if (userId) {
       const { data, error } = await supabase
@@ -29,7 +29,6 @@ export const fetchTrips = async (limit = 5, userId) => {
         .select("*, user: users (id, name, image), tripLikes: tripLikes(*)")
         .order("created_at", { ascending: false })
         .eq("userId", userId)
-        .limit(limit);
 
       if (error) {
         console.log("fetch trip error: ", error);
@@ -42,7 +41,6 @@ export const fetchTrips = async (limit = 5, userId) => {
         .from("trips")
         .select("*, user: users (id, name, image), tripLikes: tripLikes(*)")
         .order("created_at", { ascending: false })
-        .limit(limit);
 
       if (error) {
         console.log("fetch trip error: ", error);

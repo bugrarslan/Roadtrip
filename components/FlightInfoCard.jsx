@@ -4,7 +4,7 @@ import { theme } from "../constants/theme";
 import * as Linking from "expo-linking";
 import {hp} from "../helpers/common";
  
-const FlightInfoCard = ({ flightDetails }) => {
+const FlightInfoCard = ({ flightDetails, t }) => {
   return (
     <View
       style={{
@@ -17,7 +17,7 @@ const FlightInfoCard = ({ flightDetails }) => {
     >
       <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
         <Text style={{ fontWeight: theme.fonts.extraBold,  fontSize: hp(2) }}>
-          ✈️ Flight
+          ✈️ {t("flightInfoCard.flightTitle")}
         </Text>
         <Pressable
           style={{
@@ -37,7 +37,7 @@ const FlightInfoCard = ({ flightDetails }) => {
               fontWeight: theme.fonts.medium,
             }}
           >
-            Book Here
+            {t("flightInfoCard.bookButton")}
           </Text>
         </Pressable>
       </View>
@@ -48,7 +48,7 @@ const FlightInfoCard = ({ flightDetails }) => {
           fontSize: hp(1.8),
         }}
       >
-        Airline: {flightDetails[0]?.Flight_name}
+        {t("flightInfoCard.flight")}: {flightDetails[0]?.Flight_name}
       </Text>
 
       <Text
@@ -57,7 +57,7 @@ const FlightInfoCard = ({ flightDetails }) => {
           fontSize: hp(1.8),
         }}
       >
-        Price: {flightDetails[0]?.flight_price}
+        {t("flightInfoCard.price")}: {flightDetails[0]?.flight_price}
       </Text>
     </View>
   );

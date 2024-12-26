@@ -6,7 +6,7 @@ import {getPhotoRef} from "../services/imageService";
 import HotelCard from "./HotelCard";
 import {wp} from "../helpers/common";
 
-const HotelList = ({hotels}) => {
+const HotelList = ({hotels, t}) => {
   return (
     <View style={{gap: 10}}>
       <Text
@@ -15,7 +15,7 @@ const HotelList = ({hotels}) => {
           fontSize: 20,
         }}
       >
-        🏨 Hotel Recommendation
+        🏨 {t("hotelList.hotel")}
       </Text>
 
       <FlatList

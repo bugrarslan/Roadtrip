@@ -106,7 +106,7 @@
       "people": "6+ kişi"
     }
   },
-  "SelectBudgetList": {
+  "selectBudgetList": {
     "1": {
       "title": "Ucuz",
       "description": "maliyetlere dikkat edin"
@@ -128,5 +128,27 @@
   "tripCard": {
     "seeYourPlanButton": "Planı Gör",
     "travellingText": "Seyahat Ediliyor"
+  },
+  "tripDetails": {
+    "notFound": "Seyahat bulunamadı!"
+  },
+  "flightInfoCard": {
+    "flightTitle": "Uçak Bileti",
+    "flight": "Uçuş",
+    "bookButton": "Bilet al",
+    "price": "Fiyat"
+  },
+  "hotelList": {
+    "hotel": "Otel Önerileri"
+  },
+  "plannedTriplist": {
+    "title": "Plan Detayları",
+    "noMoreTrips": "Planlanmış başka seyahat yok",
+    "timeTravel": "Lokasyonlar arasındaki seyahat süresi",
+    "bestTime": "Her Yeri Ziyaret Etmek İçin En İyi Zaman"
+  },
+  "plannedTripCard": {
+    "price": "Bilet Fiyatı",
+    "time": "Seyahat Süresi"
   }
 }
