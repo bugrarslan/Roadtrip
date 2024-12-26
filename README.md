@@ -1,50 +1,117 @@
-# Welcome to your Expo app 👋
+# 🌍 RoadTrip - Your AI-Powered Travel Companion 🚗✨
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+RoadTrip is an AI-powered travel planning application. It creates personalized travel plans for users, including hotels, flights, and places to visit. With smart algorithms, planning unforgettable travel experiences has never been easier!
 
-## Get started
+## 📱 Features
 
-1. Install dependencies
+- 🏖 **Personalized Travel Plans:** Enter your destination, dates, budget, and companions; AI will create a customized plan just for you.
+- ✈️ **Flight Details:** Easily discover affordable flight options.
+- 🏨 **Hotel Recommendations:** View hotel options and details tailored to your trip.
+- 📍 **Places to Visit:** Explore popular and hidden gems.
+- 📅 **Daily Plans:** Get a detailed itinerary for each day of your trip.
+- ❤️ **Favorites and Likes:** Discover trips from other users and save your favorite plans.
+- 🔔 **Reminders:** Receive notifications as your trip approaches.
 
+---
+
+## 🚀 Getting Started
+
+### Requirements
+
+- Node.js (v16+)
+- Expo CLI
+- An Android or iOS device (or a simulator/emulator)
+
+### Installation
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/bugrarslan/Roadtrip.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd RoadTrip
+   ```
+
+3. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+4. Start the application:
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+5. Open in development mode:
+   - Android Emulator
+   - iOS Simulator
+   - Expo Go (scan the QR code)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📂 Project Structure
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+RoadTrip/
+├── app/
+│   ├── (main)/
+│   │   ├── (home)/
+│   │   │   ├── _layout.jsx
+│   │   │   ├── budgetSelectModal.jsx
+│   │   │   ├── companionSelectModal.jsx
+│   │   │   ├── createTrip.jsx
+│   │   │   ├── dateSelectModal.jsx
+│   │   │   ├── destinationSelectModal.jsx
+│   │   │   ├── index.jsx
+│   │   │   ├── loading.jsx
+│   │   │   ├── tripDetails.jsx
+│   │   ├── _layout.jsx
+│   │   ├── discover.jsx
+│   │   ├── profile.jsx
+│   ├── _layout.jsx
+│   ├── index.jsx
+│   ├── signIn.jsx
+│   ├── signUp.jsx
+│   ├── welcome.jsx
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🛠 Technologies
 
-To learn more about developing your project with Expo, look at the following resources:
+- **React Native**: For mobile application development.
+- **Expo**: For rapid prototyping and development.
+- **Supabase**: For user authentication and database management.
+- **Redux Toolkit**: For state management.
+- **i18next**: For multi-language support.
+- **MMKV**: For fast and efficient data storage.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## 🌐 Online Documentation and Support
 
-Join our community of developers creating universal apps.
+- [Expo Documentation](https://docs.expo.dev/)
+- [Supabase Documentation](https://supabase.com/docs)
+- [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [i18next](https://www.i18next.com/)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🛡️ License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🤝 Contributing
+
+We welcome your contributions! Please open an [issue](https://github.com/bugrarslan/Roadtrip/issues) or submit a **pull request**.
+
+---
+
+## 📧 Contact
+
+For inquiries about the project, please reach out to [bugrarsln7@gmail.com](mailto:bugrarsln7@gmail.com).
