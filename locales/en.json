@@ -45,7 +45,7 @@
     "signOut": "Sign Out"
   },
   "profile": {
-    "header": "Profile",
+    "header": "Profile"
   },
   "editProfile": {
     "error": "Error",
@@ -70,7 +70,7 @@
   },
   "destinationSelectModal": {
     "headerTitle": "Select Destination",
-    placeholder: "Search"
+    "placeholder": "Search"
   },
   "companionSelectModal": {
     "headerTitle": "Select Companion"
@@ -149,10 +149,10 @@
     "currency": "$"
   },
   "hotelList": {
-    "hotel": "Hotel Recommendation",
+    "hotel": "Hotel Recommendation"
   },
   "hotelCard": {
-    "currency": "$",
+    "currency": "$"
   },
   "plannedTriplist": {
     "title": "Plan Details",
@@ -165,4 +165,9 @@
     "currency": "$",
     "time": "Time to Travel"
   },
+  "startNewTripCard": {
+    "title": "You don't have any trips planned yet",
+    "description": "It seems like it's time to plan a new travel experience! Let's get started",
+    "button": "Start a new trip"
+  }
 }

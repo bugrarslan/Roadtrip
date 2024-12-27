@@ -21,7 +21,7 @@ const FlightInfoCard = ({ flightDetails, t }) => {
         </Text>
         <Pressable
           style={{
-            backgroundColor: theme.colors.PRIMARY,
+            backgroundColor: theme.colors.primary,
             padding: hp(1),
             width: 100,
             borderRadius: theme.radius.lg,

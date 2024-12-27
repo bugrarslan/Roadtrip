@@ -1,39 +1,40 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { hp } from "../helpers/common";
+import {StyleSheet, Text, View} from "react-native";
+import React, {useEffect} from "react";
+import {hp} from "../helpers/common";
 import Button from "./Button";
+import {theme} from "../constants/theme";
+import Icon from "../assets/icons";
 
-const StartNewTripCard = ({ handleNewTrip }) => {
+const StartNewTripCard = ({handleNewTrip, t}) => {
+
   return (
     <View style={styles.container}>
-      <MaterialIcons name="location-on" size={hp(5)} color="black" />
+      <View style={{alignSelf: "center"}}>
+        <Icon name={"location"} size={hp(5)}/>
+      </View>
       <Text
         style={{
           fontSize: hp(3),
-          fontFamily: "outfit-medium",
-          marginTop: hp(2),
+          fontWeight: theme.fonts.bold,
           textAlign: "center",
+          color: theme.colors.textLight,
         }}
       >
-        You don't have any trips planned yet
+        {t("startNewTripCard.title")}
       </Text>
       <Text
         style={{
           fontSize: hp(2),
-          fontFamily: "outfit",
-          marginTop: hp(2),
+          fontWeight: theme.fonts.medium,
           textAlign: "center",
+          color: theme.colors.textLight,
         }}
       >
-        It seems like it's time to plan a new travel experience! Let's get
-        started
+        {t("startNewTripCard.description")}
       </Text>
       <Button
         onPress={handleNewTrip}
-        title="Start a new trip"
-        buttonStyle={{ paddingHorizontal: hp(5), marginTop: hp(2) }}
-        textStyle={{ fontFamily: "outfit" }}
+        title={t("startNewTripCard.button")}
       />
     </View>
   );
@@ -45,6 +46,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    gap: 20,
   },
 });

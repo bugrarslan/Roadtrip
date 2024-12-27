@@ -50,6 +50,14 @@ const index = () => {
     });
   };
 
+  if (trips.length === 0 && !loading) {
+    return (
+      <View style={{flex: 1, paddingHorizontal: wp(4)}}>
+        <StartNewTripCard handleNewTrip={newTripClicked} t={t}/>
+      </View>
+    )
+  }
+
   return (
     <ScreenWrapper backgroundColor={"white"}>
       <StatusBar style="dark"/>
@@ -59,30 +67,30 @@ const index = () => {
           <Text style={styles.title}>{t("home.title")}</Text>
           <Pressable
             onPress={newTripClicked}
-            style={{backgroundColor: "black", padding: 10, borderRadius: theme.radius.lg}}>
+            style={{backgroundColor: theme.colors.primary, padding: 10, borderRadius: theme.radius.lg}}>
             <Text style={{fontSize: 15, fontWeight: theme.fonts.medium, color: "white"}}>{t("home.createTrip")}</Text>
           </Pressable>
         </View>
 
         {/* content */}
-        {trips.length === 0 && !loading ? (
-          <View style={styles.content}>
-            <StartNewTripCard handleNewTrip={newTripClicked}/>
-          </View>
-        ) : (
-          <View style={styles.content}>
-            <FlatList
-              data={trips}
-              contentContainerStyle={{paddingBottom: hp(12), paddingHorizontal: wp(4)}}
-              showsVerticalScrollIndicator={false}
-              keyExtractor={(item) => item.id.toString()}
-              ItemSeparatorComponent={() => <View style={{height: hp(2)}}/>}
-              renderItem={({item, index}) => (
-                <TripCard t={t} item={item} router={router} onSubmit={(tripId) => handleTripDetails(tripId)} index={index}/>
-              )}
-            />
-          </View>
-        )}
+        <View style={styles.content}>
+          <FlatList
+            data={trips}
+            contentContainerStyle={{paddingBottom: hp(12)}}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item) => item.id.toString()}
+            ItemSeparatorComponent={() => <View style={{height: hp(2)}}/>}
+            renderItem={({item, index}) => (
+              <TripCard
+                t={t}
+                item={item}
+                router={router}
+                onSubmit={(tripId) => handleTripDetails(tripId)}
+                index={index}
+              />
+            )}
+          />
+        </View>
       </View>
     </ScreenWrapper>
   );
@@ -93,13 +101,13 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: wp(4),
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 10,
-    marginHorizontal: wp(4),
   },
   title: {
     fontSize: wp(7),

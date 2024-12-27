@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: theme.colors.GRAY,
   },
   submitButton: {
-    backgroundColor: "black",
+    backgroundColor: theme.colors.primary,
     padding: hp(1.875),
     borderRadius: wp(3.75),
     marginTop: hp(1.25),

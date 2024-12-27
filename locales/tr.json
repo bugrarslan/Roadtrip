@@ -45,7 +45,7 @@
     "signOut": "Çıkış Yap"
   },
   "profile": {
-    "header": "Profil",
+    "header": "Profil"
   },
   "editProfile": {
     "error": "Hata",
@@ -165,5 +165,10 @@
     "price": "Bilet Fiyatı",
     "currency": "₺",
     "time": "Seyahat Süresi"
+  },
+  "startNewTripCard": {
+    "title": "Henüz bir seyahat planınız yok",
+    "description": "Yeni bir seyahat deneyimi planlama zamanı gibi görünüyor! Hadi başlayalım",
+    "button": "Yeni bir seyahat başlat"
   }
 }

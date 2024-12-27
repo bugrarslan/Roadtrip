@@ -22,7 +22,7 @@ import Icon from "../assets/icons";
 import Button from "../components/Button";
 import {supabase} from "../lib/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 
 const signUp = () => {
@@ -35,7 +35,7 @@ const signUp = () => {
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
-  const { t, i18n } = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang); // Dil değiştir
@@ -126,9 +126,17 @@ const signUp = () => {
               />
               <Input
                 icon={<Icon name="lock" size={26} strokeWidth={1.6}/>}
-                showPasswordToggle={<Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye"
-                                                                                                              size={26}
-                                                                                                              color="black"/></Pressable>}
+                showPasswordToggle={
+                  <Pressable
+                    onPress={() => setSecureTextEntry(!secureTextEntry)}
+                  >
+                    <Ionicons
+                      name="eye"
+                      size={26}
+                      color="black"
+                    />
+                  </Pressable>
+                }
                 placeholder={t("signUp.passwordInput")}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(value) => (passwordRef.current = value)}
