@@ -23,12 +23,14 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@rneui/themed": "^4.0.0-rc.8",
     "@supabase/supabase-js": "^2.46.1",
+    "base64-arraybuffer": "^1.0.2",
     "expo": "~52.0.20",
     "expo-blur": "~14.0.1",
     "expo-constants": "~17.0.3",
     "expo-font": "~13.0.1",
     "expo-haptics": "~14.0.0",
     "expo-image": "~2.0.3",
+    "expo-image-picker": "~16.0.3",
     "expo-linking": "~7.0.3",
     "expo-localization": "~16.0.0",
     "expo-router": "~4.0.14",
@@ -47,6 +49,7 @@
     "react-native-calendar-picker": "^8.0.5",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-get-random-values": "^1.11.0",
+    "react-native-google-mobile-ads": "^14.7.2",
     "react-native-google-places-autocomplete": "^2.5.7",
     "react-native-localize": "^3.3.0",
     "react-native-mmkv": "^3.2.0",
@@ -57,7 +60,8 @@
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "expo-file-system": "~18.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

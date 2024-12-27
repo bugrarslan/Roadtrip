@@ -27,7 +27,7 @@ export default Input
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    fontFamily: 'outfit',
+    color: "black",
     height: "100%",
     width: "100%",
   },

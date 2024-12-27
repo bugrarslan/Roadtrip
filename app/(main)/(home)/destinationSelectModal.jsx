@@ -1,22 +1,22 @@
-import { StyleSheet, Text, View, Platform } from "react-native";
+import {StyleSheet, Text, View, Platform} from "react-native";
 import React from "react";
-import { useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { hp, wp } from "../../../helpers/common";
-import { theme } from "../../../constants/theme";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import {useRouter} from "expo-router";
+import {StatusBar} from "expo-status-bar";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {hp, wp} from "../../../helpers/common";
+import {theme} from "../../../constants/theme";
+import {GooglePlacesAutocomplete} from "react-native-google-places-autocomplete";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
-import { useSelector, useDispatch } from "react-redux";
-import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
+import {useSelector, useDispatch} from "react-redux";
+import {setTripData, clearTripData} from "../../../contexts/redux/slices/tripSlice"
 
 const destinationSelectModal = () => {
   const router = useRouter();
-  const { top } = useSafeAreaInsets();
+  const {top} = useSafeAreaInsets();
   const paddingTop = top > 0 ? top + 5 : 30;
   const ios = Platform.OS === "ios";
-  const { t } = useTranslation();
+  const {t, i18n} = useTranslation();
   const tripData = useSelector((state) => state.trip.tripData);
   const dispatch = useDispatch();
 
@@ -24,17 +24,17 @@ const destinationSelectModal = () => {
   return (
     <View
       style={[
-        ios ? { paddingTop: wp(5) } : { paddingTop },
-        { flex: 1, backgroundColor: theme.colors.WHITE },
+        ios ? {paddingTop: wp(5)} : {paddingTop},
+        {flex: 1, backgroundColor: theme.colors.WHITE},
       ]}
     >
       <View style={styles.container}>
-        <StatusBar style="auto" />
+        <StatusBar style="auto"/>
         {/* header */}
         <Header title={t("destinationSelectModal.headerTitle")} showCloseButton={true}/>
 
         {/* content */}
-        <View style={{ flex: 1, backgroundColor: theme.colors.WHITE }}>
+        <View style={{flex: 1, backgroundColor: theme.colors.WHITE}}>
           <GooglePlacesAutocomplete
             placeholder={t("destinationSelectModal.placeholder")}
             fetchDetails={true}
@@ -53,7 +53,7 @@ const destinationSelectModal = () => {
             }}
             query={{
               key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
-              language: "en",
+              language: (i18n.language === "tr" ? "tr" : "en"),
             }}
             styles={{
               textInputContainer: {
@@ -93,11 +93,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 10,
-  },
-  title: {
-    fontSize: wp(5),
-    fontFamily: "outfit-bold",
-    textAlign: "center",
-    flex: 1,
   },
 });

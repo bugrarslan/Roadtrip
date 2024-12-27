@@ -1,12 +1,12 @@
 import * as FileSystem from "expo-file-system";
-//import { decode } from "base64-arraybuffer";
+import { decode } from "base64-arraybuffer";
 import {supabase} from "../lib/supabase";
 
 export const getUserImageSrc = (imagePath) => {
     if (imagePath) {
         return getSupabaseFileUrl(imagePath);
     } else {
-        return require("../assets/images/icon.png");
+        return require("../assets/images/default-user.png");
     }
 };
 
@@ -32,9 +32,9 @@ export const getLocalFilePath = (filePath) => {
     return `${FileSystem.documentDirectory}${fileName}`;
 };
 
-export const uploadFile = async (folderName, fileUri, isImage = true) => {
+export const uploadFile = async (folderName, fileUri) => {
     try {
-        let fileName = getFilePath(folderName, isImage);
+        let fileName = getFilePath(folderName);
         const fileBase64 = await FileSystem.readAsStringAsync(fileUri, {
             encoding: FileSystem.EncodingType.Base64,
         });

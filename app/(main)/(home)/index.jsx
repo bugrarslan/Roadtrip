@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: wp(7),
-    fontFamily: "outfit-bold",
+    fontWeight: theme.fonts.bold,
   },
   content: {
     flex: 1,

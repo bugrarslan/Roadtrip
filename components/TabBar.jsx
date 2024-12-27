@@ -15,6 +15,8 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
     "/destinationSelectModal",
     "/createTrip",
     "/loading",
+    "/discover",
+    "/editProfile"
   ];
 
   if (hiddenRoutes.includes(pathname)) {
@@ -31,6 +33,8 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
             : options.title !== undefined
             ? options.title
             : route.name;
+
+        if (['discover'].includes(route.name)) return null;
 
         const isFocused = state.index === index;
 

@@ -4,7 +4,7 @@ import LottieView from "lottie-react-native";
 import {wp, hp} from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import {theme} from "../../../constants/theme";
-import {AI_PROMPT} from "../../../constants/index";
+import {english_AI_PROMPT, turkish_AI_PROMPT} from "../../../constants/index";
 import {chatSession} from "../../../services/geminiAiModalService";
 import {useRouter} from "expo-router";
 import {createOrUpdateTrip} from "../../../services/tripService";
@@ -16,7 +16,7 @@ import { setAuth, clearAuth } from "../../../contexts/redux/slices/authSlice"
 const loading = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const tripData = useSelector((state) => state.trip.tripData);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -42,10 +42,15 @@ const loading = () => {
 
   const generateAiTrip = async () => {
     setLoading(true);
-    const FINAL_PROMPT = AI_PROMPT
+
+    // Dil kontrolü yapıyoruz, Türkçe ise turkish_AI_PROMPT, İngilizce ise english_AI_PROMPT kullanıyoruz.
+    const currentPrompt = i18n.language === "tr" ? turkish_AI_PROMPT : english_AI_PROMPT;
+    console.log(currentPrompt)
+
+    const FINAL_PROMPT = currentPrompt
       .replace("{location}", tripData?.locationInfo?.name)
       .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
-      .replace("{totalNight}", tripData?.dateInfo?.totalNoOfDays - 1)
+      .replace("{totalNights}", tripData?.dateInfo?.totalNoOfDays - 1)
       .replace("{traveller}", tripData?.companionInfo?.title)
       .replace("{budget}", tripData?.budgetInfo?.title)
       .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)

@@ -41,7 +41,7 @@ const TripCard = ({item, onSubmit, index, t}) => {
               <Text
                 style={styles.grayText}
               >
-                🚌 {item?.companionInfo?.title}
+                🚌 {translatedTraveller?.title}
               </Text>
             </View>
             <Pressable
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: wp(6),
-    fontFamily: "outfit-medium",
+    fontWeight: theme.fonts.bold,
   },
   rowSpaceBetween: {
     flexDirection: "row",
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: hp(0.625),
   },
   grayText: {
-    fontFamily: "outfit",
+    fontWeight: theme.fonts.medium,
     fontSize: wp(4.25),
     color: theme.colors.GRAY,
   },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: "white",
     textAlign: "center",
-    fontFamily: "outfit-medium",
+    fontWeight: theme.fonts.medium,
     fontSize: wp(3.75),
   },
   rowGap: {
@@ -132,12 +132,12 @@ const styles = StyleSheet.create({
     borderRadius: theme.radius.lg,
   },
   mediumBlackText: {
-    fontFamily: "outfit-medium",
+    fontWeight: theme.fonts.bold,
     fontSize: wp(4.5),
     color: "black",
   },
   smallGrayText: {
-    fontFamily: "outfit",
+    fontWeight: theme.fonts.medium,
     fontSize: wp(3.5),
     color: theme.colors.GRAY,
   },

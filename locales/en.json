@@ -38,14 +38,24 @@
   "home": {
     "AlertTitle": "Home",
     "title": "Trips",
-    "createTrip": "Create Trip",
+    "createTrip": "Create",
     "noMoreTrips": "No more trips"
   },
   "discover": {
     "signOut": "Sign Out"
   },
   "profile": {
-    "signOut": "Sign Out"
+    "header": "Profile",
+  },
+  "editProfile": {
+    "error": "Error",
+    "errorContent": "Please fill all the details",
+    "formText": "Please fill the details to update your profile",
+    "nameInput": "Enter your name",
+    "phoneInput": "Enter your phone number",
+    "addressInput": "Enter your address",
+    "bioInput": "Enter your bio",
+    "updateButton": "Update"
   },
   "createTrip": {
     "alertTitle": "Create Trip",
@@ -86,44 +96,44 @@
   },
   "selectTravellerList": {
     "1": {
-      title: "Just Me",
-      description: "a solo trip",
-      people: "1 person"
+      "title": "Just Me",
+      "description": "Embark on a solo adventure",
+      "people": "1 person"
     },
     "2": {
-      title: "Me and My Partner",
-      description: "a couple in love",
-      people: "2 people"
+      "title": "A Couple",
+      "description": "Share the journey with your partner",
+      "people": "2 people"
     },
     "3": {
-      title: "Me and My Friends",
-      description: "a group of friends",
-      people: "3-5 people"
+      "title": "Friends",
+      "description": "Create memories with your best friends",
+      "people": "3-5 people"
     },
     "4": {
-      title: "Me and My Family",
-      description: "a family trip",
-      people: "6+ people"
+      "title": "Family",
+      "description": "Enjoy quality time with your loved ones",
+      "people": "6+ people"
     }
   },
   "selectBudgetList": {
     "1": {
-      title: "Cheap",
-      description: "stay conscious of costs"
+      "title": "Cheap",
+      "description": "Keep your trip budget-friendly"
     },
     "2": {
-      title: "Moderate",
-      description: "a balance between cost and quality"
+      "title": "Moderate",
+      "description": "Strike a perfect balance between value and quality"
     },
     "3": {
-      title: "Expensive",
-      description: "a luxurious experience"
+      "title": "Expensive",
+      "description": "Indulge in a premium travel experience"
     }
   },
   "tabBarButton": {
-    "Trips": "Trips",
+    "(home)": "Trips",
     "Discover": "Discover",
-    "Profile": "Profile"
+    "(profile)": "Profile"
   },
   "tripCard": {
     "seeYourPlanButton": "See Your Plan",
@@ -135,10 +145,14 @@
   "flightInfoCard": {
     "flight": "Flight",
     "bookButton": "Book Here",
-    "price": "Price"
+    "price": "Price",
+    "currency": "$"
   },
   "hotelList": {
     "hotel": "Hotel Recommendation",
+  },
+  "hotelCard": {
+    "currency": "$",
   },
   "plannedTriplist": {
     "title": "Plan Details",
@@ -148,6 +162,7 @@
   },
   "plannedTripCard": {
     "price": "Ticket Price",
+    "currency": "$",
     "time": "Time to Travel"
   },
 }

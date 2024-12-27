@@ -33,11 +33,11 @@ const PlannedTripCard = ({place, t}) => {
               contentFit={"cover"}
             />
             <View>
-                <Text style={{fontFamily: "outfit-bold", fontSize: 20}}>{place?.Place_name}</Text>
+                <Text style={{fontWeight: theme.fonts.bold, fontSize: 20}}>{place?.Place_name}</Text>
                 <Text style={{
-                    fontFamily: "outfit",
+                    fontWeight: theme.fonts.medium,
                     fontSize: 17,
-                    color: theme.colors.GRAY
+                    color: theme.colors.text
                 }}>{place?.Description}</Text>
                 <View style={{
                     flexDirection: "row",
@@ -46,12 +46,12 @@ const PlannedTripCard = ({place, t}) => {
                     overflow: "scroll"
                 }}>
                     <View>
-                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>
+                        <Text style={{fontWeight: theme.fonts.medium, fontSize: 17, marginTop: 5}}>
                             🎟️ {t("plannedTripCard.price")}: <Text
-                                style={{fontFamily: "outfit-medium"}}>{place?.Ticket_pricing}</Text></Text>
-                        <Text style={{fontFamily: "outfit", fontSize: 17, marginTop: 5}}>
+                                style={{fontWeight: theme.fonts.bold}}>{place?.Ticket_pricing} {t("plannedTripCard.currency")}</Text></Text>
+                        <Text style={{fontWeight: theme.fonts.medium, fontSize: 17, marginTop: 5}}>
                             ⏱️ {t("plannedTripCard.time")}: <Text
-                                style={{fontFamily: "outfit-medium"}}>{place?.Travel_time_to_the_location_from_the_hotel}</Text></Text>
+                                style={{fontWeight: theme.fonts.bold}}>{place?.Travel_time_to_the_location_from_the_hotel}</Text></Text>
                     </View>
                     <TouchableOpacity style={{
                         backgroundColor: theme.colors.PRIMARY,

@@ -38,20 +38,30 @@
   "home": {
     "AlertTitle": "Ana Sayfa",
     "title": "Seyahatler",
-    "createTrip": "Seyahat Oluştur",
+    "createTrip": "Oluştur",
     "noMoreTrips": "Başka seyahat yok"
   },
   "discover": {
     "signOut": "Çıkış Yap"
   },
   "profile": {
-    "signOut": "Çıkış Yap"
+    "header": "Profil",
+  },
+  "editProfile": {
+    "error": "Hata",
+    "errorContent": "Lütfe tüm bilgileri doldurun",
+    "formText": "Lütfen profilinizi güncellemek için bilgileri doldurun",
+    "nameInput": "Adınızı girin",
+    "phoneInput": "Telefon numaranızı girin",
+    "addressInput": "Adresinizi girin",
+    "bioInput": "Biyografinizi girin",
+    "updateButton": "Güncelle"
   },
   "createTrip": {
     "alertTitle": "Seyahat Oluştur",
     "alertContent": "Lütfen tüm detayları doldurun",
     "alertButton": "Tamam",
-    "headerTitle": "Hadi seyahatinizi oluşturalım",
+    "headerTitle": "Seyahatinizi oluşturalım",
     "destination": "Varış Yeri",
     "companion": "Yol Arkadaşı",
     "days": "Günler",
@@ -87,43 +97,43 @@
   "selectTravellerList": {
     "1": {
       "title": "Sadece Ben",
-      "description": "tek başına bir seyahat",
+      "description": "Kendi başınıza bir maceraya atılın",
       "people": "1 kişi"
     },
     "2": {
-      "title": "Ben ve Partnerim",
-      "description": "aşık bir çift",
+      "title": "Çift",
+      "description": "Partnerinizle yolculuğun tadını çıkarın",
       "people": "2 kişi"
     },
     "3": {
-      "title": "Ben ve Arkadaşlarım",
-      "description": "bir grup arkadaş",
+      "title": "Arkadaşlar",
+      "description": "En yakın arkadaşlarınızla anılar biriktirin",
       "people": "3-5 kişi"
     },
     "4": {
-      "title": "Ben ve Ailem",
-      "description": "bir aile gezisi",
+      "title": "Aile",
+      "description": "Sevdiklerinizle kaliteli zaman geçirin",
       "people": "6+ kişi"
     }
   },
   "selectBudgetList": {
     "1": {
       "title": "Ucuz",
-      "description": "maliyetlere dikkat edin"
+      "description": "Seyahatinizi bütçe dostu tutun"
     },
     "2": {
       "title": "Orta",
-      "description": "maliyet ve kalite arasında bir denge"
+      "description": "Değer ve kalite arasında mükemmel dengeyi yakalayın"
     },
     "3": {
       "title": "Pahalı",
-      "description": "lüks bir deneyim"
+      "description": "Lüks bir seyahat deneyiminin keyfini çıkarın"
     }
   },
   "tabBarButton": {
-    "Trips": "Seyahatler",
+    "(home)": "Seyahatler",
     "Discover": "Keşfet",
-    "Profile": "Profil"
+    "(profile)": "Profil"
   },
   "tripCard": {
     "seeYourPlanButton": "Planı Gör",
@@ -136,10 +146,14 @@
     "flightTitle": "Uçak Bileti",
     "flight": "Uçuş",
     "bookButton": "Bilet al",
-    "price": "Fiyat"
+    "price": "Fiyat",
+    "currency": "₺"
   },
   "hotelList": {
     "hotel": "Otel Önerileri"
+  },
+  "hotelCard": {
+    "currency": "₺"
   },
   "plannedTriplist": {
     "title": "Plan Detayları",
@@ -149,6 +163,7 @@
   },
   "plannedTripCard": {
     "price": "Bilet Fiyatı",
+    "currency": "₺",
     "time": "Seyahat Süresi"
   }
 }

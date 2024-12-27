@@ -12,11 +12,11 @@ const _layout = () => {
       screenOptions={{headerShown: false}}
       tabBar={(props) => <TabBar {...props} t={t}/>}
     >
-      <Tabs.Screen name="(home)" options={{title: "Trips"}}/>
+      <Tabs.Screen name="(home)"/>
 
-      <Tabs.Screen name="discover" options={{title: "Discover"}}/>
+      <Tabs.Screen name="discover"/>
 
-      <Tabs.Screen name="profile" options={{title: "Profile"}}/>
+      <Tabs.Screen name="(profile)"/>
     </Tabs>
   );
 };

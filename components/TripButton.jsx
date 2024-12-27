@@ -6,7 +6,7 @@ import { hp } from "../helpers/common";
 const TripButton = ({ option, selected, onSelect }) => {
   return (
     <Pressable style={[styles.container, selected?.id == option?.id && {borderWidth: 2}]} onPress={() => onSelect(option)}>
-      <View style={{ gap: 10, backgroundColor: theme.colors.containerColor }}>
+      <View style={{ gap: 10, backgroundColor: theme.colors.containerColor, width: "80%" }}>
         <Text style={styles.title}>{option?.title}</Text>
         <Text style={styles.text}>{option?.description}</Text>
       </View>

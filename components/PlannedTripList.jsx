@@ -35,14 +35,14 @@ const PlannedTripList = ({details, t}) => {
             {expandedDays[item?.Day] ? (<Icon name={"arrowDown"} strokeWidth={2.5} color={theme.colors.text}/> ) : (<Icon name={"arrowRight"} strokeWidth={2.5} color={theme.colors.text}/>)}
           </TouchableOpacity>
 
-          {expandedDays[item?.Day] && ( // Eğer gün genişletilmişse
+          {expandedDays[item?.Day] && (
             <View>
-              <Text style={styles.infoText}>
-                • {t("plannedTriplist.timeTravel")}: {item?.Travel_time_between_locations}
-              </Text>
-              <Text style={styles.infoText}>
-                • {t("plannedTriplist.bestTime")}: {item?.Best_times_to_visit_each_place}
-              </Text>
+              {/*<Text style={styles.infoText}>*/}
+              {/*  • {t("plannedTriplist.timeTravel")}: {item?.Travel_time_between_locations}*/}
+              {/*</Text>*/}
+              {/*<Text style={styles.infoText}>*/}
+              {/*  • {t("plannedTriplist.bestTime")}: {item?.Best_times_to_visit_each_place}*/}
+              {/*</Text>*/}
 
               {item?.Activities_or_places_to_visit_for_each_day.map((place, idx) => (
                 <PlannedTripCard key={idx} place={place} t={t}/>

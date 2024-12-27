@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {getLocationImage, getPhotoRef} from "../services/imageService";
 import {hp, wp} from "../helpers/common";
 
-const HotelCard = ({item}) => {
+const HotelCard = ({item, t}) => {
 
     const [photoRef, setPhotoRef] = useState(null)
 
@@ -60,7 +60,7 @@ const HotelCard = ({item}) => {
                     <Text style={{
                         fontWeight: theme.fonts.medium,
                         fontSize: hp(1.5),
-                    }}>💰 {item?.Price_per_night}</Text>
+                    }}>💰 {item?.Price_per_night} {t("hotelCard.currency")}</Text>
                 </View>
             </View>
         </View>

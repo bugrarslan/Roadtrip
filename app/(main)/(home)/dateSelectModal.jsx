@@ -100,11 +100,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10,
   },
-  title: {
-    fontSize: wp(5),
-    fontFamily: "outfit-bold",
-    textAlign: "center",
-    flex: 1,
-  },
   content: { flex: 1, marginTop: hp(2), gap: hp(2) },
 });

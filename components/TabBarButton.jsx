@@ -37,7 +37,7 @@ const TabBarButton = (props) => {
       opacity,
     };
   });
-
+  
   return (
     <Pressable {...props} style={styles.container}>
       <Animated.View style={animatedIconStyle}>

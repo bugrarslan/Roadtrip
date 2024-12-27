@@ -57,7 +57,7 @@ const FlightInfoCard = ({ flightDetails, t }) => {
           fontSize: hp(1.8),
         }}
       >
-        {t("flightInfoCard.price")}: {flightDetails[0]?.flight_price}
+        {t("flightInfoCard.price")}: {flightDetails[0]?.Flight_price} {t("flightInfoCard.currency")}
       </Text>
     </View>
   );

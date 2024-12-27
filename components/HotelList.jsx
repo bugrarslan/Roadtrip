@@ -23,7 +23,7 @@ const HotelList = ({hotels, t}) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item, index}) => (
-          <HotelCard item={item}/>
+          <HotelCard item={item} t={t}/>
         )}
         keyExtractor={(item, index) => index.toString()}
         ItemSeparatorComponent={() => <View style={{width: wp(3)}}/>}

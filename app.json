@@ -42,7 +42,7 @@
           "backgroundColor": "#ffffff",
           "dark": {
             "image": "./assets/images/splash/splash.png",
-            "backgroundColor": "#252525"
+            "backgroundColor": "#000000"
           }
         }
       ],
@@ -56,7 +56,21 @@
           ]
         }
       ],
-      "expo-localization"
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-4600446300037494~4349727011",
+          "iosAppId": "ca-app-pub-4600446300037494~5335505622"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
+      "expo-localization",
+      "react-native-google-mobile-ads"
     ],
     "experiments": {
       "typedRoutes": true

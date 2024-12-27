@@ -1,4 +1,3 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import Icon from "./index";
 
 export const icons = {
@@ -8,7 +7,7 @@ export const icons = {
   discover: (props) => (
     <Icon name={"search"} color="black" {...props} />
   ),
-  profile: (props) => (
+  "(profile)": (props) => (
     <Icon name={"user"} color="black" {...props} />
   ),
 };
