@@ -67,9 +67,12 @@ RoadTrip/
 │   │   │   ├── index.jsx
 │   │   │   ├── loading.jsx
 │   │   │   ├── tripDetails.jsx
+│   │   ├── (profile)/
+│   │   │   ├── _layout.jsx
+│   │   │   ├── index.jsx
+│   │   │   ├── editProfile.jsx
 │   │   ├── _layout.jsx
 │   │   ├── discover.jsx
-│   │   ├── index.jsx
 │   ├── _layout.jsx
 │   ├── index.jsx
 │   ├── signIn.jsx
