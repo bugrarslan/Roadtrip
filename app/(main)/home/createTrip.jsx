@@ -6,8 +6,6 @@ import Button from "../../../components/Button";
 import { hp, wp } from "../../../helpers/common";
 import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
-import BackButton from "../../../components/BackButton";
-// import { useTrip } from "../../../contexts/TripContext";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
 import Header from "../../../components/Header";
@@ -22,20 +20,20 @@ const createTrip = () => {
   const dispatch = useDispatch();
 
   const onSubmitDestination = () => {
-    router.push("/destinationSelectModal");
+    router.push("/(main)/home/destinationSelectModal");
   };
   const onSubmitCompanion = () => {
-    router.push("/companionSelectModal");
+    router.push("/(main)/home/companionSelectModal");
   };
   const onSubmitDate = () => {
-    router.push("/dateSelectModal");
+    router.push("/(main)/home/dateSelectModal");
   };
   const onSubmitBudget = () => {
-    router.push("/budgetSelectModal");
+    router.push("/(main)/home/budgetSelectModal");
   };
   const handleCreate = () => {
     if (tripData?.locationInfo && tripData?.companionInfo && tripData?.dateInfo && tripData?.budgetInfo) {
-      router.replace("(main)/(home)/loading");
+      router.replace("/(main)/home/loading");
     } else {
       Alert.alert(t("createTrip.alertTitle"), t("createTrip.alertContent"), [
         {

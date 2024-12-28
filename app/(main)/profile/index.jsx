@@ -20,14 +20,14 @@ const index = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    Alert.alert("Sign Out", "Are you sure you want to sign out?", [
+    Alert.alert(t("profile.alertTitle"), t("profile.alertContent"), [
       {
-        text: "Cancel",
+        text: t("profile.alertCancelButton"),
         onPress: () => console.log("cancelled"),
         style: "cancel",
       },
       {
-        text: "Sıgn Out",
+        text: t("profile.alertButton"),
         onPress: () => signOut(),
         style: "destructive",
       },
@@ -52,7 +52,7 @@ const index = () => {
       }}>
         <StatusBar style="dark"/>
         <View>
-          <Header mb={30} title={t("profile.header")}/>
+          <Header mb={30} title={t("profile.header") }/>
           <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
             <Icon name={"logout"} color={theme.colors.rose}/>
           </TouchableOpacity>
@@ -68,7 +68,7 @@ const index = () => {
               />
               <Pressable
                 style={styles.editIcon}
-                onPress={() => router.push("/editProfile")}
+                onPress={() => router.push("/(main)/profile/editProfile")}
               >
                 <Icon name="edit" size={20} strokeWidth={2.5}/>
               </Pressable>

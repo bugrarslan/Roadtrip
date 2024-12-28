@@ -40,12 +40,12 @@ const index = () => {
   };
 
   const newTripClicked = () => {
-    router.push("/createTrip");
+    router.push("/(main)/home/createTrip");
   };
 
   const handleTripDetails = (tripId) => {
     router.push({
-      pathname: "/tripDetails",
+      pathname: "/(main)/home/tripDetails",
       params: {tripId: tripId},
     });
   };

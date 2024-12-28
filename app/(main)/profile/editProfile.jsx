@@ -59,7 +59,6 @@ const editProfile = () => {
   const onsubmit = async () => {
     let userData = { ...user };
     let { name, phoneNumber, address, bio, image } = userData;
-    console.log("user data: ", userData);
     if (!name || !phoneNumber || !address || !bio || !image) {
       Alert.alert(t("editProfile.error"), "editProfile.errorContent");
       return;

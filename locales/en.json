@@ -45,7 +45,11 @@
     "signOut": "Sign Out"
   },
   "profile": {
-    "header": "Profile"
+    "header": "Profile",
+    "alertTitle": "Alert",
+    "alertContent": "Are you sure you want to sign out?",
+    "alertButton": "Sign Out",
+    "alertCancelButton": "Cancel"
   },
   "editProfile": {
     "error": "Error",
@@ -131,9 +135,9 @@
     }
   },
   "tabBarButton": {
-    "(home)": "Trips",
+    "home": "Trips",
     "Discover": "Discover",
-    "(profile)": "Profile"
+    "profile": "Profile"
   },
   "tripCard": {
     "seeYourPlanButton": "See Your Plan",

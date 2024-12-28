@@ -72,7 +72,7 @@ const loading = () => {
     setLoading(false);
     if (res.success) {
       dispatch(clearTripData());
-      router.replace("/(main)/(home)");
+      router.replace("/(main)/home");
     } else {
       Alert.alert(t("loading.responseAlertTitle"), res.msg, [{text: t("loading.responseAlertButton"), style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);
     }

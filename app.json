@@ -42,7 +42,9 @@
           "backgroundColor": "#ffffff",
           "dark": {
             "image": "./assets/images/splash/splash.png",
-            "backgroundColor": "#000000"
+            "imageWidth": 200,
+            "backgroundColor": "#252525",
+            "resizeMode": "contain"
           }
         }
       ],

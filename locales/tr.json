@@ -45,7 +45,11 @@
     "signOut": "Çıkış Yap"
   },
   "profile": {
-    "header": "Profil"
+    "header": "Profil",
+    "alertTitle": "Uyarı",
+    "alertContent": "Çıkış yapmak istediğinizden emin misiniz?",
+    "alertButton": "Çıkış Yap",
+    "alertCancelButton": "İptal"
   },
   "editProfile": {
     "error": "Hata",
@@ -131,9 +135,9 @@
     }
   },
   "tabBarButton": {
-    "(home)": "Seyahatler",
+    "home": "Seyahatler",
     "Discover": "Keşfet",
-    "(profile)": "Profil"
+    "profile": "Profil"
   },
   "tripCard": {
     "seeYourPlanButton": "Planı Gör",

@@ -11,13 +11,8 @@ const _layout = () => {
     <Tabs
       screenOptions={{headerShown: false}}
       tabBar={(props) => <TabBar {...props} t={t}/>}
-    >
-      <Tabs.Screen name="(home)"/>
-
-      <Tabs.Screen name="discover"/>
-
-      <Tabs.Screen name="(profile)"/>
-    </Tabs>
+      initialRouteName={"home"}
+    />
   );
 };
 
