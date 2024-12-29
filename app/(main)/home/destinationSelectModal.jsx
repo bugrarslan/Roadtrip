@@ -10,6 +10,7 @@ import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
 import {useSelector, useDispatch} from "react-redux";
 import {setTripData, clearTripData} from "../../../contexts/redux/slices/tripSlice"
+import { googlePlacesApiKey } from "../../../constants";
 
 const destinationSelectModal = () => {
   const router = useRouter();
@@ -52,7 +53,7 @@ const destinationSelectModal = () => {
               router.back();
             }}
             query={{
-              key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
+              key: googlePlacesApiKey,
               language: (i18n.language === "tr" ? "tr" : "en"),
             }}
             styles={{

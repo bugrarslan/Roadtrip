@@ -1,6 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { decode } from "base64-arraybuffer";
 import {supabase} from "../lib/supabase";
+import { googlePlacesApiKey, supabaseUrl } from "../constants";
 
 export const getUserImageSrc = (imagePath) => {
     if (imagePath) {
@@ -13,7 +14,7 @@ export const getUserImageSrc = (imagePath) => {
 export const getSupabaseFileUrl = (filePath) => {
     if (filePath) {
         return {
-            uri: `${process.env.EXPO_PUBLIC_SUPABASE_URL}/storage/v1/object/public/uploads/${filePath}`,
+            uri: `${supabaseUrl}/storage/v1/object/public/uploads/${filePath}`,
         };
     }
 };
@@ -69,13 +70,13 @@ export const getFilePath = (folderName) => {
 export const getPhotoRef = async (placeName) => {
     const response = await fetch("https://maps.googleapis.com/maps/api/place/textsearch/json"+
       "?query="+placeName+
-      "&key="+process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY)
+      "&key="+googlePlacesApiKey)
     const result = await response.json()
     return result.results[0].photos[0].photo_reference
 };
 
 export const getLocationImage = (imageRef) => {
     return {
-        uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${imageRef}&key=${process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY}`,
+        uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${imageRef}&key=${googlePlacesApiKey}`,
     }
 }
