@@ -43,9 +43,7 @@ const loading = () => {
   const generateAiTrip = async () => {
     setLoading(true);
 
-    // Dil kontrolü yapıyoruz, Türkçe ise turkish_AI_PROMPT, İngilizce ise english_AI_PROMPT kullanıyoruz.
     const currentPrompt = i18n.language === "tr" ? turkish_AI_PROMPT : english_AI_PROMPT;
-    console.log(currentPrompt)
 
     const FINAL_PROMPT = currentPrompt
       .replace("{location}", tripData?.locationInfo?.name)

@@ -47,5 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     gap: 20,
+    backgroundColor: "white",
   },
 });

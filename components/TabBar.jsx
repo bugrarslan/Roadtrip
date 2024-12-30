@@ -9,18 +9,18 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
   const pathname = usePathname();
 
   const hiddenRoutes = [
-    "/home/budgetSelectModal",
-    "/home/companionSelectModal",
-    "/home/dateSelectModal",
-    "/home/destinationSelectModal",
-    "/home/createTrip",
+    // "/home/budgetSelectModal",
+    // "/home/companionSelectModal",
+    // "/home/dateSelectModal",
+    // "/home/destinationSelectModal",
+    // "/home/createTrip",
     "/home/loading",
-    "/profile/editProfile"
+    // "/profile/editProfile"
   ];
 
-  // if (hiddenRoutes.includes(pathname)) {
-  //   return null;
-  // }
+  if (hiddenRoutes.includes(pathname)) {
+    return null;
+  }
 
   return (
     <View style={styles.tabBar}>

@@ -52,7 +52,7 @@ const index = () => {
 
   if (trips.length === 0 && !loading) {
     return (
-      <View style={{flex: 1, paddingHorizontal: wp(4)}}>
+      <View style={{flex: 1, paddingHorizontal: wp(4), backgroundColor: "white"}}>
         <StartNewTripCard handleNewTrip={newTripClicked} t={t}/>
       </View>
     )
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: wp(4),
+    backgroundColor: "white",
   },
   header: {
     flexDirection: "row",

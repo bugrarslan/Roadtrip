@@ -1,5 +1,5 @@
-import {Alert, StyleSheet, Text, View} from "react-native";
-import React, { useEffect } from "react";
+import { Alert, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { useRouter } from "expo-router";
 import Button from "../../../components/Button";
@@ -9,15 +9,15 @@ import { StatusBar } from "expo-status-bar";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
 import Header from "../../../components/Header";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const createTrip = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const tripData = useSelector((state) => state.trip.tripData);
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
 
   const onSubmitDestination = () => {
     router.push("/(main)/home/destinationSelectModal");
@@ -32,8 +32,13 @@ const createTrip = () => {
     router.push("/(main)/home/budgetSelectModal");
   };
   const handleCreate = () => {
-    if (tripData?.locationInfo && tripData?.companionInfo && tripData?.dateInfo && tripData?.budgetInfo) {
-      router.replace("/(main)/home/loading");
+    if (
+      tripData?.locationInfo &&
+      tripData?.companionInfo &&
+      tripData?.dateInfo &&
+      tripData?.budgetInfo
+    ) {
+      router.push("/(main)/home/loading");
     } else {
       Alert.alert(t("createTrip.alertTitle"), t("createTrip.alertContent"), [
         {
@@ -42,16 +47,17 @@ const createTrip = () => {
         },
       ]);
     }
-  }
-
-  useEffect(() => {
-  }, []);
+  };
 
   return (
     <ScreenWrapper backgroundColor={theme.colors.WHITE}>
       <StatusBar style="dark" />
       <View style={styles.container}>
-        <Header title={t("createTrip.headerTitle")} showBackButton isResetContext/>
+        <Header
+          title={t("createTrip.headerTitle")}
+          showBackButton
+          isResetContext
+        />
         <View style={styles.content}>
           <TripPreviewButton
             title={t("createTrip.destination")}
@@ -67,13 +73,14 @@ const createTrip = () => {
           />
           <TripPreviewButton
             title={t("createTrip.days")}
-            content={ tripData?.dateInfo?.totalNoOfDays &&
+            content={
+              tripData?.dateInfo?.totalNoOfDays &&
               moment(tripData?.dateInfo?.startDate).format("DD MMM") +
-              " - " +
-              moment(tripData?.dateInfo?.endDate).format("DD MMM") +
-              " (" +
-              tripData?.dateInfo?.totalNoOfDays +
-              " days)"
+                " - " +
+                moment(tripData?.dateInfo?.endDate).format("DD MMM") +
+                " (" +
+                tripData?.dateInfo?.totalNoOfDays +
+                " days)"
             }
             onPress={onSubmitDate}
             icon={"calendar-sharp"}
@@ -104,5 +111,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 10,
   },
-  content: { flex: 1, marginTop: hp(2) , gap: hp(2) },
+  content: { flex: 1, marginTop: hp(2), gap: hp(2) },
 });
