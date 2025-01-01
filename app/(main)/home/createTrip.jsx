@@ -50,7 +50,7 @@ const createTrip = () => {
   };
 
   return (
-    <ScreenWrapper backgroundColor={theme.colors.WHITE}>
+    <ScreenWrapper backgroundColor={"white"}>
       <StatusBar style="dark" />
       <View style={styles.container}>
         <Header
@@ -102,7 +102,7 @@ export default createTrip;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
     paddingHorizontal: wp(5),
   },
   header: {

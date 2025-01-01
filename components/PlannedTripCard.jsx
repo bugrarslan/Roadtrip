@@ -54,7 +54,7 @@ const PlannedTripCard = ({place, t}) => {
                                 style={{fontWeight: theme.fonts.bold}}>{place?.Travel_time_to_the_location_from_the_hotel}</Text></Text>
                     </View>
                     <TouchableOpacity style={{
-                        backgroundColor: theme.colors.PRIMARY,
+                        backgroundColor: "black",
                         padding: 8,
                         borderRadius: 7
                     }}><Ionicons name={"navigate"} size={20} color={"white"}/></TouchableOpacity>

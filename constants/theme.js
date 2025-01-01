@@ -7,11 +7,6 @@ export const theme = {
     gray: "#E3E3E3",
     secondary: "#627C55",
 
-    WHITE: "#fff",
-    PRIMARY: "#000",
-    GRAY: "#7d7d7d",
-    GRAY_LIGHT: "#f4f4f4",
-
     text: "#494949",
     containerColor: "#f1f1f1",
     textLight: "#7c7c7c",

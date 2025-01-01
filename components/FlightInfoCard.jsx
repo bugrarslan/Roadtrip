@@ -33,7 +33,7 @@ const FlightInfoCard = ({ flightDetails, t }) => {
           <Text
             style={{
               textAlign: "center",
-              color: theme.colors.WHITE,
+              color: "white",
               fontWeight: theme.fonts.medium,
             }}
           >

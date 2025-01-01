@@ -34,3 +34,16 @@ export const updateUserData = async (userId, data) => {
     return { success: false, msg: error?.message };
   }
 };
+
+export const sendForgotPasswordMail = async (email) => {
+  try {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+    if (error) {
+      return { success: false, msg: error?.message };
+    }
+    return { success: true, data };
+  } catch (error) {
+    console.log("got error", error);
+    return { success: false, msg: error?.message };
+  }
+};

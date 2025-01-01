@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     padding: wp(4),
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
     height: "100%",
     marginTop: hp(-3.75),
     borderTopLeftRadius: theme.radius.xxl,

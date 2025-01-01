@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   grayText: {
     fontWeight: theme.fonts.medium,
     fontSize: wp(4.25),
-    color: theme.colors.GRAY,
+    color: theme.colors.textLight,
   },
   submitButton: {
     backgroundColor: theme.colors.primary,
@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
   smallGrayText: {
     fontWeight: theme.fonts.medium,
     fontSize: wp(3.5),
-    color: theme.colors.GRAY,
+    color: theme.colors.textLight,
   },
 });

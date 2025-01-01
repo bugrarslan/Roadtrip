@@ -59,7 +59,7 @@ const dateSelectModal = () => {
     <View
       style={[
         ios ? { paddingTop: wp(5) } : { paddingTop },
-        { backgroundColor: theme.colors.WHITE, flex: 1 },
+        { backgroundColor: "white", flex: 1 },
       ]}
     >
       <View style={styles.container}>
@@ -74,8 +74,8 @@ const dateSelectModal = () => {
             allowRangeSelection
             minDate={new Date()}
             maxRangeDuration={6}
-            selectedRangeStyle={{ backgroundColor: theme.colors.PRIMARY }}
-            selectedDayTextStyle={{ color: theme.colors.WHITE }}
+            selectedRangeStyle={{ backgroundColor: "black" }}
+            selectedDayTextStyle={{ color: "white" }}
             textStyle={{ fontWeight: theme.fonts.medium }}
           />
           <Button title={t("dateSelectModal.applyButton")} onPress={onDateSelectionApply} />
@@ -90,7 +90,7 @@ export default dateSelectModal;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
     paddingHorizontal: wp(5),
     gap: 10,
   },

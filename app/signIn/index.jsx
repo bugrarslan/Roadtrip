@@ -8,42 +8,30 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Keyboard
+  Keyboard,
 } from "react-native";
-import React, {useEffect, useRef, useState} from "react";
-import {useNavigation, useRouter} from "expo-router";
-import {hp, wp} from "../helpers/common";
-import ScreenWrapper from "../components/ScreenWrapper";
-import {StatusBar} from "expo-status-bar";
-import BackButton from "../components/BackButton";
-import {theme} from "../constants/theme";
-import Input from "../components/Input";
-import Icon from "../assets/icons";
-import Button from "../components/Button";
-import {supabase} from "../lib/supabase";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import {useTranslation} from "react-i18next";
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "expo-router";
+import { hp, wp } from "../../helpers/common";
+import ScreenWrapper from "../../components/ScreenWrapper";
+import { StatusBar } from "expo-status-bar";
+import BackButton from "../../components/BackButton";
+import { theme } from "../../constants/theme";
+import Input from "../../components/Input";
+import Icon from "../../assets/icons";
+import Button from "../../components/Button";
+import { supabase } from "../../lib/supabase";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 
 const signIn = () => {
-  const navigaiton = useNavigation();
   const router = useRouter();
+  const { t } = useTranslation();
   const emailRef = useRef("");
   const passwordRef = useRef("");
 
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-
-  const {t, i18n} = useTranslation();
-
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang); // Dil değiştir
-  };
-
-  useEffect(() => {
-    navigaiton.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
@@ -55,7 +43,7 @@ const signIn = () => {
 
     setLoading(true);
 
-    const {data, error} = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: emailRef.current,
       password: passwordRef.current,
     });
@@ -63,7 +51,7 @@ const signIn = () => {
     setLoading(false);
 
     if (error) {
-      Alert.alert(t("signIn.signInText"), error.message);
+      returnAlert.alert(t("signIn.signInText"), error.message);
     }
   };
 
@@ -72,16 +60,16 @@ const signIn = () => {
       <ScreenWrapper backgroundColor="white">
         <KeyboardAvoidingView
           style={styles.container}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          <StatusBar style="dark"/>
+          <StatusBar style="dark" />
           <ScrollView
             contentContainerStyle={styles.scrollContainer}
             keyboardShouldPersistTaps="handled"
             bounces={false} // for iOS
             overScrollMode="never" // for Android
           >
-            <BackButton router={router}/>
+            <BackButton router={router} />
 
             {/* welcome */}
             <View>
@@ -91,35 +79,49 @@ const signIn = () => {
 
             {/* form */}
             <View style={styles.form}>
-              <Text style={{fontSize: hp(1.5), color: theme.colors.text}}>
+              <Text style={{ fontSize: hp(1.5), color: theme.colors.text }}>
                 {t("signIn.formText")}
               </Text>
               <Input
-                icon={<Icon name="mail" size={26} strokeWidth={1.6}/>}
+                icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
                 placeholder={t("signIn.emailInput")}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={(value) => (emailRef.current = value)}
               />
               <Input
-                icon={<Icon name="lock" size={26} strokeWidth={1.6}/>}
-                showPasswordToggle={<Pressable onPress={() => setSecureTextEntry(!secureTextEntry)}><Ionicons name="eye"
-                                                                                                              size={26}
-                                                                                                              color="black"/></Pressable>}
+                icon={<Icon name="lock" size={26} strokeWidth={1.6} />}
+                showPasswordToggle={
+                  <Pressable
+                    onPress={() => setSecureTextEntry(!secureTextEntry)}
+                  >
+                    <Ionicons name="eye" size={26} color="black" />
+                  </Pressable>
+                }
                 placeholder={t("signIn.passwordInput")}
                 secureTextEntry={secureTextEntry}
                 onChangeText={(value) => (passwordRef.current = value)}
               />
-              <Text style={styles.forgotPassword}>{t("signIn.forgotPasswordText")}</Text>
+              <Pressable onPress={() => router.push("/signIn/forgotPassword")}>
+                <Text style={styles.forgotPassword}>
+                  {t("signIn.forgotPasswordText")}
+                </Text>
+              </Pressable>
 
               {/* button */}
 
-              <Button title={t("signIn.signInButtonText")} onPress={onSubmit} loading={loading}/>
+              <Button
+                title={t("signIn.signInButtonText")}
+                onPress={onSubmit}
+                loading={loading}
+              />
             </View>
 
             {/* footer */}
             <View style={styles.footer}>
-              <Text style={styles.footerText}>{t("signIn.signInFooterText")}</Text>
+              <Text style={styles.footerText}>
+                {t("signIn.signInFooterText")}
+              </Text>
               <Pressable onPress={() => router.push("signUp")}>
                 <Text
                   style={[
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     gap: 45,
-    paddingHorizontal: wp(4)
+    paddingHorizontal: wp(4),
   },
   welcomeText: {
     fontSize: hp(4),

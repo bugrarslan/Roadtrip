@@ -44,7 +44,7 @@ const companionSelectModal = () => {
     <View
       style={[
         ios ? { paddingTop: wp(5) } : { paddingTop },
-        { backgroundColor: theme.colors.WHITE, flex: 1 },
+        { backgroundColor: "white", flex: 1 },
       ]}
     >
       <View style={styles.container}>
@@ -76,7 +76,7 @@ export default companionSelectModal;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
     paddingHorizontal: wp(5),
     gap: 10,
   },

@@ -26,7 +26,7 @@ const destinationSelectModal = () => {
     <View
       style={[
         ios ? {paddingTop: wp(5)} : {paddingTop},
-        {flex: 1, backgroundColor: theme.colors.WHITE},
+        {flex: 1, backgroundColor: "white"},
       ]}
     >
       <View style={styles.container}>
@@ -35,7 +35,7 @@ const destinationSelectModal = () => {
         <Header title={t("destinationSelectModal.headerTitle")} showCloseButton={true}/>
 
         {/* content */}
-        <View style={{flex: 1, backgroundColor: theme.colors.WHITE}}>
+        <View style={{flex: 1, backgroundColor: "white"}}>
           <GooglePlacesAutocomplete
             placeholder={t("destinationSelectModal.placeholder")}
             fetchDetails={true}
@@ -69,7 +69,7 @@ const destinationSelectModal = () => {
                 fontSize: hp(2.5),
                 color: "black",
                 borderRadius: theme.radius.xl,
-                backgroundColor: theme.colors.WHITE,
+                backgroundColor: "white",
                 height: hp(8),
               },
             }}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: wp(5),
     gap: 10,
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
   },
   header: {
     flexDirection: "row",

@@ -77,7 +77,7 @@ const loading = () => {
   };
 
   return (
-    <ScreenWrapper backgroundColor={theme.colors.WHITE}>
+    <ScreenWrapper backgroundColor={"white"}>
       {loading && (
         <View style={styles.container}>
           <View style={styles.loading}>

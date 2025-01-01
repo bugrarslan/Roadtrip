@@ -60,7 +60,7 @@ export default PlannedTripList
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
-    backgroundColor: theme.colors.WHITE,
+    backgroundColor: "white",
   },
   title: {
     fontWeight: theme.fonts.bold,

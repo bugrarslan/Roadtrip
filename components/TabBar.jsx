@@ -9,11 +9,11 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
   const pathname = usePathname();
 
   const hiddenRoutes = [
-    // "/home/budgetSelectModal",
-    // "/home/companionSelectModal",
-    // "/home/dateSelectModal",
-    // "/home/destinationSelectModal",
-    // "/home/createTrip",
+    "/home/budgetSelectModal",
+    "/home/companionSelectModal",
+    "/home/dateSelectModal",
+    "/home/destinationSelectModal",
+    "/home/createTrip",
     "/home/loading",
     // "/profile/editProfile"
   ];
@@ -34,6 +34,8 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
             : route.name;
 
         if (['discover'].includes(route.name)) return null;
+
+        console.log(route.name);
 
         const isFocused = state.index === index;
 

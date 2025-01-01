@@ -6,8 +6,9 @@
     "welcomeFooterButtonText": "Giriş Yap"
   },
   "signUp": {
-    "signUpText": "Kayıt ol",
+    "signUpText": "Uyarı",
     "fillAllFields": "Lütfen tüm eksik bilgileri doldurun!",
+    "fillAllFieldsButton": "Tamam",
     "passwordsNotMatch": "Şifreler eşleşmiyor, tekrar deneyin.",
     "errorOccurred": "Bir hata oluştu, lütfen tekrar deneyin.",
     "welcomeText1": "Hadi",

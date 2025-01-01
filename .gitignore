@@ -41,5 +41,4 @@ yarn-error.*
 .vscode
 /.idea/
 /constants/index.js
-/.env
 constants/data.json
