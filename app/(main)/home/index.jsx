@@ -1,19 +1,16 @@
 import {Pressable, StyleSheet, Text, View, Alert, FlatList} from "react-native";
 import React, {useEffect, useState} from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import {supabase} from "../../../lib/supabase";
 import {StatusBar} from "expo-status-bar";
 import {hp, wp} from "../../../helpers/common";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import StartNewTripCard from "../../../components/StartNewTripCard";
 import {useRouter} from "expo-router";
-import {getUserData} from "../../../services/userService";
 import {fetchTrips} from "../../../services/tripService";
-import Loading from "../../../components/Loading";
 import TripCard from "../../../components/TripCard";
 import {theme} from "../../../constants/theme";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
+import CustomAlert from "../../../components/CustomAlert";
 
 const index = () => {
   const router = useRouter();
@@ -23,6 +20,19 @@ const index = () => {
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({});
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({});
+  };
 
   useEffect(() => {
     getTrips();
@@ -34,7 +44,12 @@ const index = () => {
     if (res.success) {
       setTrips(res.data);
     } else {
-      Alert.alert(t("home.title"), res.msg);
+      showAlert({
+        type: "error",
+        title: t("home.title"),
+        content: res.msg,
+      })
+      return;
     }
     setLoading(false);
   };
@@ -92,6 +107,18 @@ const index = () => {
           />
         </View>
       </View>
+      <CustomAlert
+        visible={isAlertVisible}
+        onClose={closeAlert}
+        title={alertData?.title}
+        message={alertData?.content}
+        buttons={[
+          {
+            text: t("home.alertButton"),
+            onPress: () => closeAlert(),
+          },
+        ]}
+      />
     </ScreenWrapper>
   );
 };

@@ -1,26 +1,27 @@
-import {Pressable, ScrollView, Text, View, StyleSheet, Alert} from "react-native";
+import { Pressable, ScrollView, Text, View, StyleSheet } from "react-native";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import Header from "../../../components/Header";
 import Icon from "../../../assets/icons";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
-import {theme} from "../../../constants/theme";
-import {hp, wp} from "../../../helpers/common";
-import {Image} from "expo-image";
-import {useSelector, useDispatch} from "react-redux";
-import {setAuth} from "../../../contexts/redux/slices/authSlice";
-import {useRouter} from "expo-router";
-import {useEffect, useState} from "react";
-import * as ImagePicker from 'expo-image-picker';
+import { theme } from "../../../constants/theme";
+import { hp, wp } from "../../../helpers/common";
+import { Image } from "expo-image";
+import { useSelector, useDispatch } from "react-redux";
+import { setAuth } from "../../../contexts/redux/slices/authSlice";
+import { useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 import { getUserImageSrc, uploadFile } from "../../../services/imageService";
 import { updateUserData } from "../../../services/userService";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+import CustomAlert from "../../../components/CustomAlert";
 
 const editProfile = () => {
   const currentUser = useSelector((state) => state.auth.user);
   const router = useRouter();
   const dispatch = useDispatch();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const [user, setUser] = useState({
     name: "",
@@ -28,8 +29,22 @@ const editProfile = () => {
     image: null,
     phoneNumber: "",
     bio: "",
-  })
+  });
   const [loading, setLoading] = useState(false);
+
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({});
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({});
+  };
 
   useEffect(() => {
     if (currentUser) {
@@ -60,7 +75,11 @@ const editProfile = () => {
     let userData = { ...user };
     let { name, phoneNumber, address, bio, image } = userData;
     if (!name || !phoneNumber || !address || !bio || !image) {
-      Alert.alert(t("editProfile.error"), "editProfile.errorContent");
+      showAlert({
+        type: "error",
+        title: t("editProfile.error"),
+        content: t("editProfile.errorContent"),
+      });
       return;
     }
     setLoading(true);
@@ -88,7 +107,7 @@ const editProfile = () => {
     <ScreenWrapper backgroundColor={"white"}>
       <View style={styles.container}>
         <ScrollView style={{ flex: 1 }}>
-          <Header title={"Edit Profile"} showBackButton/>
+          <Header title={"Edit Profile"} showBackButton />
 
           {/* form */}
           <View style={styles.form}>
@@ -99,7 +118,13 @@ const editProfile = () => {
               </Pressable>
             </View>
 
-            <Text style={{ fontSize: hp(1.5), color: theme.colors.text, fontWeight:theme.fonts.semibold }}>
+            <Text
+              style={{
+                fontSize: hp(1.5),
+                color: theme.colors.text,
+                fontWeight: theme.fonts.semibold,
+              }}
+            >
               {t("editProfile.formText")}
             </Text>
             <Input
@@ -128,13 +153,29 @@ const editProfile = () => {
               onChangeText={(value) => setUser({ ...user, bio: value })}
             />
 
-            <Button title={t("editProfile.updateButton")} loading={loading} onPress={onsubmit} />
+            <Button
+              title={t("editProfile.updateButton")}
+              loading={loading}
+              onPress={onsubmit}
+            />
           </View>
         </ScrollView>
       </View>
+      <CustomAlert
+        visible={isAlertVisible}
+        onClose={closeAlert}
+        title={alertData?.title}
+        message={alertData?.content}
+        buttons={[
+          {
+            text: "OK",
+            onPress: () => closeAlert(),
+          },
+        ]}
+      />
     </ScreenWrapper>
   );
-}
+};
 
 export default editProfile;
 

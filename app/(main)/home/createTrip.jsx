@@ -1,23 +1,35 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import React, { useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
 import { useRouter } from "expo-router";
 import Button from "../../../components/Button";
 import { hp, wp } from "../../../helpers/common";
-import { theme } from "../../../constants/theme";
 import { StatusBar } from "expo-status-bar";
 import TripPreviewButton from "../../../components/TripPreviewButton";
 import moment from "moment";
 import Header from "../../../components/Header";
 import { useTranslation } from "react-i18next";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import CustomAlert from "../../../components/CustomAlert";
 
 const createTrip = () => {
   const router = useRouter();
   const { t } = useTranslation();
   const tripData = useSelector((state) => state.trip.tripData);
-  const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
+
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({buttons:[]});
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({buttons:[]});
+  };
 
   const onSubmitDestination = () => {
     router.push("/(main)/home/destinationSelectModal");
@@ -40,12 +52,19 @@ const createTrip = () => {
     ) {
       router.push("/(main)/home/loading");
     } else {
-      Alert.alert(t("createTrip.alertTitle"), t("createTrip.alertContent"), [
-        {
-          text: t("createTrip.alertButton"),
-          onPress: () => {},
-        },
-      ]);
+      showAlert({
+        type: "error",
+        title: t("createTrip.alertTitle"),
+        content: t("createTrip.alertContent"),
+        buttons: [
+          {
+            text: t("createTrip.alertButton"),
+            onPress: () => {
+              closeAlert();
+            },
+          },
+        ],
+      });
     }
   };
 
@@ -94,6 +113,13 @@ const createTrip = () => {
           <Button title={t("createTrip.createButton")} onPress={handleCreate} />
         </View>
       </View>
+      <CustomAlert
+        visible={isAlertVisible}
+        onClose={closeAlert}
+        title={alertData?.title}
+        message={alertData?.content}
+        buttons={alertData?.buttons}
+      />
     </ScreenWrapper>
   );
 };

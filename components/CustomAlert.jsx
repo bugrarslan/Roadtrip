@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import { theme } from "../constants/theme";
+import { hp, wp } from "../helpers/common";
 
 const CustomAlert = ({ visible, onClose, title, message, buttons }) => {
   return (
@@ -13,12 +14,12 @@ const CustomAlert = ({ visible, onClose, title, message, buttons }) => {
             {buttons.map((button, index) => (
               <TouchableOpacity
                 key={index}
-                style={index === 0 ? styles.buttonLight : styles.buttonDark}
+                style={index === 0 ? styles.buttonDark : styles.buttonLight}
                 onPress={button.onPress}
               >
                 <Text
                   style={
-                    index === 0 ? styles.buttonTextLight : styles.buttonTextDark
+                    index === 0 ? styles.buttonTextDark : styles.buttonTextLight
                   }
                 >
                   {button.text}
@@ -41,9 +42,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   alertContainer: {
+    gap: 15,
     backgroundColor: "white",
-    padding: 20,
-    borderRadius: 15,
+    padding: wp(5),
+    borderRadius: theme.radius.lg,
     width: "80%",
     alignItems: "center",
     shadowColor: theme.colors.dark,
@@ -56,16 +58,14 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 10,
+    fontSize: hp(2),
+    fontWeight: theme.fonts.bold,
+    color: theme.colors.textDark,
   },
   message: {
-    fontSize: 14,
-    color: "#555",
+    fontSize: hp(1.5),
+    color: theme.colors.textDark,
     textAlign: "center",
-    marginBottom: 20,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -74,26 +74,26 @@ const styles = StyleSheet.create({
   },
   buttonDark: {
     backgroundColor: theme.colors.primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    marginHorizontal: 5,
+    paddingVertical: hp(1),
+    paddingHorizontal: wp(5),
+    borderRadius: theme.radius.xl,
+    marginHorizontal: wp(1),
   },
   buttonLight: {
     backgroundColor: "white",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-    marginHorizontal: 5,
+    paddingVertical: hp(1),
+    paddingHorizontal: wp(5),
+    borderRadius: theme.radius.xl,
+    marginHorizontal: wp(1),
     borderWidth: 1,
     borderColor: theme.colors.primary,
   },
   buttonTextDark: {
     color: "white",
-    fontWeight: "bold",
+    fontWeight: theme.fonts.bold,
   },
   buttonTextLight: {
     color: theme.colors.primary,
-    fontWeight: "bold",
+    fontWeight: theme.fonts.bold,
   },
 });

@@ -1,31 +1,55 @@
-import {Alert, StyleSheet, Text, View, BackHandler} from "react-native";
-import React, {useEffect, useState} from "react";
+import { Alert, StyleSheet, Text, View, BackHandler } from "react-native";
+import React, { useEffect, useState } from "react";
 import LottieView from "lottie-react-native";
-import {wp, hp} from "../../../helpers/common";
+import { wp, hp } from "../../../helpers/common";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import {theme} from "../../../constants/theme";
-import {english_AI_PROMPT, turkish_AI_PROMPT} from "../../../constants/index";
-import {chatSession} from "../../../services/geminiAiModalService";
-import {useRouter} from "expo-router";
-import {createOrUpdateTrip} from "../../../services/tripService";
-import {useTranslation} from "react-i18next";
+import { theme } from "../../../constants/theme";
+import { english_AI_PROMPT, turkish_AI_PROMPT } from "../../../constants/index";
+import { chatSession } from "../../../services/geminiAiModalService";
+import { useRouter } from "expo-router";
+import { createOrUpdateTrip } from "../../../services/tripService";
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
-import { setAuth, clearAuth } from "../../../contexts/redux/slices/authSlice"
+import { clearTripData } from "../../../contexts/redux/slices/tripSlice";
+import CustomAlert from "../../../components/CustomAlert";
 
 const loading = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const tripData = useSelector((state) => state.trip.tripData);
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({ buttons: [] });
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({ buttons: [] });
+  };
+
   useEffect(() => {
     const backAction = () => {
-      Alert.alert(t("loading.backAlertTitle"), t("loading.backAlertContent"), [
-        { text: t("loading.backAlertButton"), onPress: () => {} },
-      ]);
+      showAlert({
+        type: "error",
+        title: t("loading.backAlertTitle"),
+        content: t("loading.backAlertContent"),
+        buttons: [
+          {
+            text: t("loading.backAlertButton"),
+            onPress: () => {
+              closeAlert();
+            },
+          },
+        ],
+      });
       return true;
     };
 
@@ -37,13 +61,13 @@ const loading = () => {
     tripData && generateAiTrip();
 
     return () => backHandler.remove();
-
   }, []);
 
   const generateAiTrip = async () => {
     setLoading(true);
 
-    const currentPrompt = i18n.language === "tr" ? turkish_AI_PROMPT : english_AI_PROMPT;
+    const currentPrompt =
+      i18n.language === "tr" ? turkish_AI_PROMPT : english_AI_PROMPT;
 
     const FINAL_PROMPT = currentPrompt
       .replace("{location}", tripData?.locationInfo?.name)
@@ -51,7 +75,7 @@ const loading = () => {
       .replace("{totalNights}", tripData?.dateInfo?.totalNoOfDays - 1)
       .replace("{traveller}", tripData?.companionInfo?.title)
       .replace("{budget}", tripData?.budgetInfo?.title)
-      .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays)
+      .replace("{totalDays}", tripData?.dateInfo?.totalNoOfDays);
 
     const result = await chatSession.sendMessage(FINAL_PROMPT);
 
@@ -68,12 +92,21 @@ const loading = () => {
 
     const res = await createOrUpdateTrip(data);
     setLoading(false);
-    if (res.success) {
-      dispatch(clearTripData());
-      router.replace("/(main)/home");
-    } else {
-      Alert.alert(t("loading.responseAlertTitle"), res.msg, [{text: t("loading.responseAlertButton"), style: "cancel", onPress: () => router.replace("/(main)/(home)")}]);
+    if (!res.success) {
+      showAlert({
+        type: "error",
+        title: t("loading.responseAlertTitle"),
+        content: res.msg,
+        buttons: [
+          {
+            text: t("loading.responseAlertButton"),
+            onPress: () => closeAlert(),
+          },
+        ],
+      });
     }
+    dispatch(clearTripData());
+    router.replace("/(main)/home");
   };
 
   return (
@@ -93,11 +126,18 @@ const loading = () => {
             />
           </View>
           <Text style={styles.text}>{t("loading.text1")}</Text>
-          <Text style={[styles.text, {fontWeight: theme.fonts.bold}]}>
+          <Text style={[styles.text, { fontWeight: theme.fonts.bold }]}>
             {t("loading.text2")}
           </Text>
         </View>
       )}
+      <CustomAlert
+        visible={isAlertVisible}
+        onClose={closeAlert}
+        title={alertData?.title}
+        message={alertData?.content}
+        buttons={alertData?.buttons}
+      />
     </ScreenWrapper>
   );
 };

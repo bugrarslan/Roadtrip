@@ -13,7 +13,8 @@ import Button from "../../../components/Button";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
+import { setTripData } from "../../../contexts/redux/slices/tripSlice"
+import CustomAlert from "../../../components/CustomAlert";
 
 const dateSelectModal = () => {
   const { t } = useTranslation();
@@ -23,6 +24,20 @@ const dateSelectModal = () => {
   const ios = Platform.OS === "ios";
   const tripData = useSelector((state) => state.trip.tripData);
   const dispatch = useDispatch();
+
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({buttons:[]});
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({buttons:[]});
+  };
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -38,9 +53,17 @@ const dateSelectModal = () => {
 
   const onDateSelectionApply = () => {
     if (!startDate || !endDate) {
-      Alert.alert(t("dateSelectModal.errorTitle"), t("dateSelectModal.errorContent"), [
-        { text: t("dateSelectModal.errorButton") },
-      ]);
+      showAlert({
+        type: "error",
+        title: t("dateSelectModal.errorTitle"),
+        content: t("dateSelectModal.errorContent"),
+        buttons: [
+          {
+            text: t("dateSelectModal.errorButton"),
+            onPress: () => closeAlert(),
+          },
+        ],
+      });
       return;
     }
     const totalNoOfDays = endDate.diff(startDate, "days") + 1;
@@ -81,6 +104,13 @@ const dateSelectModal = () => {
           <Button title={t("dateSelectModal.applyButton")} onPress={onDateSelectionApply} />
         </View>
       </View>
+      <CustomAlert
+        visible={isAlertVisible}
+        onClose={closeAlert}
+        title={alertData?.title}
+        message={alertData?.content}
+        buttons={alertData?.buttons}
+      />
     </View>
   );
 };

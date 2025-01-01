@@ -35,8 +35,6 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
 
         if (['discover'].includes(route.name)) return null;
 
-        console.log(route.name);
-
         const isFocused = state.index === index;
 
         const onPress = () => {
