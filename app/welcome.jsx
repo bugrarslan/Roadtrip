@@ -24,7 +24,7 @@ const Page = () => {
           loop
         />
         <View style={{ gap: 20 }}>
-          <Text style={styles.title}>RoadTrip</Text>
+          <Text style={styles.title}>Tripvice</Text>
           <Text style={styles.punchline}>
             {t("welcome.welcomeText")}
           </Text>

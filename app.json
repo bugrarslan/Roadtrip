@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RoadTrip",
-    "slug": "RoadTrip",
+    "name": "Tripvice",
+    "slug": "Tripvice",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bugrarslan.RoadTrip",
+      "bundleIdentifier": "com.bugrarslan.Tripvice",
       "icon": {
         "light": "./assets/images/ios/ios-light.png",
         "dark": "./assets/images/ios/ios-dark.png"
@@ -24,7 +24,7 @@
         "backgroundImage": "./assets/images/android/android-background.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bugrarslan.RoadTrip"
+      "package": "com.bugrarslan.Tripvice"
     },
     "web": {
       "bundler": "metro",
@@ -71,8 +71,8 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ],
-      "expo-localization",
-      "react-native-google-mobile-ads"
+      "expo-localization"
+      // "react-native-google-mobile-ads"
     ],
     "experiments": {
       "typedRoutes": true

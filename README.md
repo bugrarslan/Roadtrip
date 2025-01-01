@@ -1,6 +1,6 @@
-# 🌍 RoadTrip - Your AI-Powered Travel Companion 🚗✨
+# 🌍 Tripvice - Your AI-Powered Travel Companion 🚗✨
 
-RoadTrip is an AI-powered travel planning application. It creates personalized travel plans for users, including hotels, flights, and places to visit. With smart algorithms, planning unforgettable travel experiences has never been easier!
+Tripvice is an AI-powered travel planning application. It creates personalized travel plans for users, including hotels, flights, and places to visit. With smart algorithms, planning unforgettable travel experiences has never been easier!
 
 ## 📱 Features
 
@@ -26,7 +26,7 @@ RoadTrip is an AI-powered travel planning application. It creates personalized t
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/bugrarslan/Roadtrip.git
+   git clone https://github.com/bugrarslan/Tripvice.git
    ```
 
 2. Navigate to the project directory:
@@ -111,10 +111,11 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-We welcome your contributions! Please open an [issue](https://github.com/bugrarslan/Roadtrip/issues) or submit a **pull request**.
+We welcome your contributions! Please open an [issue](https://github.com/bugrarslan/Tripvice/issues) or submit a **pull request**.
 
 ---
 
 ## 📧 Contact
 
 For inquiries about the project, please reach out to [bugrarsln7@gmail.com](mailto:bugrarsln7@gmail.com).
+
