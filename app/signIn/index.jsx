@@ -3,14 +3,13 @@ import {
   Text,
   View,
   Pressable,
-  Alert,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   Keyboard,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "expo-router";
 import { hp, wp } from "../../helpers/common";
 import ScreenWrapper from "../../components/ScreenWrapper";
@@ -23,6 +22,7 @@ import Button from "../../components/Button";
 import { supabase } from "../../lib/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
+import CustomAlert from "../../components/CustomAlert";
 
 const signIn = () => {
   const router = useRouter();
@@ -33,9 +33,28 @@ const signIn = () => {
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState(null);
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData(null);
+  };
+
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
-      return Alert.alert(t("signIn.signInText"), t("signIn.fillAllFields"));
+      showAlert({
+        type: "fillAllFields",
+        title: t("signIn.signInText"),
+        content: t("signIn.fillAllFields"),
+      });
+      return;
     }
 
     let email = emailRef.current.trim();
@@ -51,7 +70,12 @@ const signIn = () => {
     setLoading(false);
 
     if (error) {
-      returnAlert.alert(t("signIn.signInText"), error.message);
+      showAlert({
+        type: "error",
+        title: t("signIn.signInText"),
+        content: error.message,
+      });
+      return;
     }
   };
 
@@ -138,6 +162,20 @@ const signIn = () => {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+
+        {/* custom alert */}
+        <CustomAlert
+          visible={isAlertVisible}
+          onClose={closeAlert}
+          title={alertData?.title}
+          message={alertData?.content}
+          buttons={[
+            {
+              text: "OK",
+              onPress: () => closeAlert(),
+            },
+          ]}
+        />
       </ScreenWrapper>
     </TouchableWithoutFeedback>
   );

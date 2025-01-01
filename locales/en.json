@@ -6,7 +6,7 @@
     "welcomeFooterButtonText": "Sign In"
   },
   "signUp": {
-    "signUpText": "Sign Up",
+    "signUpText": "Warning",
     "fillAllFields": "Please fill all the blanks!",
     "passwordsNotMatch": "Passwords doesn't match, try again.",
     "errorOccurred": "An error occured, please try again.",
@@ -22,7 +22,7 @@
     "signUpFooterButtonText": "Sign In"
   },
   "signIn": {
-    "signInText": "Sign In",
+    "signInText": "Warning",
     "fillAllFields": "Please fill all the blanks!",
     "errorOccurred": "An error occured, please try again.",
     "welcomeText1": "Hey",
@@ -36,7 +36,7 @@
     "signInFooterButtonText": "Sign Up"
   },
   "home": {
-    "AlertTitle": "Home",
+    "AlertTitle": "Warning",
     "title": "Trips",
     "createTrip": "Create",
     "noMoreTrips": "No more trips"
@@ -46,13 +46,13 @@
   },
   "profile": {
     "header": "Profile",
-    "alertTitle": "Alert",
+    "alertTitle": "Warning",
     "alertContent": "Are you sure you want to sign out?",
     "alertButton": "Sign Out",
     "alertCancelButton": "Cancel"
   },
   "editProfile": {
-    "error": "Error",
+    "error": "Warning",
     "errorContent": "Please fill all the details",
     "formText": "Please fill the details to update your profile",
     "nameInput": "Enter your name",
@@ -62,7 +62,7 @@
     "updateButton": "Update"
   },
   "createTrip": {
-    "alertTitle": "Create Trip",
+    "alertTitle": "Warning",
     "alertContent": "Please fill all the details",
     "alertButton": "OK",
     "headerTitle": "Let's create your trip",
@@ -81,7 +81,7 @@
   },
   "dateSelectModal": {
     "headerTitle": "Select Dates",
-    "errorTitle": "Error",
+    "errorTitle": "Warning",
     "errorContent": "Please select start and end dates.",
     "errorButton": "OK",
     "applyButton": "Apply"
@@ -90,10 +90,10 @@
     "headerTitle": "Select Budget"
   },
   "loading": {
-    "backAlertTitle": "Warning?",
+    "backAlertTitle": "Warning",
     "backAlertContent": "You can not go back while loading.",
     "backAlertButton": "OK",
-    "responseAlertTitle": "Error",
+    "responseAlertTitle": "Warning",
     "responseAlertButton": "OK",
     "text1": "Fasten your seat belts!",
     "text2": "We are preparing your trip..."

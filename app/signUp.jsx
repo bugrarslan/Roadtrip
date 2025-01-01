@@ -10,8 +10,8 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigation, useRouter } from "expo-router";
+import React, { useRef, useState } from "react";
+import { useRouter } from "expo-router";
 import { hp, wp } from "../helpers/common";
 import ScreenWrapper from "../components/ScreenWrapper";
 import { StatusBar } from "expo-status-bar";
@@ -23,9 +23,9 @@ import Button from "../components/Button";
 import { supabase } from "../lib/supabase";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
+import CustomAlert from "../components/CustomAlert";
 
 const signUp = () => {
-  const navigation = useNavigation();
   const router = useRouter();
   const { t } = useTranslation();
   const emailRef = useRef("");
@@ -35,13 +35,37 @@ const signUp = () => {
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState(null);
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData(null);
+  };
+
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current || !nameRef.current) {
-      return Alert.alert(t("signUp.signUpText"), t("signUp.fillAllFields"));
+      showAlert({
+        type: "fillAllFields",
+        title: t("signUp.signUpText"),
+        content: t("signUp.fillAllFields"),
+      });
+      return;
     }
 
     if (passwordRef.current !== passwordConfirmRef.current) {
-      return Alert.alert(t("signUp.signUpText"), t("signUp.passwordsNotMatch"));
+      showAlert({
+        type: "passwordsNotMatch",
+        title: t("signUp.signUpText"),
+        content: t("signUp.passwordsNotMatch"),
+      });
+      return;
     }
 
     let name = nameRef.current.trim();
@@ -67,7 +91,12 @@ const signUp = () => {
     setLoading(false);
 
     if (error) {
-      return Alert.alert(t("signUp.signUpText"), error.message);
+      showAlert({
+        type: "error",
+        title: t("signUp.signUpText"),
+        content: error.message,
+      });
+      return;
     }
   };
 
@@ -161,6 +190,20 @@ const signUp = () => {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
+
+        {/* custom alert */}
+        <CustomAlert
+          visible={isAlertVisible}
+          onClose={closeAlert}
+          title={alertData?.title}
+          message={alertData?.content}
+          buttons={[
+            {
+              text: "OK",
+              onPress: () => closeAlert(),
+            },
+          ]}
+        />
       </ScreenWrapper>
     </TouchableWithoutFeedback>
   );

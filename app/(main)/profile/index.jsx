@@ -1,65 +1,100 @@
-import {Alert, Pressable, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import React from "react";
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState } from "react";
 import ScreenWrapper from "../../../components/ScreenWrapper";
-import Button from "../../../components/Button";
-import {supabase} from "../../../lib/supabase";
-import {StatusBar} from "expo-status-bar";
-import {wp, hp} from "../../../helpers/common";
-import {useTranslation} from "react-i18next";
+import { supabase } from "../../../lib/supabase";
+import { StatusBar } from "expo-status-bar";
+import { wp, hp } from "../../../helpers/common";
+import { useTranslation } from "react-i18next";
 import Header from "../../../components/Header";
 import Icon from "../../../assets/icons";
-import {theme} from "../../../constants/theme";
-import {setAuth, clearAuth} from "../../../contexts/redux/slices/authSlice";
-import {useSelector} from "react-redux";
-import {useRouter} from "expo-router";
+import { theme } from "../../../constants/theme";
+import { useSelector } from "react-redux";
+import { useRouter } from "expo-router";
 import Avatar from "../../../components/Avatar";
+import CustomAlert from "../../../components/CustomAlert";
 
 const index = () => {
-  const {t} = useTranslation();
-  const user = useSelector((state) => state.auth.user)
+  const { t } = useTranslation();
+  const user = useSelector((state) => state.auth.user);
   const router = useRouter();
 
+  // custom alert
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [alertData, setAlertData] = useState({buttons:[]});
+
+  const showAlert = (data) => {
+    setAlertVisible(true);
+    setAlertData(data);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+    setAlertData({buttons:[]});
+  };
+
   const handleLogout = () => {
-    Alert.alert(t("profile.alertTitle"), t("profile.alertContent"), [
-      {
-        text: t("profile.alertCancelButton"),
-        onPress: () => console.log("cancelled"),
-        style: "cancel",
-      },
-      {
-        text: t("profile.alertButton"),
-        onPress: () => signOut(),
-        style: "destructive",
-      },
-    ]);
+    showAlert({
+      type: "logout",
+      title: t("profile.alertTitle"),
+      content: t("profile.alertContent"),
+      buttons: [
+        {
+          text: t("profile.alertCancelButton"),
+          onPress: () => closeAlert(),
+        },
+        {
+          text: t("profile.alertButton"),
+          onPress: () => signOut(),
+        },
+      ],
+    });
   };
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
 
     if (error) {
-      Alert.alert("Sign Out", "An error occurred while signing out");
+      showAlert({
+        type: "error",
+        title: t("profile.alertTitle"),
+        content: error.message,
+        buttons: [
+          {
+            text: "OK",
+            onPress: () => closeAlert(),
+          },
+        ],
+      });
       return;
     }
   };
 
   return (
     <ScreenWrapper backgroundColor={"white"}>
-      <View style={{
-        flex: 1,
-        backgroundColor: "white",
-        paddingHorizontal: wp(4),
-      }}>
-        <StatusBar style="dark"/>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          paddingHorizontal: wp(4),
+        }}
+      >
+        <StatusBar style="dark" />
         <View>
-          <Header mb={30} title={t("profile.header") }/>
+          <Header mb={30} title={t("profile.header")} />
           <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-            <Icon name={"logout"} color={theme.colors.rose}/>
+            <Icon name={"logout"} color={theme.colors.rose} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.container}>
-          <View style={{gap: 15}}>
+          <View style={{ gap: 15 }}>
             <View style={styles.avatarContainer}>
               <Avatar
                 size={hp(12)}
@@ -70,12 +105,12 @@ const index = () => {
                 style={styles.editIcon}
                 onPress={() => router.push("/(main)/profile/editProfile")}
               >
-                <Icon name="edit" size={20} strokeWidth={2.5}/>
+                <Icon name="edit" size={20} strokeWidth={2.5} />
               </Pressable>
             </View>
 
             {/* username and address */}
-            <View style={{alignItems: "center", gap: 4}}>
+            <View style={{ alignItems: "center", gap: 4 }}>
               <Text style={styles.userName}>{user && user.name}</Text>
               <Text style={styles.infoText}>
                 {/* {user && user.address} */}
@@ -84,16 +119,18 @@ const index = () => {
             </View>
 
             {/* email and bio */}
-            <View style={{gap: 10}}>
+            <View style={{ gap: 10 }}>
               <View style={styles.info}>
-                <Icon name="mail" size={20} color={theme.colors.textLight}/>
+                <Icon name="mail" size={20} color={theme.colors.textLight} />
                 <Text style={styles.infoText}>{user && user.email}</Text>
               </View>
 
               {user && user.phoneNumber && (
                 <View style={styles.info}>
-                  <Icon name="call" size={20} color={theme.colors.textLight}/>
-                  <Text style={styles.infoText}>{user && user.phoneNumber}</Text>
+                  <Icon name="call" size={20} color={theme.colors.textLight} />
+                  <Text style={styles.infoText}>
+                    {user && user.phoneNumber}
+                  </Text>
                 </View>
               )}
 
@@ -105,6 +142,15 @@ const index = () => {
             </View>
           </View>
         </View>
+
+        {/* custom alert */}
+        <CustomAlert
+          visible={isAlertVisible}
+          onClose={closeAlert}
+          title={alertData?.title}
+          message={alertData?.content}
+          buttons={alertData?.buttons}
+        />
       </View>
     </ScreenWrapper>
   );
@@ -172,5 +218,61 @@ const styles = StyleSheet.create({
     fontSize: hp(2),
     color: theme.colors.text,
     textAlign: "center",
+  },
+
+  // custom alert
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  alertContainer: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 15,
+    width: "80%",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 10,
+  },
+  message: {
+    fontSize: 14,
+    color: "#555",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: "100%",
+  },
+  buttonDark: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginHorizontal: 5,
+  },
+  buttonLight: {
+    backgroundColor: "white",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    marginHorizontal: 5,
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+  },
+  buttonTextDark: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  buttonTextLight: {
+    color: theme.colors.primary,
+    fontWeight: "bold",
   },
 });
