@@ -45,7 +45,7 @@ const PlannedTripCard = ({place, t}) => {
                     justifyContent: "space-between",
                     overflow: "scroll"
                 }}>
-                    <View>
+                    <View style={{width: "90%"}}>
                         <Text style={{fontWeight: theme.fonts.medium, fontSize: 17, marginTop: 5}}>
                             🎟️ {t("plannedTripCard.price")}: <Text
                                 style={{fontWeight: theme.fonts.bold}}>{place?.Ticket_pricing} {t("plannedTripCard.currency")}</Text></Text>
@@ -56,7 +56,8 @@ const PlannedTripCard = ({place, t}) => {
                     <TouchableOpacity style={{
                         backgroundColor: "black",
                         padding: 8,
-                        borderRadius: 7
+                        borderRadius: 7,
+                        alignSelf: "flex-end"
                     }}><Ionicons name={"navigate"} size={20} color={"white"}/></TouchableOpacity>
                 </View>
             </View>

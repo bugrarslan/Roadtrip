@@ -39,11 +39,11 @@ const loading = () => {
     const backAction = () => {
       showAlert({
         type: "error",
-        title: t("loading.backAlertTitle"),
-        content: t("loading.backAlertContent"),
+        title: t("alert.warning"),
+        content: t("alert.goBack"),
         buttons: [
           {
-            text: t("loading.backAlertButton"),
+            text: t("alert.ok"),
             onPress: () => {
               closeAlert();
             },
@@ -95,11 +95,11 @@ const loading = () => {
     if (!res.success) {
       showAlert({
         type: "error",
-        title: t("loading.responseAlertTitle"),
+        title: t("alert.error"),
         content: res.msg,
         buttons: [
           {
-            text: t("loading.responseAlertButton"),
+            text: t("alert.ok"),
             onPress: () => closeAlert(),
           },
         ],

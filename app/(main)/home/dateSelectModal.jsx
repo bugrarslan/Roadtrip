@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Platform, Alert } from "react-native";
 import React, { useState } from "react";
-import BackButton from "../../../components/BackButton";
 import { useRouter } from "expo-router";
-import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
@@ -55,11 +53,11 @@ const dateSelectModal = () => {
     if (!startDate || !endDate) {
       showAlert({
         type: "error",
-        title: t("dateSelectModal.errorTitle"),
-        content: t("dateSelectModal.errorContent"),
+        title: t("alert.warning"),
+        content: t("alert.selectDates"),
         buttons: [
           {
-            text: t("dateSelectModal.errorButton"),
+            text: t("alert.ok"),
             onPress: () => closeAlert(),
           },
         ],

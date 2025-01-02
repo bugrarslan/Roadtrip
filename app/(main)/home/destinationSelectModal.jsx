@@ -9,7 +9,7 @@ import {GooglePlacesAutocomplete} from "react-native-google-places-autocomplete"
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
 import {useSelector, useDispatch} from "react-redux";
-import {setTripData, clearTripData} from "../../../contexts/redux/slices/tripSlice"
+import {setTripData} from "../../../contexts/redux/slices/tripSlice"
 import { googlePlacesApiKey } from "../../../constants";
 
 const destinationSelectModal = () => {

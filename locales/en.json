@@ -1,4 +1,18 @@
 {
+  "alert": {
+    "warning": "Warning",
+    "error": "Error",
+    "fillAllFields": "Please fill all the blanks!",
+    "fillAllDetails": "Please fill all the details",
+    "errorOccurred": "An error occured, please try again later.",
+    "passwordsNotMatch": "Passwords doesn't match, try again.",
+    "selectDates": "Please select start and end dates.",
+    "goBack": "You can not go back while loading.",
+    "signOutAlert": "Are you sure you want to sign out?",
+    "signOutButton": "Sign Out",
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
   "welcome": {
     "welcomeText": "Discover your next adventure effortlessly. Personalized itineraries at your fingertips. Travel smarter with AI-driven insights.",
     "welcomeButtonText": "Getting Started!",
@@ -6,10 +20,6 @@
     "welcomeFooterButtonText": "Sign In"
   },
   "signUp": {
-    "signUpText": "Warning",
-    "fillAllFields": "Please fill all the blanks!",
-    "passwordsNotMatch": "Passwords doesn't match, try again.",
-    "errorOccurred": "An error occured, please try again.",
     "welcomeText1": "Let's",
     "welcomeText2": "Get Started",
     "formText": "Please fill the details to create an account",
@@ -22,9 +32,6 @@
     "signUpFooterButtonText": "Sign In"
   },
   "signIn": {
-    "signInText": "Warning",
-    "fillAllFields": "Please fill all the blanks!",
-    "errorOccurred": "An error occured, please try again.",
     "welcomeText1": "Hey",
     "welcomeText2": "Welcome Back",
     "formText": "Please login to continue",
@@ -36,7 +43,6 @@
     "signInFooterButtonText": "Sign Up"
   },
   "home": {
-    "AlertTitle": "Warning",
     "title": "Trips",
     "createTrip": "Create",
     "noMoreTrips": "No more trips"
@@ -45,15 +51,9 @@
     "signOut": "Sign Out"
   },
   "profile": {
-    "header": "Profile",
-    "alertTitle": "Warning",
-    "alertContent": "Are you sure you want to sign out?",
-    "alertButton": "Sign Out",
-    "alertCancelButton": "Cancel"
+    "header": "Profile"
   },
   "editProfile": {
-    "error": "Warning",
-    "errorContent": "Please fill all the details",
     "formText": "Please fill the details to update your profile",
     "nameInput": "Enter your name",
     "phoneInput": "Enter your phone number",
@@ -62,9 +62,6 @@
     "updateButton": "Update"
   },
   "createTrip": {
-    "alertTitle": "Warning",
-    "alertContent": "Please fill all the details",
-    "alertButton": "OK",
     "headerTitle": "Let's create your trip",
     "destination": "Destination",
     "companion": "Companion",
@@ -81,20 +78,12 @@
   },
   "dateSelectModal": {
     "headerTitle": "Select Dates",
-    "errorTitle": "Warning",
-    "errorContent": "Please select start and end dates.",
-    "errorButton": "OK",
     "applyButton": "Apply"
   },
   "budgetSelectModal": {
     "headerTitle": "Select Budget"
   },
   "loading": {
-    "backAlertTitle": "Warning",
-    "backAlertContent": "You can not go back while loading.",
-    "backAlertButton": "OK",
-    "responseAlertTitle": "Warning",
-    "responseAlertButton": "OK",
     "text1": "Fasten your seat belts!",
     "text2": "We are preparing your trip..."
   },

@@ -31,7 +31,7 @@ Tripvice is an AI-powered travel planning application. It creates personalized t
 
 2. Navigate to the project directory:
    ```bash
-   cd RoadTrip
+   cd Tripvice
    ```
 
 3. Install dependencies:
@@ -54,10 +54,10 @@ Tripvice is an AI-powered travel planning application. It creates personalized t
 ## 📂 Project Structure
 
 ```
-RoadTrip/
+Tripvice/
 ├── app/
 │   ├── (main)/
-│   │   ├── (home)/
+│   │   ├── home/
 │   │   │   ├── _layout.jsx
 │   │   │   ├── budgetSelectModal.jsx
 │   │   │   ├── companionSelectModal.jsx
@@ -67,7 +67,7 @@ RoadTrip/
 │   │   │   ├── index.jsx
 │   │   │   ├── loading.jsx
 │   │   │   ├── tripDetails.jsx
-│   │   ├── (profile)/
+│   │   ├── profile/
 │   │   │   ├── _layout.jsx
 │   │   │   ├── index.jsx
 │   │   │   ├── editProfile.jsx

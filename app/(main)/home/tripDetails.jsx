@@ -33,7 +33,7 @@ const tripDetails = () => {
 
   // custom alert
   const [isAlertVisible, setAlertVisible] = useState(false);
-  const [alertData, setAlertData] = useState({});
+  const [alertData, setAlertData] = useState({buttons: []});
 
   const showAlert = (data) => {
     setAlertVisible(true);
@@ -42,7 +42,7 @@ const tripDetails = () => {
 
   const closeAlert = () => {
     setAlertVisible(false);
-    setAlertData({});
+    setAlertData({buttons: []});
   };
 
   useEffect(() => {
@@ -56,8 +56,14 @@ const tripDetails = () => {
     } else {
       showAlert({
         type: "error",
-        title: "Error",
-        content: "Could not fetch trip details",
+        title: t("alert.error"),
+        content: t("alert.errorOccurred"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -70,8 +76,14 @@ const tripDetails = () => {
     else {
       showAlert({
         type: "error",
-        title: "Trip",
-        content: res.msg,
+        title: t("alert.error"),
+        content: t("alert.errorOccurred"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -163,12 +175,7 @@ const tripDetails = () => {
         onClose={closeAlert}
         title={alertData?.title}
         message={alertData?.content}
-        buttons={[
-          {
-            text: t("home.alertButton"),
-            onPress: () => closeAlert(),
-          },
-        ]}
+        buttons={alertData?.buttons}
       />
     </ScrollView>
   );

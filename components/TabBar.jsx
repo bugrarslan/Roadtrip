@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { usePathname } from "expo-router";
 import { theme } from "../constants/theme";
 import TabBarButton from "./TabBarButton";
-import {hp, wp} from "../helpers/common";
+import { hp, wp } from "../helpers/common";
 
-const TabBar = ({ state, descriptors, navigation, t}) => {
+const TabBar = ({ state, descriptors, navigation, t }) => {
   const pathname = usePathname();
 
   const hiddenRoutes = [
@@ -33,7 +33,7 @@ const TabBar = ({ state, descriptors, navigation, t}) => {
             ? options.title
             : route.name;
 
-        if (['discover'].includes(route.name)) return null;
+        if (["discover"].includes(route.name)) return null;
 
         const isFocused = state.index === index;
 

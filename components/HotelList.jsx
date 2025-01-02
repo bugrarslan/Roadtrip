@@ -1,8 +1,6 @@
 import {FlatList, StyleSheet, Text, View} from "react-native";
-import React, {useEffect} from "react";
-import {Image} from "expo-image";
+import React from "react";
 import {theme} from "../constants/theme";
-import {getPhotoRef} from "../services/imageService";
 import HotelCard from "./HotelCard";
 import {wp} from "../helpers/common";
 

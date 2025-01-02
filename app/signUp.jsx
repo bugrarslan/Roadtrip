@@ -3,7 +3,6 @@ import {
   Text,
   View,
   Pressable,
-  Alert,
   Keyboard,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
@@ -37,7 +36,7 @@ const signUp = () => {
 
   // custom alert
   const [isAlertVisible, setAlertVisible] = useState(false);
-  const [alertData, setAlertData] = useState(null);
+  const [alertData, setAlertData] = useState({buttons: []});
 
   const showAlert = (data) => {
     setAlertVisible(true);
@@ -46,15 +45,21 @@ const signUp = () => {
 
   const closeAlert = () => {
     setAlertVisible(false);
-    setAlertData(null);
+    setAlertData({buttons: []});
   };
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current || !nameRef.current) {
       showAlert({
         type: "fillAllFields",
-        title: t("signUp.signUpText"),
-        content: t("signUp.fillAllFields"),
+        title: t("alert.warning"),
+        content: t("alert.fillAllFields"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -62,8 +67,14 @@ const signUp = () => {
     if (passwordRef.current !== passwordConfirmRef.current) {
       showAlert({
         type: "passwordsNotMatch",
-        title: t("signUp.signUpText"),
-        content: t("signUp.passwordsNotMatch"),
+        title: t("alert.warning"),
+        content: t("alert.passwordsNotMatch"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -93,8 +104,14 @@ const signUp = () => {
     if (error) {
       showAlert({
         type: "error",
-        title: t("signUp.signUpText"),
-        content: error.message,
+        title: t("alert.error"),
+        content: t("alert.errorOccurred"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -197,12 +214,7 @@ const signUp = () => {
           onClose={closeAlert}
           title={alertData?.title}
           message={alertData?.content}
-          buttons={[
-            {
-              text: "OK",
-              onPress: () => closeAlert(),
-            },
-          ]}
+          buttons={alertData?.buttons}
         />
       </ScreenWrapper>
     </TouchableWithoutFeedback>

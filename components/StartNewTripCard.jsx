@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import React, {useEffect} from "react";
+import React from "react";
 import {hp} from "../helpers/common";
 import Button from "./Button";
 import {theme} from "../constants/theme";

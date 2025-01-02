@@ -1,4 +1,19 @@
 {
+  "alert": {
+    "warning": "Uyarı",
+    "error": "Hata",
+    "fillAllFields": "Lütfen tüm boşlukları doldurun!",
+    "fillAllDetails": "Lütfen tüm detayları doldurun",
+    "invalidLoginCredentials": "Geçersiz e-posta adresi veya şifre, lütfen tekrar deneyin.",
+    "errorOccurred": "Bir hata oluştu, lütfen daha sonra tekrar deneyin.",
+    "passwordsNotMatch": "Şifreler eşleşmiyor, tekrar deneyin.",
+    "selectDates": "Lütfen başlangıç ve bitiş tarihlerini seçin.",
+    "goBack": "Yükleme sırasında geri gidemezsiniz.",
+    "signOutAlert": "Oturumu kapatmak istediğinize emin misiniz?",
+    "signOutButton": "Oturumu Kapat",
+    "ok": "Tamam",
+    "cancel": "İptal"
+  },
   "welcome": {
     "welcomeText": "Bir sonraki maceranızı zahmetsizce keşfedin. Kişiselleştirilmiş güzergahlar parmaklarınızın ucunda. AI destekli içgörülerle daha akıllıca seyahat edin.",
     "welcomeButtonText": "Hadi Başlayalım!",
@@ -6,11 +21,6 @@
     "welcomeFooterButtonText": "Giriş Yap"
   },
   "signUp": {
-    "signUpText": "Uyarı",
-    "fillAllFields": "Lütfen tüm eksik bilgileri doldurun!",
-    "fillAllFieldsButton": "Tamam",
-    "passwordsNotMatch": "Şifreler eşleşmiyor, tekrar deneyin.",
-    "errorOccurred": "Bir hata oluştu, lütfen tekrar deneyin.",
     "welcomeText1": "Hadi",
     "welcomeText2": "Başlayalım",
     "formText": "Bir hesap oluşturmak için lütfen bilgileri doldurun",
@@ -23,39 +33,29 @@
     "signUpFooterButtonText": "Giriş Yap"
   },
   "signIn": {
-    "signInText": "Giriş Yap",
-    "fillAllFields": "Lütfen tüm eksik bilgileri doldurun!",
-    "errorOccurred": "Bir hata oluştu, lütfen tekrar deneyin.",
     "welcomeText1": "Merhaba",
     "welcomeText2": "Hoşgeldiniz",
-    "formText": "Devam edebilmek için giriş yapın",
+    "formText": "Devam etmek için lütfen giriş yapın",
     "emailInput": "E-posta adresinizi girin",
     "passwordInput": "Şifrenizi girin",
-    "forgotPasswordText": "Şifremi unuttum?",
+    "forgotPasswordText": "Şifrenizi mi unuttunuz?",
     "signInButtonText": "Giriş Yap",
-    "signInFooterText": "Bir hesabınız yok mu?",
+    "signInFooterText": "Hesabınız yok mu?",
     "signInFooterButtonText": "Kayıt Ol"
   },
   "home": {
-    "AlertTitle": "Ana Sayfa",
     "title": "Seyahatler",
     "createTrip": "Oluştur",
-    "noMoreTrips": "Başka seyahat yok"
+    "noMoreTrips": "Daha fazla seyahat yok"
   },
   "discover": {
     "signOut": "Çıkış Yap"
   },
   "profile": {
-    "header": "Profil",
-    "alertTitle": "Uyarı",
-    "alertContent": "Çıkış yapmak istediğinizden emin misiniz?",
-    "alertButton": "Çıkış Yap",
-    "alertCancelButton": "İptal"
+    "header": "Profil"
   },
   "editProfile": {
-    "error": "Hata",
-    "errorContent": "Lütfe tüm bilgileri doldurun",
-    "formText": "Lütfen profilinizi güncellemek için bilgileri doldurun",
+    "formText": "Profilinizi güncellemek için lütfen bilgileri doldurun",
     "nameInput": "Adınızı girin",
     "phoneInput": "Telefon numaranızı girin",
     "addressInput": "Adresinizi girin",
@@ -63,51 +63,40 @@
     "updateButton": "Güncelle"
   },
   "createTrip": {
-    "alertTitle": "Seyahat Oluştur",
-    "alertContent": "Lütfen tüm detayları doldurun",
-    "alertButton": "Tamam",
-    "headerTitle": "Seyahatinizi oluşturalım",
-    "destination": "Varış Yeri",
+    "headerTitle": "Hadi seyahatinizi oluşturalım",
+    "destination": "Varış Noktası",
     "companion": "Yol Arkadaşı",
     "days": "Günler",
     "budget": "Bütçe",
     "createButton": "Oluştur!"
   },
   "destinationSelectModal": {
-    "headerTitle": "Varış Yeri Seç",
+    "headerTitle": "Varış Noktasını Seçin",
     "placeholder": "Ara"
   },
   "companionSelectModal": {
-    "headerTitle": "Yol Arkadaşı Seç"
+    "headerTitle": "Kiminle seyahat edeceksiniz?"
   },
   "dateSelectModal": {
-    "headerTitle": "Tarihler Seç",
-    "errorTitle": "Hata",
-    "errorContent": "Lütfen başlangıç ve bitiş tarihlerini seçin.",
-    "errorButton": "Tamam",
+    "headerTitle": "Tarihler Seçin",
     "applyButton": "Uygula"
   },
   "budgetSelectModal": {
-    "headerTitle": "Bütçe Seç"
+    "headerTitle": "Bütçeyi Seçin"
   },
   "loading": {
-    "backAlertTitle": "Uyarı?",
-    "backAlertContent": "Yükleniyor iken geri gidemezsiniz.",
-    "backAlertButton": "Tamam",
-    "responseAlertTitle": "Hata",
-    "responseAlertButton": "Tamam",
     "text1": "Kemerlerinizi bağlayın!",
     "text2": "Seyahatinizi hazırlıyoruz..."
   },
   "selectTravellerList": {
     "1": {
       "title": "Sadece Ben",
-      "description": "Kendi başınıza bir maceraya atılın",
+      "description": "Tek başına bir maceraya atıl",
       "people": "1 kişi"
     },
     "2": {
       "title": "Çift",
-      "description": "Partnerinizle yolculuğun tadını çıkarın",
+      "description": "Yolculuğu partnerinizle paylaşın",
       "people": "2 kişi"
     },
     "3": {
@@ -148,9 +137,8 @@
     "notFound": "Seyahat bulunamadı!"
   },
   "flightInfoCard": {
-    "flightTitle": "Uçak Bileti",
     "flight": "Uçuş",
-    "bookButton": "Bilet al",
+    "bookButton": "Bilet Al",
     "price": "Fiyat",
     "currency": "₺"
   },
@@ -162,9 +150,9 @@
   },
   "plannedTriplist": {
     "title": "Plan Detayları",
-    "noMoreTrips": "Planlanmış başka seyahat yok",
+    "noMoreTrips": "Daha fazla planlanmış seyahat yok",
     "timeTravel": "Lokasyonlar arasındaki seyahat süresi",
-    "bestTime": "Her Yeri Ziyaret Etmek İçin En İyi Zaman"
+    "bestTime": "Her Yer için En İyi Ziyaret Zamanı"
   },
   "plannedTripCard": {
     "price": "Bilet Fiyatı",

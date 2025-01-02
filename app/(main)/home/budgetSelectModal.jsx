@@ -1,18 +1,15 @@
 import { StyleSheet, Text, View, Platform, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import BackButton from "../../../components/BackButton";
 import { useRouter } from "expo-router";
-import CloseButton from "../../../components/CloseButton";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { hp, wp } from "../../../helpers/common";
-import { theme } from "../../../constants/theme";
 import TripButton from "../../../components/TripButton";
 import Header from "../../../components/Header";
 import {useTranslation} from "react-i18next";
 import {SelectBudgetList} from "../../../constants/tripOptions";
 import { useSelector, useDispatch } from "react-redux";
-import { setTripData, clearTripData } from "../../../contexts/redux/slices/tripSlice"
+import { setTripData } from "../../../contexts/redux/slices/tripSlice"
 
 const budgetSelectModal = () => {
   const router = useRouter();

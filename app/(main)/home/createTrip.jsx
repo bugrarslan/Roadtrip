@@ -54,11 +54,11 @@ const createTrip = () => {
     } else {
       showAlert({
         type: "error",
-        title: t("createTrip.alertTitle"),
-        content: t("createTrip.alertContent"),
+        title: t("alert.warning"),
+        content: t("alert.fillAllDetails"),
         buttons: [
           {
-            text: t("createTrip.alertButton"),
+            text: t("alert.ok"),
             onPress: () => {
               closeAlert();
             },

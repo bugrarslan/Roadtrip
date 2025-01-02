@@ -34,7 +34,7 @@ const editProfile = () => {
 
   // custom alert
   const [isAlertVisible, setAlertVisible] = useState(false);
-  const [alertData, setAlertData] = useState({});
+  const [alertData, setAlertData] = useState({buttons: []});
 
   const showAlert = (data) => {
     setAlertVisible(true);
@@ -43,7 +43,7 @@ const editProfile = () => {
 
   const closeAlert = () => {
     setAlertVisible(false);
-    setAlertData({});
+    setAlertData({buttons: []});
   };
 
   useEffect(() => {
@@ -77,8 +77,8 @@ const editProfile = () => {
     if (!name || !phoneNumber || !address || !bio || !image) {
       showAlert({
         type: "error",
-        title: t("editProfile.error"),
-        content: t("editProfile.errorContent"),
+        title: t("alert.error"),
+        content: t("alert.errorOccurred"),
       });
       return;
     }
@@ -166,12 +166,7 @@ const editProfile = () => {
         onClose={closeAlert}
         title={alertData?.title}
         message={alertData?.content}
-        buttons={[
-          {
-            text: "OK",
-            onPress: () => closeAlert(),
-          },
-        ]}
+        buttons={alertData?.buttons}
       />
     </ScreenWrapper>
   );

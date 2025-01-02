@@ -17,7 +17,7 @@ const FlightInfoCard = ({ flightDetails, t }) => {
     >
       <View style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
         <Text style={{ fontWeight: theme.fonts.extraBold,  fontSize: hp(2) }}>
-          ✈️ {t("flightInfoCard.flightTitle")}
+          ✈️ {t("flightInfoCard.flight")}
         </Text>
         <Pressable
           style={{

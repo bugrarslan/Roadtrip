@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import {StyleSheet, Text, View, Pressable} from "react-native";
 import {Image} from "expo-image";
 import moment from "moment";

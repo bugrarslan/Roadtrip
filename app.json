@@ -24,7 +24,10 @@
         "backgroundImage": "./assets/images/android/android-background.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bugrarslan.Tripvice"
+      "package": "com.bugrarslan.Tripvice",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -72,7 +75,6 @@
         }
       ],
       "expo-localization"
-      // "react-native-google-mobile-ads"
     ],
     "experiments": {
       "typedRoutes": true
@@ -82,7 +84,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "621b5b7f-dcc2-49da-b0b1-9efa4bc53731"
+        "projectId": "60f5394b-78a5-4d78-9fd6-c118dd1d7c93"
       }
     }
   }

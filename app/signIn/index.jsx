@@ -35,7 +35,7 @@ const signIn = () => {
 
   // custom alert
   const [isAlertVisible, setAlertVisible] = useState(false);
-  const [alertData, setAlertData] = useState(null);
+  const [alertData, setAlertData] = useState({buttons: []});
 
   const showAlert = (data) => {
     setAlertVisible(true);
@@ -44,15 +44,21 @@ const signIn = () => {
 
   const closeAlert = () => {
     setAlertVisible(false);
-    setAlertData(null);
+    setAlertData({buttons: []});
   };
 
   const onSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
       showAlert({
         type: "fillAllFields",
-        title: t("signIn.signInText"),
-        content: t("signIn.fillAllFields"),
+        title: t("alert.warning"),
+        content: t("alert.fillAllFields"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -63,8 +69,8 @@ const signIn = () => {
     setLoading(true);
 
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: emailRef.current,
-      password: passwordRef.current,
+      email,
+      password,
     });
 
     setLoading(false);
@@ -72,8 +78,14 @@ const signIn = () => {
     if (error) {
       showAlert({
         type: "error",
-        title: t("signIn.signInText"),
-        content: error.message,
+        title: t("alert.error"),
+        content: error.message === "Invalid login credentials" ? t("alert.invalidLoginCredentials") : t("alert.errorOccurred"),
+        buttons: [
+          {
+            text: t("alert.ok"),
+            onPress: () => closeAlert(),
+          },
+        ],
       });
       return;
     }
@@ -169,12 +181,7 @@ const signIn = () => {
           onClose={closeAlert}
           title={alertData?.title}
           message={alertData?.content}
-          buttons={[
-            {
-              text: "OK",
-              onPress: () => closeAlert(),
-            },
-          ]}
+          buttons={alertData?.buttons}
         />
       </ScreenWrapper>
     </TouchableWithoutFeedback>

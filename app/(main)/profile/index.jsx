@@ -42,15 +42,15 @@ const index = () => {
   const handleLogout = () => {
     showAlert({
       type: "logout",
-      title: t("profile.alertTitle"),
-      content: t("profile.alertContent"),
+      title: t("alert.warning"),
+      content: t("alert.signOutAlert"),
       buttons: [
         {
-          text: t("profile.alertCancelButton"),
+          text: t("alert.cancel"),
           onPress: () => closeAlert(),
         },
         {
-          text: t("profile.alertButton"),
+          text: t("alert.signOutButton"),
           onPress: () => signOut(),
         },
       ],
@@ -63,11 +63,11 @@ const index = () => {
     if (error) {
       showAlert({
         type: "error",
-        title: t("profile.alertTitle"),
-        content: error.message,
+        title: t("alert.error"),
+        content: t("alert.errorOccurred"),
         buttons: [
           {
-            text: "OK",
+            text: t("alert.ok"),
             onPress: () => closeAlert(),
           },
         ],
